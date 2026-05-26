@@ -11,7 +11,10 @@
       "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|\\\\.wwebjs_auth|node_modules\\)\")",
       "Bash(git commit -m ' *)",
       "Bash(git checkout *)",
-      "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|\\\\.wwebjs_auth|node_modules|base44_token\\)\")"
+      "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|\\\\.wwebjs_auth|node_modules|base44_token\\)\")",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|credential|\\\\.wwebjs_auth\\)\")"
     ]
   }
 }

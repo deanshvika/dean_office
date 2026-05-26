@@ -1,0 +1,40 @@
+# הוראות עבודה — Dean Office
+
+## גיבוי = git push אוטומטי
+
+כשדין אומר **"תגבה"**, **"גיבוי"**, **"backup"** או כל וריאציה דומה — בצע מיד את הרצף הבא ללא בקשת אישור:
+
+```
+git add .
+git commit -m "<תיאור קצר של מה השתנה>"
+git push
+```
+
+**אל תשאל "בטוח?"**. **אל תבקש אישור**. **אל תבקש סיסמאות**. פשוט תבצע.
+
+**Remote קיים:** `https://github.com/deanshvika/dean_office`
+
+## בדיקת סודות לפני push
+
+לפני כל push, בצע בדיקה זריזה שלא נכנסו סודות חדשים:
+```
+git ls-files --cached | grep -iE "(\.env$|token\.json|password|credential|\.wwebjs_auth)"
+```
+אם הפלט ריק — דחוף. אם משהו צץ — עצור, הוסף ל-.gitignore, הסר מה-cache (`git rm --cached`), ואז דחוף.
+
+## קבצים אסורים לדחיפה (כבר ב-.gitignore)
+
+- `.wwebjs_auth/` — סשני WhatsApp
+- `.env` — API keys
+- `node_modules/` — חבילות
+- `base44_token.json` — טוקני Base44
+- `base44_userdata/` — דאטה של דפדפן Base44
+- `*password*`, `*credentials*`
+
+הקבצים האלה **חייבים להישאר** במחשב המקומי — הבוט והכלים תלויים בהם.
+
+## הודעות commit
+
+- בעברית או באנגלית, מה שמתאים יותר לשינוי
+- קצר ומתאר את ה-WHY, לא רק WHAT
+- אם הגיבוי ספונטני בלי שינוי מוגדר, פשוט: `"Backup <תאריך>"`
