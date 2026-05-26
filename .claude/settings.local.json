@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git remote *)",
+      "Bash(git check-ignore *)",
+      "Bash(xxd .gitignore)",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(git rm *)",
+      "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|\\\\.wwebjs_auth|node_modules\\)\")",
+      "Bash(git commit -m ' *)",
+      "Bash(git checkout *)",
+      "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|\\\\.wwebjs_auth|node_modules|base44_token\\)\")"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+*.log
+.env
+.env.*
+!.env.example
+
+# Sensitive data
+base44_token.json
+base44_userdata/
+*password*
+*credentials*
+*.session
+
+# OS
+.DS_Store
+Thumbs.db
