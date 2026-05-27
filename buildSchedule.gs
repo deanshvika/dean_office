@@ -37,8 +37,8 @@ function buildSchedule() {
   // --- שורת הוראות ---
   sheet.getRange(2, 1, 1, 5).merge()
     .setValue('הוראות: בחר/י שורה פנויה ורשום/י את שמך בעמודה "שם מאמן" (כל שיחה 20 דקות)')
-    .setBackground('#E8EAF6')
-    .setFontColor('#3949AB')
+    .setBackground('#000000')
+    .setFontColor('#FFFFFF')
     .setFontStyle('italic')
     .setFontSize(11)
     .setHorizontalAlignment('center');
@@ -52,7 +52,7 @@ function buildSchedule() {
   const headers = ['תאריך', 'יום', 'שעת התחלה', 'שעת סיום', 'שם מאמן'];
   const headerRange = sheet.getRange(HEADER_ROW, 1, 1, 5);
   headerRange.setValues([headers])
-    .setBackground('#37474F')
+    .setBackground('#000000')
     .setFontColor('#FFFFFF')
     .setFontWeight('bold')
     .setFontSize(11)
@@ -61,13 +61,13 @@ function buildSchedule() {
 
   // --- לוח הזמנים ---
   const schedule = [
-    { date: '21/06/2026', day: 'ראשון',  start: '10:00', end: '12:00', color: '#E8F5E9', darkColor: '#C8E6C9' },
-    { date: '22/06/2026', day: 'שני',    start: '16:00', end: '18:00', color: '#E3F2FD', darkColor: '#BBDEFB' },
-    { date: '23/06/2026', day: 'שלישי',  start: '13:00', end: '15:00', color: '#FFF3E0', darkColor: '#FFE0B2' },
-    { date: '25/06/2026', day: 'חמישי',  start: '19:30', end: '21:00', color: '#F3E5F5', darkColor: '#E1BEE7' },
-    { date: '28/06/2026', day: 'ראשון',  start: '10:00', end: '12:00', color: '#E8F5E9', darkColor: '#C8E6C9' },
-    { date: '29/06/2026', day: 'שני',    start: '16:00', end: '18:00', color: '#E3F2FD', darkColor: '#BBDEFB' },
-    { date: '30/06/2026', day: 'שלישי',  start: '13:00', end: '15:00', color: '#FFF3E0', darkColor: '#FFE0B2' },
+    { date: '21/06/2026', day: 'ראשון',  start: '10:00', end: '12:00', color: '#000000', darkColor: '#1A1A1A' },
+    { date: '22/06/2026', day: 'שני',    start: '16:00', end: '18:00', color: '#000000', darkColor: '#1A1A1A' },
+    { date: '23/06/2026', day: 'שלישי',  start: '13:00', end: '15:00', color: '#000000', darkColor: '#1A1A1A' },
+    { date: '25/06/2026', day: 'חמישי',  start: '19:30', end: '21:00', color: '#000000', darkColor: '#1A1A1A' },
+    { date: '28/06/2026', day: 'ראשון',  start: '10:00', end: '12:00', color: '#000000', darkColor: '#1A1A1A' },
+    { date: '29/06/2026', day: 'שני',    start: '16:00', end: '18:00', color: '#000000', darkColor: '#1A1A1A' },
+    { date: '30/06/2026', day: 'שלישי',  start: '13:00', end: '15:00', color: '#000000', darkColor: '#1A1A1A' },
   ];
 
   let row = HEADER_ROW + 1;
@@ -83,12 +83,13 @@ function buildSchedule() {
 
       rowRange.setValues([[dayData.date, dayData.day, slot.start, slot.end, '']]);
       rowRange.setBackground(i === 0 ? dayData.darkColor : dayData.color);
+      rowRange.setFontColor('#FFFFFF');
       rowRange.setHorizontalAlignment('center');
       rowRange.setVerticalAlignment('middle');
-      rowRange.setBorder(true, true, true, true, false, false, '#BDBDBD', SpreadsheetApp.BorderStyle.SOLID);
+      rowRange.setBorder(true, true, true, true, false, false, '#444444', SpreadsheetApp.BorderStyle.SOLID);
 
-      // עמודת "שם מאמן" — רקע לבן כדי שייראה ברור
-      sheet.getRange(row, 5).setBackground('#FFFFFF').setFontColor('#000000').setFontWeight('normal');
+      // עמודת "שם מאמן" — רקע שחור עם טקסט לבן
+      sheet.getRange(row, 5).setBackground('#000000').setFontColor('#FFFFFF').setFontWeight('normal');
 
       sheet.setRowHeight(row, 26);
       row++;
@@ -97,7 +98,7 @@ function buildSchedule() {
     // קו מפריד בין ימים
     sheet.getRange(row - 1, 1, 1, 5).setBorder(
       false, false, true, false, false, false,
-      '#78909C', SpreadsheetApp.BorderStyle.SOLID_MEDIUM
+      '#FFFFFF', SpreadsheetApp.BorderStyle.SOLID_MEDIUM
     );
   }
 
@@ -122,11 +123,11 @@ function buildSchedule() {
   // --- הקפאת שורות כותרת ---
   sheet.setFrozenRows(HEADER_ROW);
 
-  // --- עיצוב מותנה: שורה תופסת = אפור ---
+  // --- עיצוב מותנה: שורה תופסת = אפור כהה ---
   const takenRule = SpreadsheetApp.newConditionalFormatRule()
     .whenFormulaSatisfied(`=$E${firstDataRow}<>""`)
-    .setBackground('#CFD8DC')
-    .setFontColor('#607D8B')
+    .setBackground('#2A2A2A')
+    .setFontColor('#888888')
     .setRanges([sheet.getRange(firstDataRow, 1, totalSlots, 5)])
     .build();
   sheet.setConditionalFormatRules([takenRule]);
@@ -135,11 +136,13 @@ function buildSchedule() {
   const coachSheet = ss.insertSheet('רשימת מאמנים');
   coachSheet.setRightToLeft(true);
   coachSheet.getRange(1, 1, 1, 2).setValues([['#', 'שם מאמן']])
-    .setBackground('#37474F').setFontColor('#FFFFFF').setFontWeight('bold')
+    .setBackground('#000000').setFontColor('#FFFFFF').setFontWeight('bold')
     .setHorizontalAlignment('center');
   coachSheet.setRowHeight(1, 28);
   const coachData = coaches.map((c, i) => [i + 1, c]);
   coachSheet.getRange(2, 1, coachData.length, 2).setValues(coachData)
+    .setBackground('#000000')
+    .setFontColor('#FFFFFF')
     .setHorizontalAlignment('center');
   coachSheet.setColumnWidth(1, 50);
   coachSheet.setColumnWidth(2, 180);

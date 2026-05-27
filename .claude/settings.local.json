@@ -14,7 +14,29 @@
       "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|\\\\.wwebjs_auth|node_modules|base44_token\\)\")",
       "Bash(git branch *)",
       "Bash(git push *)",
-      "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|credential|\\\\.wwebjs_auth\\)\")"
+      "Bash(grep -iE \"\\(\\\\.env$|token\\\\.json|password|credential|\\\\.wwebjs_auth\\)\")",
+      "WebFetch(domain:docs.google.com)",
+      "WebFetch(domain:doc-10-9s-sheets.googleusercontent.com)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\���\\\\Desktop\\\\������_���_���.html\")",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\���\\\\Desktop\\\\������_������_���_���.xlsx\")",
+      "PowerShell(python --version 2>&1)",
+      "PowerShell(node --version 2>&1)",
+      "PowerShell(npm list -g gspread googleapis 2>&1)",
+      "PowerShell(npm install -g googleapis 2>&1)",
+      "PowerShell(Get-Process chrome | Where-Object { $_.MainWindowTitle -ne \"\" } | Select-Object Id, MainWindowTitle)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(node --check *)",
+      "Bash(pm2 *)",
+      "PowerShell(node --check *)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(Select-Object *)",
+      "PowerShell(Where-Object *)",
+      "PowerShell(pm2 *)",
+      "PowerShell(npm *)",
+      "PowerShell",
+      "Bash(cp \"C:/Users/דין/AppData/Local/Google/Chrome/User Data/Default/History\" \"C:/Temp/ch_hist_$\\(date +%s\\).db\" 2>&1 || echo \"copy failed\")"
     ]
   }
 }
