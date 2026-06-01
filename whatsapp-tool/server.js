@@ -180,6 +180,16 @@ function findBest(input, list) {
         });
         if (byPhon) return byPhon;
     }
+    // ניסיון עם הסרת קידומת עברית (ה/ל/ב/מ/ו/כ) — שגיאת Whisper נפוצה
+    // לדוגמה: "הלאומות" → strip "ה" → "לאומות", strip "הל" → "אומות"... retry
+    const hebrewPrefixes = ['הל','בל','מל','ה','ב','ל','מ','ו','כ','ש'];
+    for (const pref of hebrewPrefixes) {
+        if (inp.startsWith(pref) && inp.length - pref.length >= 3) {
+            const stripped = inp.slice(pref.length);
+            const r = findBest(stripped, list);
+            if (r) return r;
+        }
+    }
     // אם שם פרטי לבד מזהה רשומה יחידה — נצח על שם משפחה משובש
     const firstNameOnly = inp.split(' ')[0];
     if (firstNameOnly && firstNameOnly.length >= 2) {
@@ -453,7 +463,17 @@ async function transcribe(audioBuffer, sessionId) {
         file: fs.createReadStream(tmpFile),
         model: 'whisper-large-v3-turbo',
         language: 'he',
-        response_format: 'text'
+        response_format: 'text',
+        prompt: (() => {
+            if (!LOCATIONS.length) return undefined;
+            let s = '';
+            for (const loc of LOCATIONS) {
+                const candidate = s ? s + ', ' + loc : loc;
+                if (Buffer.byteLength(candidate, 'utf8') > 800) break;
+                s = candidate;
+            }
+            return s || undefined;
+        })()
     });
     try {
         const _trTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('transcribe timeout')), 30000));
@@ -996,7 +1016,7 @@ async function getCoachInfo(coachName) {
 
     const todayIso = new Date().toISOString().split('T')[0];
     const allEvents = evRes.ok ? await evRes.json() : [];
-    const upcoming = allEvents.filter(e => e.coachName === matchedCoach && e.date >= todayIso && e.status !== 'cancelled' && e.status !== 'canceled');
+    const upcoming = allEvents.filter(e => e.coachName === matchedCoach && e.date >= todayIso && e.status !== 'cancelled' && e.status !== 'canceled' && e.status !== 'בוטל');
     upcoming.sort((a, b) => a.date.localeCompare(b.date));
 
     const next5 = upcoming.slice(0, 5).map(e => {
@@ -1021,8 +1041,8 @@ async function getDaySummary(date) {
     const res = await _apiFetch(`${base44Url(appId, 'Event')}?date=${isoDate}&limit=500`, { headers: H });
     if (!res.ok) throw new Error(`API שגיאה: ${res.status}`);
     const events = await res.json();
-    const active = events.filter(e => e.status !== 'cancelled' && e.status !== 'canceled');
-    const cancelled = events.filter(e => e.status === 'cancelled' || e.status === 'canceled');
+    const active = events.filter(e => e.status !== 'cancelled' && e.status !== 'canceled' && e.status !== 'בוטל');
+    const cancelled = events.filter(e => e.status === 'cancelled' || e.status === 'canceled' || e.status === 'בוטל');
 
     const totalWages = active.reduce((s, e) => s + (e.wage || 0), 0);
     const totalRevenue = active.reduce((s, e) => s + (e.price || 0), 0);
@@ -1218,6 +1238,8 @@ function createBotInstance({ id, label, role }) {
             if (saved) { state.selfLid = saved; console.log(`[${id}] selfLid מקובץ: ${state.selfLid}`); }
         } catch(_) {}
         console.log(`[${id}] ✓ מחובר כ-${info.pushname} (${info.wid.user})`);
+        // איפוס health interval — 5 דקות סופרות מרגע החיבור (לא מהאתחול)
+        _startHealthInterval();
     });
 
     client.on('auth_failure', () => {
@@ -1258,22 +1280,28 @@ function createBotInstance({ id, label, role }) {
     });
 
     // health check כל 5 דקות — אם Puppeteer לא מגיב, reinit
-    const _healthInterval = setInterval(async () => {
-        if (!state.connected) return;
-        try {
-            const ok = await Promise.race([
-                client.pupPage.evaluate(() => !!window.Store?.Msg),
-                new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 8000))
-            ]);
-            if (!ok) throw new Error('Store.Msg unavailable');
-            console.log(`[${id}] health OK`);
-        } catch(e) {
-            console.log(`[${id}] health FAIL: ${e.message} — reinit`);
-            state.connected = false;
-            clearInterval(_healthInterval);
-            _reinitSession(1);
-        }
-    }, 5 * 60 * 1000);
+    // מוגדר כ-let כדי לאפשר איפוס ב-ready (מונע race condition אחרי סריקת QR ארוכה)
+    let _healthInterval = null;
+    function _startHealthInterval() {
+        if (_healthInterval) clearInterval(_healthInterval);
+        _healthInterval = setInterval(async () => {
+            if (!state.connected) return;
+            try {
+                const ok = await Promise.race([
+                    client.pupPage.evaluate(() => !!window.Store?.Msg),
+                    new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 8000))
+                ]);
+                if (!ok) throw new Error('Store.Msg unavailable');
+                console.log(`[${id}] health OK`);
+            } catch(e) {
+                console.log(`[${id}] health FAIL: ${e.message} — reinit`);
+                state.connected = false;
+                clearInterval(_healthInterval);
+                _reinitSession(1);
+            }
+        }, 5 * 60 * 1000);
+    }
+    _startHealthInterval();
 
     client.on('message_create', async (msg) => {
         // רק שיחה עם עצמי (self-chat) וללא קבוצות
@@ -1520,8 +1548,19 @@ function createBotInstance({ id, label, role }) {
             try {
                 // הורד קודם (Puppeteer) — ורק אחרי שה-download הסתיים שלח "מתמלל"
                 // כך transcribe() (2-5 שניות, ללא Puppeteer) מספק בפר טבעי לפני התשובה
-                const _dlTimeout = new Promise((_, rej) => setTimeout(() => rej(new Error('downloadMedia timeout')), 20000));
-                const media = await Promise.race([msg.downloadMedia(), _dlTimeout]);
+                const _tryDl = async () => {
+                    for (let _dlTry = 0; _dlTry < 3; _dlTry++) {
+                        try {
+                            const _dlTimeout = new Promise((_, rej) => setTimeout(() => rej(new Error('downloadMedia timeout')), 45000));
+                            return await Promise.race([msg.downloadMedia(), _dlTimeout]);
+                        } catch(e) {
+                            if (_dlTry === 2) throw e;
+                            console.log(`[${id}] downloadMedia ניסיון ${_dlTry+1} נכשל — מנסה שוב`);
+                            await new Promise(r => setTimeout(r, 3000));
+                        }
+                    }
+                };
+                const media = await _tryDl();
                 const audioBuffer = Buffer.from(media.data, 'base64');
                 const _statusSentAt = Date.now();
                 await client.sendMessage(msg.from, '🎙️ מתמלל...').catch(() => {});
@@ -1559,8 +1598,8 @@ function createBotInstance({ id, label, role }) {
                 if (parsed.intent !== 'other' && parsed.intent !== 'unknown') {
                     ctx.history = [...ctx.history.slice(-4), transcript];
                     const rawCoach = parsed.coach || parsed.requestingCoach || (parsed.intent === 'query' ? parsed.subject : null);
-                    if (rawCoach && rawCoach.length > 1) ctx.coach = rawCoach;
-                    if (parsed.location && parsed.location.length > 1) ctx.location = parsed.location;
+                    if (rawCoach && rawCoach.length > 1) { const mc = findBest(rawCoach, COACHES); if (mc) ctx.coach = mc; }
+                    if (parsed.location && parsed.location.length > 1) { const ml = findBest(parsed.location, LOCATIONS); if (ml) ctx.location = ml; }
                     if (parsed.date && /\d{2}\/\d{2}/.test(parsed.date)) ctx.date = parsed.date;
                 }
 

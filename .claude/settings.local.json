@@ -36,7 +36,18 @@
       "PowerShell(pm2 *)",
       "PowerShell(npm *)",
       "PowerShell",
-      "Bash(cp \"C:/Users/דין/AppData/Local/Google/Chrome/User Data/Default/History\" \"C:/Temp/ch_hist_$\\(date +%s\\).db\" 2>&1 || echo \"copy failed\")"
+      "Bash(cp \"C:/Users/דין/AppData/Local/Google/Chrome/User Data/Default/History\" \"C:/Temp/ch_hist_$\\(date +%s\\).db\" 2>&1 || echo \"copy failed\")",
+      "Bash(mkdir -p \"C:/Users/דין/Desktop/תגי_שם_ימי_שיא\")",
+      "Bash(start \"\" \"C:/Users/דין/Desktop/תגי_שם_ימי_שיא/תגים.html\")",
+      "Bash(start \"\" \"C:/Users/דין/Desktop/תגי_שם_ימי_שיא/תגים-לבן.html\")",
+      "Bash(start \"\" \"C:/Users/דין/Desktop/תגי-שם-NIKA-שחור.pdf\")",
+      "Bash(start \"\" \"C:/Users/דין/Desktop/תגי-שם-NIKA-לבן.pdf\")",
+      "Bash(start \"\" \"C:/Users/דין/Desktop/תגי-שם-NIKA-לבן-מתוקן.pdf\")",
+      "Bash(start \"\" \"C:/Users/דין/Desktop/תגי-שם-NIKA-שחור-v2.pdf\")",
+      "Bash(start \"\" \"C:/Users/דין/Desktop/תגי-שם-NIKA-לבן-v2.pdf\")"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\דין\\Desktop"
     ]
   }
 }
