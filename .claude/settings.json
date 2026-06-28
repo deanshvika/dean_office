@@ -1,0 +1,51 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls node_modules/sharp)",
+      "Bash(ls node_modules/@pdf-lib/fontkit)",
+      "Bash(npm install *)",
+      "Read(//c/Users/דין/Desktop/**)",
+      "Bash(node -e ' *)",
+      "Bash(node edit_flyer_text.js)",
+      "Bash(cd \"C:/Users/דין/Desktop/ANTIGRAVITY/המוח השני\" && npm install @pdf-lib/fontkit --no-save --no-audit --no-fund 2>&1 | tail -2 && ls \"/c/Windows/Fonts/\" 2>/dev/null | grep -iE \"^\\(arial|david|guttman|arialhb\\)\" | head -10)",
+      "Read(//c/Windows/Fonts//**)",
+      "Bash(node deploy_serverjs.js)",
+      "Bash(Remove-Item \"c:\\\\Users\\\\דין\\\\Desktop\\\\ANTIGRAVITY\\\\המוח השני\\\\whatsapp-tool\\\\deploy_serverjs.js\")",
+      "Bash(python -c \"from PIL import Image; print\\('PIL OK'\\)\")",
+      "Bash(python -c \"import img2pdf; print\\('img2pdf OK'\\)\")",
+      "Bash(npm --version)",
+      "Bash(py --version)",
+      "Bash(pip --version)",
+      "Bash(mkdir -p \"/tmp/pdfconv\")",
+      "Read(//tmp/**)",
+      "Bash(node \"/c/Users/דין/Desktop/חוזה לאבא/make_pdf.js\")",
+      "Bash(cygpath -w /tmp/pdfconv)",
+      "Read(//c/Program Files/Git/tmp/pdfconv/node_modules/**)",
+      "Bash(node make_pdf.js)",
+      "Bash(node make_docx.js)",
+      "Bash(where gcloud *)",
+      "Bash(gcloud auth *)",
+      "Bash(node make_sheet.js)",
+      "Bash(node make_coach_eval_sheet.js)",
+      "Bash(node gen_coach_tsv.js)",
+      "Bash(node *)",
+      "Bash(node -c *)",
+      "Bash(node quick_deploy.js)",
+      "Bash(node deploy.js)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git ls-files*)",
+      "Bash(rm -f *)",
+      "Bash(cat *)",
+      "Bash(sed *)",
+      "Bash(grep *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\דין\\Desktop\\תגי_שם_ימי_שיא"
+    ]
+  }
+}

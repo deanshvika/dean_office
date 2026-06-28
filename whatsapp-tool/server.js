@@ -9,8 +9,8 @@ const path = require('path');
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 // ─── קבועים ───────────────────────────────────────────────────────────────────
-const SUBSTITUTION_EXCLUDED = new Set(['יהונתן רום']); // מאמנים שלא יופיעו ברשימת מחליפים
-const COACHES = ["להט מעיין","קרן דבוש","יהונתן רום","טל וזגיאל","דוד אשורי","דין שויקה","שרי אנטין","עמית אלבז","נועם כהן","תום בריאולובסקי","ליאור מרגוליס","שמעון יצחק","גל ניקסון","רומי לני","שלו אהרוני","דניאל לנדאו","סיון טפירו","אריק מונטבילסקי","אופק סגל","אסף זוהר","ליז אפרגן","פיקאדו ינאו","תמיר חלף","חי ניר","דובי מילר","וליד אבו חמוד","סהר ליכטנפלד","גילי ששון","אייל רותם","יובל גורפיין","עידן אדלר"];
+const SUBSTITUTION_EXCLUDED = new Set([]); // מאמנים שלא יופיעו ברשימת מחליפים
+const COACHES = ["קרן דבוש","טל וזגיאל","דוד אשורי","דין שויקה","נועם כהן","תום בריאולובסקי","ליאור מרגוליס","שלו אהרוני","דניאל לנדאו","סיון טפירו","אריק מונטבילסקי","אופק סגל","אסף זוהר","ליז אפרגן","פיקאדו ינאו","תמיר חלף","דובי מילר","וליד אבו חמוד","סהר ליכטנפלד","גילי ששון","אייל רותם","יובל גורפיין","עידן אדלר"];
 let LOCATIONS = ["הצלח\"ה איתמר","הצלחה חופית","הצלח\"ה מקיף ח'","הצלח\"ה הדרים ראשל\"צ","איתמר בן אב\"י (גפ\"ן), ת\"א","שורשים","הצלח\"ה הבילויים, ראשל\"צ","בי\"ס שפירא (יול\"א), ת\"א","בי\"ס שורשים (יול\"א), ת\"א","הצלח\"ה עין הקורא, ראשל\"צ","חט\"ב שמיר, ת\"א","בי\"ס איתמר בן אב\"י","בי\"ס המתמיד, ר\"ג","בי\"ס גבריאלי, ת\"א","בי\"ס לפיד, הוד השרון","בי\"ס מגן (יוח\"א), ת\"א","בי\"ס מגן","בי\"ס גבעון (יוח\"א), ת\"א","בי\"ס טבע, ת\"א","בי\"ס גבעון, ת\"א","בי\"ס רוקח, ת\"א","בי\"ס רוקח (יוח\"א), ת\"א","בי\"ס מרחבים, יבנה","בי\"ס שמיר, חולון","בי\"ס אלומות (יוח\"א), ת\"א","בי\"ס בית צורי, ת\"א","בי\"ס בית צורי (יוח\"א), ת\"א","בי\"ס יהודה מכבי (יוח\"א), ת\"א","בי\"ס נופי ים (יוח\"א), ת\"א","בי\"ס צמרות, באר יעקב","בי\"ס יוחנני, הרצליה","בי\"ס כפיר (יוח\"א), ת\"א","בי\"ס בלוך, ת\"א","בי\"ס בלוך (יוח\"א), ת\"א","בי\"ס נופים (יול\"א), ת\"א","נווה זמר, רעננה","נופי ים, ת\"א","אור זבולון, אריאל","בי\"ס כלנא יחד (יוח\"א), יפו","בי\"ס כלנא יחד, יפו","בי\"ס וייצמן, רחובות"];
 
 // ─── תפוגת גישת מנהלים (הרצה) ────────────────────────────────────────────────
@@ -453,7 +453,17 @@ async function transcribe(audioBuffer, sessionId) {
         file: fs.createReadStream(tmpFile),
         model: 'whisper-large-v3-turbo',
         language: 'he',
-        response_format: 'text'
+        response_format: 'text',
+        prompt: (() => {
+            if (!LOCATIONS.length) return undefined;
+            let s = '';
+            for (const loc of LOCATIONS) {
+                const candidate = s ? s + ', ' + loc : loc;
+                if (Buffer.byteLength(candidate, 'utf8') > 800) break;
+                s = candidate;
+            }
+            return s || undefined;
+        })()
     });
     try {
         const _trTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('transcribe timeout')), 30000));
@@ -557,9 +567,16 @@ async function detectIntent(text, context = {}) {
 
 סיכום/כמה פעילויות/כמה שכר ביום X: {"intent":"day_summary","date":"DD/MM/YYYY"}
 
+דו"ח/דוח פעילויות מלא על מוקד/בית ספר (כל התאריכים כולל עבר — מה בוצע/מתוכנן/בוטל): {"intent":"location_report","location":"שם בית הספר כולל עיר"}
+  דוגמה: "תן לי דוח פעילויות על חטיבת ביניים שמיר תל אביב" → {"intent":"location_report","location":"חטב שמיר ת\"א"}
+  חשוב: עבור location_report — כלול תמיד את העיר בשדה location (להבחנה בין מוקדים בעלי אותו שם, כמו שמיר ת"א מול שמיר חולון).
+
 שיחה/לא קשור ללוח זמנים: {"intent":"other"}
 
 תאריכים: "בראשון במאי"=01/05, "בשישי במאי"=06/05 (יום 6 בחודש!), "בעשירי"=10, "בחמישה עשר"=15
+"ב[מספר] ב[חודש]" = תאריך ספציפי! "ב4 ביוני"=04/06, "ב5 ביוני"=05/06, "ב7 ביולי"=07/07
+"ברביעי ביוני"=04/06 (4 בחודש, לא יום ד'), "בחמישי ביוני"=05/06, "בשישי ביוני"=06/06
+"ביום רביעי" (בלי חודש) = יום ד' בשבוע (מהטבלה). "ברביעי ב[חודש]" = תאריך 4 בחודש.
 location: כתוב כפי שנאמר (ללא עיר/סוגריים)
 
 טקסט: "${text}"`;
@@ -575,7 +592,7 @@ location: כתוב כפי שנאמר (ללא עיר/סוגריים)
         // 413 = פרומפט גדול מדי → נסה שוב ללא היסטוריה/הקשר (regex מתוקן: ללא רווח אחרי \n)
         if (e.message?.includes('413') || e.message?.includes('tokens')) {
             await new Promise(r => setTimeout(r, 1000));
-            const minimalPrompt = _promptContent.replace(/(ללא טקסט נוסף\.)[\s\S]*?(\nתאריך היום:)/, '$1$2');
+            const minimalPrompt = contextStr ? _promptContent.replace(contextStr, '') : _promptContent;
             msg = await withTimeout(groq.chat.completions.create({
                 model: 'llama-3.1-8b-instant', max_tokens: 400, temperature: 0,
                 messages: [{ role: 'user', content: minimalPrompt }]
@@ -719,7 +736,7 @@ async function previewRestore(date, location, coach) {
     if (!res.ok) throw new Error(`API שגיאה: ${res.status}`);
     const events = await res.json();
     return events.filter(e =>
-        (e.status === 'canceled' || e.status === 'בוטל') &&
+        (e.status === 'cancelled' || e.status === 'canceled' || e.status === 'בוטל') &&
         (!location || e.clientName === location) &&
         (!coach || e.coachName === coach)
     );
@@ -738,7 +755,7 @@ async function restoreActivities(date, location, coach) {
     if (!res.ok) throw new Error(`API שגיאה: ${res.status}`);
     const events = await res.json();
     const toRestore = events.filter(e =>
-        (e.status === 'canceled' || e.status === 'בוטל') &&
+        (e.status === 'cancelled' || e.status === 'canceled' || e.status === 'בוטל') &&
         (!matchedLocation || e.clientName === matchedLocation) &&
         (!matchedCoach || e.coachName === matchedCoach)
     );
@@ -996,7 +1013,7 @@ async function getCoachInfo(coachName) {
 
     const todayIso = new Date().toISOString().split('T')[0];
     const allEvents = evRes.ok ? await evRes.json() : [];
-    const upcoming = allEvents.filter(e => e.coachName === matchedCoach && e.date >= todayIso && e.status !== 'cancelled' && e.status !== 'canceled');
+    const upcoming = allEvents.filter(e => e.coachName === matchedCoach && e.date >= todayIso && e.status !== 'cancelled' && e.status !== 'canceled' && e.status !== 'בוטל');
     upcoming.sort((a, b) => a.date.localeCompare(b.date));
 
     const next5 = upcoming.slice(0, 5).map(e => {
@@ -1021,14 +1038,83 @@ async function getDaySummary(date) {
     const res = await _apiFetch(`${base44Url(appId, 'Event')}?date=${isoDate}&limit=500`, { headers: H });
     if (!res.ok) throw new Error(`API שגיאה: ${res.status}`);
     const events = await res.json();
-    const active = events.filter(e => e.status !== 'cancelled' && e.status !== 'canceled');
-    const cancelled = events.filter(e => e.status === 'cancelled' || e.status === 'canceled');
+    const active = events.filter(e => e.status !== 'cancelled' && e.status !== 'canceled' && e.status !== 'בוטל');
+    const cancelled = events.filter(e => e.status === 'cancelled' || e.status === 'canceled' || e.status === 'בוטל');
 
     const totalWages = active.reduce((s, e) => s + (e.wage || 0), 0);
     const totalRevenue = active.reduce((s, e) => s + (e.price || 0), 0);
     const coaches = [...new Set(active.map(e => e.coachName).filter(Boolean))].sort();
 
     return { date, isoDate, active: active.length, cancelled: cancelled.length, totalWages, totalRevenue, coaches };
+}
+
+// דו"ח פעילויות מלא על מוקד/בית ספר — כל התאריכים מ-Base44 (כולל עבר), עם הבחנת עיר
+async function getLocationReport(location) {
+    const { appId } = getB44();
+    const H = base44Headers();
+    const res = await _apiFetch(`${base44Url(appId, 'Event')}?limit=15000`, { headers: H }, 45000);
+    if (!res.ok) throw new Error(`API שגיאה: ${res.status}`);
+    const all = await res.json();
+
+    // רשימת המוקדים מתוך האירועים בפועל — כולל מוקדים שכבר לא פעילים (לא מסתמך על קאש העתיד)
+    const distinct = [...new Set(all.map(e => e.clientName).filter(Boolean))];
+
+    // התאמה מודעת-עיר: כל אסימון בקלט חייב להופיע במוקד. תיקו → מבקש הבהרה
+    // נרמול שמות ערים מדוברים לקיצורים שבמערכת (Whisper מתמלל מלא, הדאטה מקוצר)
+    const normCity = s => s
+        .replace(/תל[\s-]?אביב(?:[\s-]?יפו)?/g, 'תא')
+        .replace(/ראשון[\s-]?לציון/g, 'ראשלצ')
+        .replace(/רמת[\s-]?גן/g, 'רג');
+    const clean = s => normCity(s.replace(/['"״]/g, '').replace(/\s+/g, ' ').trim().toLowerCase());
+    const tokens = clean(location).split(/[\s,]+/).filter(t => t.length >= 2);
+    if (tokens.length === 0) throw new Error(`לא זיהיתי שם מוקד מתוך "${location}"`);
+    const scored = distinct
+        .map(L => { const cl = clean(L); return { L, hit: tokens.filter(t => cl.includes(t)).length }; })
+        .filter(x => x.hit > 0)
+        .sort((a, b) => b.hit - a.hit);
+    if (scored.length === 0) throw new Error(`לא מצאתי מוקד בשם "${location}"`);
+    const top = scored[0].hit;
+    const winners = scored.filter(x => x.hit === top);
+    if (winners.length > 1) {
+        return `❓ מצאתי כמה מוקדים שמתאימים ל"${location}":\n${winners.map(w => `• ${w.L}`).join('\n')}\n\nציין בבקשה עם העיר (למשל "שמיר תל אביב").`;
+    }
+    const matched = winners[0].L;
+
+    const events = all.filter(e => e.clientName === matched);
+    if (events.length === 0) return `📭 אין פעילויות רשומות ב${matched}.`;
+
+    const hebrewDays = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
+    const todayIso = new Date().toISOString().split('T')[0];
+    const isCancelled = s => ['cancelled', 'canceled', 'בוטל'].includes(s);
+
+    const byDate = {};
+    for (const e of events) { if (e.date) (byDate[e.date] = byDate[e.date] || []).push(e); }
+    const dates = Object.keys(byDate).sort();
+
+    const done = [], planned = [], cancelled = [];
+    const coachSet = new Set();
+    for (const iso of dates) {
+        const evs = byDate[iso];
+        const live = evs.filter(e => !isCancelled(e.status));
+        const [y, m, d] = iso.split('-');
+        const dow = hebrewDays[new Date(`${y}-${m}-${d}T12:00:00`).getDay()];
+        const disp = `${dow} ${d}/${m}/${y}`;
+        const coaches = [...new Set(evs.map(e => e.coachName).filter(Boolean))];
+        coaches.forEach(c => coachSet.add(c));
+        const times = [...new Set((live.length ? live : evs).map(e => e.startTime).filter(Boolean))].sort();
+        const line = `${disp}${coaches.length ? ' — ' + coaches.join(', ') : ''}${times.length ? ' (' + times.join(', ') + ')' : ''}`;
+        if (live.length === 0) cancelled.push(line);
+        else if (iso < todayIso) done.push(line);
+        else planned.push(line);
+    }
+
+    const parts = [`📋 *דו"ח פעילויות — ${matched}*`];
+    parts.push(`👥 מאמנים: ${[...coachSet].join(', ') || '—'}`);
+    parts.push(`📊 סה"כ ${dates.length} תאריכים | בוצעו ${done.length} | מתוכננים ${planned.length} | בוטלו ${cancelled.length}`);
+    if (done.length) parts.push(`\n✅ *בוצעו (${done.length}):*\n${done.join('\n')}`);
+    if (planned.length) parts.push(`\n🗓️ *מתוכננים (${planned.length}):*\n${planned.join('\n')}`);
+    if (cancelled.length) parts.push(`\n❌ *בוטלו (${cancelled.length}):*\n${cancelled.join('\n')}`);
+    return parts.join('\n');
 }
 
 // ─── מיפוי גיאוגרפי ───────────────────────────────────────────────────────────
@@ -1069,8 +1155,10 @@ async function getAvailableCoaches(coachName, location, date) {
     const matchedLocation = findBest(location, LOCATIONS);
     if (!matchedLocation) throw new Error(`לא זיהיתי מוקד בשם "${location}"`);
 
+    if (!date || !date.includes('/')) throw new Error(`תאריך לא תקין: ${date}`);
     const parts = date.split('/');
     const d = parts[0], m = parts[1], y = parts[2] || String(new Date().getFullYear());
+    if (!d || !m) throw new Error(`תאריך לא תקין: ${date}`);
     const isoDate = `${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`;
 
     const { appId } = getB44();
@@ -1078,7 +1166,7 @@ async function getAvailableCoaches(coachName, location, date) {
     const evRes = await _apiFetch(`${base44Url(appId, 'Event')}?date=${isoDate}&limit=500`, { headers: H });
     if (!evRes.ok) throw new Error(`API שגיאה: ${evRes.status}`);
     const dayEvents = await evRes.json();
-    const active = dayEvents.filter(e => e.status !== 'cancelled' && e.status !== 'canceled');
+    const active = dayEvents.filter(e => e.status !== 'cancelled' && e.status !== 'canceled' && e.status !== 'בוטל');
 
     // שעות המאמן המבוקש באותו מוקד (כולל גרסת יוח"א/יול"א וללא עיר)
     const normLoc = s => (s||'').replace(/\s*\([^)]*\)/g,'').replace(/,.*$/,'').trim();
@@ -1218,6 +1306,7 @@ function createBotInstance({ id, label, role }) {
             if (saved) { state.selfLid = saved; console.log(`[${id}] selfLid מקובץ: ${state.selfLid}`); }
         } catch(_) {}
         console.log(`[${id}] ✓ מחובר כ-${info.pushname} (${info.wid.user})`);
+        _startHealthInterval();
     });
 
     client.on('auth_failure', () => {
@@ -1257,23 +1346,27 @@ function createBotInstance({ id, label, role }) {
         setTimeout(() => _reinitSession(1), 10000);
     });
 
-    // health check כל 5 דקות — אם Puppeteer לא מגיב, reinit
-    const _healthInterval = setInterval(async () => {
-        if (!state.connected) return;
-        try {
-            const ok = await Promise.race([
-                client.pupPage.evaluate(() => !!window.Store?.Msg),
-                new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 8000))
-            ]);
-            if (!ok) throw new Error('Store.Msg unavailable');
-            console.log(`[${id}] health OK`);
-        } catch(e) {
-            console.log(`[${id}] health FAIL: ${e.message} — reinit`);
-            state.connected = false;
-            clearInterval(_healthInterval);
-            _reinitSession(1);
-        }
-    }, 5 * 60 * 1000);
+    // health check כל 5 דקות — מאופס ב-ready כדי למנוע ריצה מוקדמת
+    let _healthInterval = null;
+    function _startHealthInterval() {
+        if (_healthInterval) clearInterval(_healthInterval);
+        _healthInterval = setInterval(async () => {
+            if (!state.connected) return;
+            try {
+                const cs = await Promise.race([
+                    client.getState(),
+                    new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 8000))
+                ]);
+                if (cs !== 'CONNECTED') throw new Error(`state: ${cs}`);
+                console.log(`[${id}] health OK`);
+            } catch(e) {
+                console.log(`[${id}] health FAIL: ${e.message} — reinit`);
+                state.connected = false;
+                clearInterval(_healthInterval);
+                _reinitSession(1);
+            }
+        }, 5 * 60 * 1000);
+    }
 
     client.on('message_create', async (msg) => {
         // רק שיחה עם עצמי (self-chat) וללא קבוצות
@@ -1323,7 +1416,7 @@ function createBotInstance({ id, label, role }) {
                 console.log(`[${id}] הודעת טקסט ישנה — מדלג`);
                 return;
             }
-            const body = msg.body.trim()
+            const body = (msg.body || '').trim()
                 .replace(/עובדיום/g, 'עובדים ביום')
                 .replace(/משובציום/g, 'משובצים ביום');
 
@@ -1520,8 +1613,19 @@ function createBotInstance({ id, label, role }) {
             try {
                 // הורד קודם (Puppeteer) — ורק אחרי שה-download הסתיים שלח "מתמלל"
                 // כך transcribe() (2-5 שניות, ללא Puppeteer) מספק בפר טבעי לפני התשובה
-                const _dlTimeout = new Promise((_, rej) => setTimeout(() => rej(new Error('downloadMedia timeout')), 20000));
-                const media = await Promise.race([msg.downloadMedia(), _dlTimeout]);
+                const _tryDl = async () => {
+                    for (let _dlTry = 0; _dlTry < 3; _dlTry++) {
+                        try {
+                            const _dlTimeout = new Promise((_, rej) => setTimeout(() => rej(new Error('downloadMedia timeout')), 45000));
+                            return await Promise.race([msg.downloadMedia(), _dlTimeout]);
+                        } catch(e) {
+                            if (_dlTry === 2) throw e;
+                            console.log(`[${id}] downloadMedia ניסיון ${_dlTry+1} נכשל — מנסה שוב`);
+                            await new Promise(r => setTimeout(r, 3000));
+                        }
+                    }
+                };
+                const media = await _tryDl();
                 const audioBuffer = Buffer.from(media.data, 'base64');
                 const _statusSentAt = Date.now();
                 await client.sendMessage(msg.from, '🎙️ מתמלל...').catch(() => {});
@@ -1559,15 +1663,28 @@ function createBotInstance({ id, label, role }) {
                 if (parsed.intent !== 'other' && parsed.intent !== 'unknown') {
                     ctx.history = [...ctx.history.slice(-4), transcript];
                     const rawCoach = parsed.coach || parsed.requestingCoach || (parsed.intent === 'query' ? parsed.subject : null);
-                    if (rawCoach && rawCoach.length > 1) ctx.coach = rawCoach;
-                    if (parsed.location && parsed.location.length > 1) ctx.location = parsed.location;
+                    if (rawCoach && rawCoach.length > 1) { const mc = findBest(rawCoach, COACHES); if (mc) ctx.coach = mc; }
+                    if (parsed.location && parsed.location.length > 1) { const ml = findBest(parsed.location, LOCATIONS); if (ml) ctx.location = ml; }
                     if (parsed.date && /\d{2}\/\d{2}/.test(parsed.date)) ctx.date = parsed.date;
                 }
+
+                // נקה תאריך לא תקין (LLM מחזיר "..." כplaceholder)
+                if (parsed.date && !/^\d{2}\/\d{2}\/\d{4}$/.test(parsed.date)) parsed.date = null;
 
                 // תיקון: query עם queryType=available_coaches → available_coaches
                 if (parsed.intent === 'query' && parsed.queryType === 'available_coaches') {
                     parsed.intent = 'available_coaches';
                     if (!parsed.coach) parsed.coach = parsed.subject || '';
+                }
+
+                // אם ה-LLM לא חילץ מיקום — נסה לזהות מיקום ישירות בטרנסקריפט
+                if (!parsed.location) {
+                    const _directLoc = findBest(transcript, LOCATIONS);
+                    if (_directLoc) {
+                        parsed.location = _directLoc;
+                        ctx.location = _directLoc;
+                        console.log(`[${id}] מיקום זוהה ישירות מטרנסקריפט: ${_directLoc}`);
+                    }
                 }
 
                 // מלא שדות חסרים מהקשר השיחה
@@ -1578,10 +1695,15 @@ function createBotInstance({ id, label, role }) {
                         parsed.requestingCoach = ctx.coach;
                     if (!parsed.subject && ctx.coach && parsed.intent === 'query')
                         parsed.subject = ctx.coach;
-                    if (!parsed.location && ctx.location && ['available_coaches','cancel','restore','substitution','swap_coach','add_event'].includes(parsed.intent))
+                    if (!parsed.location && ctx.location && ['available_coaches','cancel','restore','substitution','swap_coach','add_event','location_report'].includes(parsed.intent))
                         parsed.location = ctx.location;
                     if (!parsed.date && ctx.date && ['available_coaches','cancel','restore','substitution','swap_coach','day_summary','add_event'].includes(parsed.intent))
                         parsed.date = ctx.date;
+                    // אם עדיין אין תאריך — ברירת מחדל: היום
+                    if (!parsed.date && ['available_coaches','day_summary','coach_info'].includes(parsed.intent)) {
+                        const _now = new Date();
+                        parsed.date = `${String(_now.getDate()).padStart(2,'0')}/${String(_now.getMonth()+1).padStart(2,'0')}/${_now.getFullYear()}`;
+                    }
                 }
 
                 // הרשאות — מנהל רגיל יכול רק לשאול
@@ -1601,6 +1723,7 @@ function createBotInstance({ id, label, role }) {
                     await client.sendMessage(msg.from, answer);
 
                 } else if (parsed.intent === 'cancel') {
+                    if (!parsed.date) { await client.sendMessage(msg.from, '❌ לא זיהיתי תאריך. נסה שוב עם תאריך ברור.'); return; }
                     const matchedLocation = parsed.location ? findBest(parsed.location, LOCATIONS) : null;
                     if (parsed.location && !matchedLocation) {
                         await client.sendMessage(msg.from, `❌ לא זיהיתי את המוקד "${parsed.location}". נסה שוב.`);
@@ -1623,6 +1746,7 @@ function createBotInstance({ id, label, role }) {
                     );
 
                 } else if (parsed.intent === 'restore') {
+                    if (!parsed.date) { await client.sendMessage(msg.from, '❌ לא זיהיתי תאריך. נסה שוב עם תאריך ברור.'); return; }
                     const matchedLocation = parsed.location ? findBest(parsed.location, LOCATIONS) : null;
                     const matchedCoachR = parsed.coach ? findBest(parsed.coach, COACHES) : null;
                     if (parsed.location && !matchedLocation) {
@@ -1651,6 +1775,7 @@ function createBotInstance({ id, label, role }) {
                     );
 
                 } else if (parsed.intent === 'substitution') {
+                    if (!parsed.date) { await client.sendMessage(msg.from, '❌ לא זיהיתי תאריך. נסה שוב עם תאריך ברור.'); return; }
                     const matchedCoach = findBest(parsed.requestingCoach, COACHES);
                     const matchedLocation = findBest(parsed.location, LOCATIONS);
                     const matchedReplacement = findBest(parsed.replacementCoach, COACHES);
@@ -1918,9 +2043,10 @@ function createBotInstance({ id, label, role }) {
                     }
 
                 } else if (parsed.intent === 'coach_info') {
+                    if (!parsed.coach) { await client.sendMessage(msg.from, '❌ ציין שם מאמן.'); return; }
                     try {
                         await client.sendMessage(msg.from, '⏳ מחפש פרטי מאמן...');
-                        const info = await getCoachInfo(parsed.coach || '');
+                        const info = await getCoachInfo(parsed.coach);
                         const evLines = info.next5.length > 0 ? '\n\n📅 *אירועים קרובים:*\n' + info.next5.join('\n') : '\n\n📅 אין אירועים קרובים.';
                         await client.sendMessage(msg.from,
                             `👤 *${info.matchedCoach}*\n\n💰 שכר ברירת מחדל: ${info.defaultWage}₪\n📋 אירועים עתידיים: ${info.upcomingCount}${evLines}`
@@ -1942,6 +2068,17 @@ function createBotInstance({ id, label, role }) {
 💰 סך שכר מאמנים: ${s.totalWages}₪
 💵 סך הכנסות: ${s.totalRevenue}₪${coachList}`
                         );
+                    } catch(e) {
+                        await client.sendMessage(msg.from, `❌ שגיאה: ${e.message}`);
+                    }
+
+                } else if (parsed.intent === 'location_report') {
+                    const loc = parsed.location;
+                    if (!loc) { await client.sendMessage(msg.from, '❌ ציין שם בית ספר/מוקד. לדוגמה: "דוח פעילויות על שמיר תל אביב".'); return; }
+                    try {
+                        await client.sendMessage(msg.from, '⏳ מכין דו"ח פעילויות...');
+                        const report = await getLocationReport(loc);
+                        await client.sendMessage(msg.from, report);
                     } catch(e) {
                         await client.sendMessage(msg.from, `❌ שגיאה: ${e.message}`);
                     }
