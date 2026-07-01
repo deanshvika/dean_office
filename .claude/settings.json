@@ -42,7 +42,8 @@
       "Bash(rm -f *)",
       "Bash(cat *)",
       "Bash(sed *)",
-      "Bash(grep *)"
+      "Bash(grep *)",
+      "Edit(/.claude/skills/text-to-gdocs/**)"
     ],
     "additionalDirectories": [
       "C:\\Users\\דין\\Desktop\\תגי_שם_ימי_שיא"

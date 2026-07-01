@@ -13,6 +13,14 @@ base44_userdata/
 *credentials*
 *.session
 
+# WhatsApp group tool outputs (contain phone numbers / PII)
+grouptool_qr.png
+group_members.txt
+group_members.json
+groups_list.txt
+new_group_numbers.txt
+create_group_result.json
+
 # OS
 .DS_Store
 Thumbs.db

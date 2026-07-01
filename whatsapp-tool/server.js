@@ -1068,52 +1068,88 @@ async function getLocationReport(location) {
     const clean = s => normCity(s.replace(/['"״]/g, '').replace(/\s+/g, ' ').trim().toLowerCase());
     const tokens = clean(location).split(/[\s,]+/).filter(t => t.length >= 2);
     if (tokens.length === 0) throw new Error(`לא זיהיתי שם מוקד מתוך "${location}"`);
+    // אסימון ארוך (≥4) — התאמת תת-מחרוזת; אסימון קצר ("ים","בן","תא") — מילה שלמה בלבד (מונע "ים" בתוך "נופים")
+    const matchTok = (cl, words, t) => t.length >= 4 ? cl.includes(t) : words.includes(t);
     const scored = distinct
-        .map(L => { const cl = clean(L); return { L, hit: tokens.filter(t => cl.includes(t)).length }; })
+        .map(L => { const cl = clean(L); const words = cl.split(/[\s,()."'״]+/).filter(Boolean); return { L, hit: tokens.filter(t => matchTok(cl, words, t)).length }; })
         .filter(x => x.hit > 0)
         .sort((a, b) => b.hit - a.hit);
     if (scored.length === 0) throw new Error(`לא מצאתי מוקד בשם "${location}"`);
-    const top = scored[0].hit;
-    const winners = scored.filter(x => x.hit === top);
-    if (winners.length > 1) {
-        return `❓ מצאתי כמה מוקדים שמתאימים ל"${location}":\n${winners.map(w => `• ${w.L}`).join('\n')}\n\nציין בבקשה עם העיר (למשל "שמיר תל אביב").`;
-    }
-    const matched = winners[0].L;
+    const winners = scored.filter(x => x.hit === scored[0].hit).map(x => x.L);
 
-    const events = all.filter(e => e.clientName === matched);
-    if (events.length === 0) return `📭 אין פעילויות רשומות ב${matched}.`;
+    // זיהוי "אותו בית ספר פיזי": שם-בסיס זהה + עיר תואמת — מאחד וריאציות תוכנית (יוח"א/יול"א)
+    const stripBase = s => s.replace(/\(.*?\)/g, '').replace(/,.*$/, '').replace(/['"״]/g, '')
+        .replace(/בי"?ס|בית ספר|חט"?ב|חטיבת ביניים|הצלח"?ה/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+    const cityOf = s => { const m = s.replace(/\(.*?\)/g, '').match(/,\s*([^,]+?)\s*$/); return m ? clean(m[1]) : ''; };
+    const programOf = s => /יוח"?א|יוחא/.test(s) ? 'יוח"א' : (/יול"?א|יולא/.test(s) ? 'יול"א' : 'רגיל');
+
+    // שמות-בסיס שונים → בתי ספר שונים שהותאמו → בקשת הבהרה
+    if ([...new Set(winners.map(stripBase))].length > 1)
+        return `❓ מצאתי כמה מוקדים שמתאימים ל"${location}":\n${winners.map(w => `• ${w}`).join('\n')}\n\nציין בבקשה מדויק יותר.`;
+    // אותו שם-בסיס אך ערים שונות (כמו שמיר ת"א מול שמיר חולון) → בקשת הבהרה לפי עיר
+    if ([...new Set(winners.map(cityOf).filter(Boolean))].length > 1)
+        return `❓ "${location}" קיים בכמה ערים:\n${winners.map(w => `• ${w}`).join('\n')}\n\nציין בבקשה עם העיר.`;
+
+    const matchedSet = new Set(winners);
+    const events = all.filter(e => matchedSet.has(e.clientName));
+    if (events.length === 0) return `📭 אין פעילויות רשומות.`;
 
     const hebrewDays = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
     const todayIso = new Date().toISOString().split('T')[0];
     const isCancelled = s => ['cancelled', 'canceled', 'בוטל'].includes(s);
 
-    const byDate = {};
-    for (const e of events) { if (e.date) (byDate[e.date] = byDate[e.date] || []).push(e); }
-    const dates = Object.keys(byDate).sort();
-
-    const done = [], planned = [], cancelled = [];
-    const coachSet = new Set();
-    for (const iso of dates) {
-        const evs = byDate[iso];
-        const live = evs.filter(e => !isCancelled(e.status));
-        const [y, m, d] = iso.split('-');
-        const dow = hebrewDays[new Date(`${y}-${m}-${d}T12:00:00`).getDay()];
-        const disp = `${dow} ${d}/${m}/${y}`;
-        const coaches = [...new Set(evs.map(e => e.coachName).filter(Boolean))];
-        coaches.forEach(c => coachSet.add(c));
-        const times = [...new Set((live.length ? live : evs).map(e => e.startTime).filter(Boolean))].sort();
-        const line = `${disp}${coaches.length ? ' — ' + coaches.join(', ') : ''}${times.length ? ' (' + times.join(', ') + ')' : ''}`;
-        if (live.length === 0) cancelled.push(line);
-        else if (iso < todayIso) done.push(line);
-        else planned.push(line);
+    // בונה דליי בוצע/מתוכנן/בוטל מתוך רשימת אירועים
+    function buildBuckets(evList) {
+        const byDate = {};
+        for (const e of evList) { if (e.date) (byDate[e.date] = byDate[e.date] || []).push(e); }
+        const dates = Object.keys(byDate).sort();
+        const done = [], planned = [], cancelled = [];
+        const coachSet = new Set();
+        for (const iso of dates) {
+            const evs = byDate[iso];
+            const live = evs.filter(e => !isCancelled(e.status));
+            const [y, m, d] = iso.split('-');
+            const dow = hebrewDays[new Date(`${y}-${m}-${d}T12:00:00`).getDay()];
+            const disp = `${dow} ${d}/${m}/${y}`;
+            const coaches = [...new Set(evs.map(e => e.coachName).filter(Boolean))];
+            coaches.forEach(c => coachSet.add(c));
+            const times = [...new Set((live.length ? live : evs).map(e => e.startTime).filter(Boolean))].sort();
+            const line = `${disp}${coaches.length ? ' — ' + coaches.join(', ') : ''}${times.length ? ' (' + times.join(', ') + ')' : ''}`;
+            if (live.length === 0) cancelled.push(line);
+            else if (iso < todayIso) done.push(line);
+            else planned.push(line);
+        }
+        return { dates, done, planned, cancelled, coachSet };
     }
 
-    const parts = [`📋 *דו"ח פעילויות — ${matched}*`];
-    parts.push(`👥 מאמנים: ${[...coachSet].join(', ') || '—'}`);
-    parts.push(`📊 סה"כ ${dates.length} תאריכים | בוצעו ${done.length} | מתוכננים ${planned.length} | בוטלו ${cancelled.length}`);
-    if (done.length) parts.push(`\n✅ *בוצעו (${done.length}):*\n${done.join('\n')}`);
-    if (planned.length) parts.push(`\n🗓️ *מתוכננים (${planned.length}):*\n${planned.join('\n')}`);
-    if (cancelled.length) parts.push(`\n❌ *בוטלו (${cancelled.length}):*\n${cancelled.join('\n')}`);
+    // שם תצוגה: הגרסה הארוכה ביותר, ללא סיומת התוכנית
+    const displayName = winners.slice().sort((a, b) => b.length - a.length)[0]
+        .replace(/\s*\((?:יוח"?א|יול"?א)\)\s*/g, ' ').replace(/\s+,/g, ',').replace(/\s+/g, ' ').trim();
+
+    const overall = buildBuckets(events);
+    const parts = [`📋 *דו"ח פעילויות — ${displayName}*`];
+    parts.push(`👥 מאמנים: ${[...overall.coachSet].join(', ') || '—'}`);
+    parts.push(`📊 סה"כ ${overall.dates.length} תאריכים | בוצעו ${overall.done.length} | מתוכננים ${overall.planned.length} | בוטלו ${overall.cancelled.length}`);
+
+    const programs = [...new Set(events.map(e => programOf(e.clientName)))];
+    if (programs.length <= 1) {
+        // תוכנית אחת — תצוגה שטוחה
+        if (overall.done.length) parts.push(`\n✅ *בוצעו (${overall.done.length}):*\n${overall.done.join('\n')}`);
+        if (overall.planned.length) parts.push(`\n🗓️ *מתוכננים (${overall.planned.length}):*\n${overall.planned.join('\n')}`);
+        if (overall.cancelled.length) parts.push(`\n❌ *בוטלו (${overall.cancelled.length}):*\n${overall.cancelled.join('\n')}`);
+    } else {
+        // כמה תוכניות באותו בית ספר — פירוט נפרד לכל תוכנית
+        const order = ['רגיל', 'יוח"א', 'יול"א'];
+        for (const prog of programs.slice().sort((a, b) => order.indexOf(a) - order.indexOf(b))) {
+            const b = buildBuckets(events.filter(e => programOf(e.clientName) === prog));
+            const label = prog === 'רגיל' ? 'תוכנית רגילה' : prog;
+            const seg = [`\n━━ *${label}* (${b.dates.length} תאריכים) ━━`];
+            if (b.done.length) seg.push(`✅ בוצעו (${b.done.length}):\n${b.done.join('\n')}`);
+            if (b.planned.length) seg.push(`🗓️ מתוכננים (${b.planned.length}):\n${b.planned.join('\n')}`);
+            if (b.cancelled.length) seg.push(`❌ בוטלו (${b.cancelled.length}):\n${b.cancelled.join('\n')}`);
+            parts.push(seg.join('\n'));
+        }
+    }
     return parts.join('\n');
 }
 
