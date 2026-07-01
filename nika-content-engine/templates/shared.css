@@ -11,6 +11,7 @@
   --g-magenta:linear-gradient(135deg,#E91E63,#FF4081);
   --g-blue:linear-gradient(135deg,#03A9F4,#673AB7);
   --g-lime:linear-gradient(135deg,#8BC34A,#C0CA33);
+  --rainbow:linear-gradient(90deg,#E91E63,#FF6F00,#FFC107,#8BC34A,#03A9F4,#673AB7);
   --tint-blue:#eef7ff;
   --tint-mag:#fff0f6;
   --tint-lime:#f4fbe9;
@@ -32,8 +33,19 @@ body{
   position:relative;
   width:210mm; min-height:297mm;
   margin:0 auto; padding:9mm 9mm 12mm;
-  background:#fff;
+  background:#fff; overflow:hidden;
 }
+
+/* ── דקורציית מותג (מאחורי התוכן) ── */
+.deco{ position:absolute; pointer-events:none; z-index:0; }
+.deco-r{ top:-52px; right:-52px; width:180px; height:180px; }
+.deco-l{ top:-48px; left:-48px; width:170px; height:170px; }
+.cf{ position:absolute; border-radius:2px; opacity:.9; z-index:0; pointer-events:none; }
+.rainbowbar{ height:6px; background:var(--rainbow); border-radius:99px; margin:1px 0 4px; }
+.logo-img{ display:block; height:54px; margin:0 auto; }
+/* התוכן מעל הדקורציה */
+.phead,.titleblock,.intro,.two-col,.tasks,.encourage,.bottom,.pfooter,.pagenum,
+.coach-grid2,.coach-grid3,.legend,.rainbowbar{ position:relative; z-index:1; }
 .page + .page{ margin-top:6mm; }
 
 h1,h2,h3,h4{ color:var(--ink); margin:0; font-weight:800; }
@@ -51,10 +63,10 @@ h1,h2,h3,h4{ color:var(--ink); margin:0; font-weight:800; }
 .brandmark .tagline{ font-size:9px; color:var(--muted); font-weight:500; margin-top:-2px; }
 .crumbs{ text-align:left; font-size:13px; font-weight:700; color:var(--ink); white-space:nowrap; }
 
-.titleblock{ text-align:center; margin:0 0 6px; }
+.titleblock{ text-align:center; margin:0 0 4px; }
 .daylabel{ display:inline-block; background:var(--g-blue); color:#fff; font-weight:700; font-size:13px;
   padding:4px 16px; border-radius:999px; box-shadow:var(--shadow); }
-.ptitle{ font-family:'Varela Round','Rubik'; font-size:27px; font-weight:800; margin:5px 0 5px; line-height:1.05; }
+.ptitle{ font-family:'Varela Round','Rubik'; font-size:26px; font-weight:800; margin:3px 0 3px; line-height:1.05; }
 .levelbadge{ display:inline-flex; align-items:center; gap:7px; color:#fff; font-weight:700; font-size:15px;
   padding:5px 18px; border-radius:999px; background:var(--g-magenta); box-shadow:0 6px 16px rgba(233,30,99,.35); }
 .levelbadge.mid{ background:var(--g-blue); }

@@ -1,6 +1,6 @@
 // מנוע רינדור NIKA — בונה HTML עצמאי לכל עמוד מתוך Day Spec.
 // עקרון: פריטי ספירה = הדבקת אייקון בדיוק count פעמים (דטרמיניסטי).
-import { p, fs, bank, iconSvg, itemWord, label } from '../scripts/lib.mjs';
+import { p, fs, bank, iconSvg, itemWord, label, logoDataUri } from '../scripts/lib.mjs';
 
 const CSS = fs.readFileSync(p('templates', 'shared.css'), 'utf8');
 const esc = (s) => String(s == null ? '' : s)
@@ -81,17 +81,26 @@ function taskBody(t, niq, worked = false) {
     }
     case 'word_picture': {
       const word = t.word || itemWord(t.item, { niqqud: niq });
-      const theWord = label('ui_labels', 'the_word', niq);
+      const theWord = t.word_label || label('ui_labels', 'the_word', niq);
       const opts = t.options || [t.item, ...(t.distractors || [])];
       const boxes = opts.map((k) => `<div class="wp-opt${worked && k === t.item ? ' correct' : ''}">${iconSvg(k) || ''}</div>`).join('');
-      return `<div class="wp"><div class="wp-word">${esc(theWord)} <b>${esc(word)}</b></div><div class="wp-opts">${boxes}</div></div>`;
+      return `<div class="wp"><div class="wp-word" dir="auto">${esc(theWord)} <b>${esc(word)}</b></div><div class="wp-opts">${boxes}</div></div>`;
     }
     case 'find_count':
     case 'text':
-      return `<div class="bonus-body">${esc(t.text)}</div>`;
+      return `<div class="bonus-body" dir="auto">${esc(t.text)}</div>`;
     default:
       return `<div class="prompt">[סוג משימה לא נתמך: ${esc(t.type)}]</div>`;
   }
+}
+
+// ── דקורציית מותג (קשתות פינה + קונפטי) ──
+function decorations() {
+  const cf = [[70, 150, '#E91E63'], [120, 86, '#FFC107'], [690, 120, '#03A9F4'], [720, 210, '#8BC34A'], [60, 540, '#673AB7'], [730, 560, '#E91E63'], [400, 58, '#8BC34A']]
+    .map(([x, y, c], i) => `<span class="cf" style="left:${x}px;top:${y}px;width:${9 + i % 3 * 3}px;height:${9 + i % 3 * 3}px;background:${c};transform:rotate(${i * 40}deg)"></span>`).join('');
+  return `<svg class="deco deco-r" viewBox="0 0 180 180" fill="none"><path d="M180 40 A140 140 0 0 0 40 180" stroke="#E91E63" stroke-width="11" stroke-linecap="round" opacity=".9"/><path d="M180 72 A108 108 0 0 0 72 180" stroke="#FF9800" stroke-width="11" stroke-linecap="round" opacity=".8"/><path d="M180 104 A76 76 0 0 0 104 180" stroke="#8BC34A" stroke-width="11" stroke-linecap="round" opacity=".8"/></svg>
+  <svg class="deco deco-l" viewBox="0 0 170 170" fill="none"><path d="M0 40 A130 130 0 0 1 130 170" stroke="#03A9F4" stroke-width="10" stroke-linecap="round" opacity=".85"/><path d="M0 72 A98 98 0 0 1 98 170" stroke="#673AB7" stroke-width="10" stroke-linecap="round" opacity=".8"/></svg>
+  ${cf}`;
 }
 
 // ── כותרת עמוד ──
@@ -102,18 +111,20 @@ function header(spec, levelKey, role = null) {
   const crumbs = role
     ? `${esc(subj)} | ${esc(grade)} | <span class="role">${esc(role)}</span>`
     : `${esc(subj)} | ${esc(grade)}`;
-  const logo = `<div class="logo">NIKA</div>`;
-  const scene = `<div class="scene"></div>`;
-  const head = `<div class="phead">${scene}
-    <div class="brandmark">${logo}<div class="tagline">הפרויקט לשינוי חברתי באמצעות ספורט</div></div>
-    <div class="crumbs">${crumbs}</div></div>`;
+  const logo = `<img class="logo-img" src="${logoDataUri()}" alt="NIKA">`;
+  const head = `<div class="phead">
+    <div class="crumbs">${crumbs}</div>
+    <div class="brandmark">${logo}</div>
+    <div class="scene"></div>
+  </div>
+  <div class="rainbowbar"></div>`;
   if (role) {
     return head + `<div class="titleblock"><div class="daylabel">${esc(spec.day_label)}</div>
-      <div class="ptitle">${esc(spec.title)}</div></div>`;
+      <div class="ptitle" dir="auto">${esc(spec.title)}</div></div>`;
   }
   const lvlName = label('levels', levelKey, niq);
   return head + `<div class="titleblock"><div class="daylabel">${esc(spec.day_label)}</div>
-    <div class="ptitle">${esc(spec.title)}</div>
+    <div class="ptitle" dir="auto">${esc(spec.title)}</div>
     <div class="levelbadge ${LEVEL_CLASS[levelKey]}"><span class="stars">${STAR[levelKey]}</span> ${esc(lvlName)}</div></div>`;
 }
 
@@ -129,10 +140,10 @@ function studentPage(spec, key) {
     : label('ui_labels', 'bonus_champions', niq);
 
   const doBox = `<div class="box tint-lime"><div class="box-head lime">✔ ${esc(whatLabel)}</div>
-    <div>${esc(pg.instruction)}</div></div>`;
+    <div dir="auto">${esc(pg.instruction)}</div></div>`;
   const exBox = `<div class="box tint-blue"><div class="box-head blue">★ ${esc(exLabel)}</div>
     ${taskBody(pg.example, niq, true)}
-    ${pg.example.caption ? `<div class="gline" style="text-align:center;margin-top:6px">${esc(pg.example.caption)}</div>` : ''}</div>`;
+    ${pg.example.caption ? `<div class="gline" dir="auto" style="text-align:center;margin-top:6px">${esc(pg.example.caption)}</div>` : ''}</div>`;
 
   const tasksHtml = pg.tasks.map((t, i) =>
     `<div class="task"><div class="tnum c${i}">${i + 1}</div>${taskBody(t, niq)}</div>`
@@ -148,16 +159,17 @@ function studentPage(spec, key) {
     <div class="checkrow">${successItems}</div></div>`;
 
   const bonusBox = `<div class="box tint-lime"><div class="box-head lime">🎁 ${bonusLabel}</div>
-    <div class="bonus-body">${esc(pg.bonus.text)}</div></div>`;
+    <div class="bonus-body" dir="auto">${esc(pg.bonus.text)}</div></div>`;
 
   return `<div class="page">
+    ${decorations()}
     ${header(spec, key)}
-    <div class="intro">${esc(pg.intro)}</div>
+    <div class="intro" dir="auto">${esc(pg.intro)}</div>
     <div class="two-col">${doBox}${exBox}</div>
     <div class="${taskCols}">${tasksHtml}</div>
-    <div class="encourage"><span class="heart">♥</span>${esc(pg.encouraging_message)}</div>
+    <div class="encourage"><span class="heart">♥</span><span dir="auto">${esc(pg.encouraging_message)}</span></div>
     <div class="bottom">${qcBox}${successBox}${bonusBox}</div>
-    <div class="pfooter">${esc(pg.footer)}</div>
+    <div class="pfooter" dir="auto">${esc(pg.footer)}</div>
     <div class="pagenum">${PAGE_NUM[key]}/4</div>
   </div>`;
 }
@@ -191,6 +203,7 @@ function coachPage(spec) {
     ${c.phrases.map((x) => `<div class="phrase">"${esc(x)}"</div>`).join('')}</div>`;
 
   return `<div class="page coach">
+    ${decorations()}
     ${header(spec, null, 'למדריך/ה')}
     <div class="coach-grid2">${goal}${value}</div>
     <div style="text-align:center;font-weight:800;color:var(--ink);margin:2px 0 8px">איך עובדים עם הדפים?</div>

@@ -1,7 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 82" fill="none" role="img" aria-label="דגל">
-  <defs><linearGradient id="g_flag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8BC34A"/><stop offset="1" stop-color="#C0CA33"/></linearGradient></defs>
-  <g stroke="url(#g_flag)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M13 6 V76"/>
-    <path d="M13 8 L44 16 L13 29 Z"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 92" role="img" aria-label="דגל">
+  <defs><linearGradient id="g_flag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8BC34A"/><stop offset="1" stop-color="#FFC107"/></linearGradient></defs>
+  <rect x="13" y="6" width="5" height="82" rx="2.5" fill="#8a5a2b"/>
+  <path d="M18 8 L46 17 L18 30 Z" fill="url(#g_flag)" stroke="#c9a21e" stroke-width="1.5"/>
 </svg>

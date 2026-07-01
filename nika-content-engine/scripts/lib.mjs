@@ -34,6 +34,25 @@ export function iconSvg(key) {
 }
 export function hasIcon(key) { return iconSvg(key) !== null; }
 
+// לוגו NIKA כ-data URI (מוטמע ב-HTML כדי שהרינדור יהיה עצמאי)
+let _logo = null;
+export function logoDataUri() {
+  if (_logo === null) {
+    _logo = '';
+    for (const name of ['nika_logo.png', 'nika_logo.jpg', 'nika_logo.jpeg', 'nika_logo.svg']) {
+      const f = p('assets', 'logo', name);
+      if (fs.existsSync(f)) {
+        const buf = fs.readFileSync(f);
+        const mime = name.endsWith('.svg') ? 'svg+xml'
+          : (buf[0] === 0xFF && buf[1] === 0xD8) ? 'jpeg' : 'png';
+        _logo = `data:image/${mime};base64,${buf.toString('base64')}`;
+        break;
+      }
+    }
+  }
+  return _logo;
+}
+
 // מילת פריט מהבנק לפי מדיניות ניקוד/ריבוי
 export function itemWord(key, { niqqud = false, plural = false } = {}) {
   const it = bank().items[key];

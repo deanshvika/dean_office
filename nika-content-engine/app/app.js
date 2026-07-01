@@ -69,7 +69,8 @@ function taskFields(t, base) {
       const dist = (t.distractors || []).map((d, i) =>
         `<div class="row" style="align-items:flex-end;gap:6px"><div style="flex:1">${fSelect('מסיח ' + (i + 1), `${base}.distractors.${i}`, d, itemOpts())}</div><button class="mini del" data-action="del" data-path="${base}.distractors.${i}" style="margin-bottom:12px">✕</button></div>`).join('');
       return fItem('פריט נכון (התמונה הנכונה)', `${base}.item`, t.item)
-        + fText('מילה מוצגת (רשות; ריק = מהבנק המנוקד)', `${base}.word`, t.word || '')
+        + fText('מילה מוצגת (רשות; ריק = מהבנק המנוקד. לאנגלית: "bag")', `${base}.word`, t.word || '')
+        + fText('תווית מילה (רשות; עברית=אוטומטי "הַמִּלָּה:", אנגלית="Word:")', `${base}.word_label`, t.word_label || '')
         + `<label style="display:block;font-weight:700;font-size:13px;margin:6px 0 2px">מסיחים (תמונות שגויות)</label>`
         + dist + `<button class="mini add" data-action="addDistractor" data-path="${base}.distractors">+ הוסף מסיח</button>`;
     }
