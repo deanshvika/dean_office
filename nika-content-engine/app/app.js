@@ -40,6 +40,7 @@ const TASK_TYPES = [
   { value: 'equalize', label: 'השלמה לשוויון' },
   { value: 'write_count', label: 'ספירה וכתיבה' },
   { value: 'match', label: 'התאמה (קו למספר)' },
+  { value: 'word_picture', label: 'מילה ↔ תמונה (שפה/אנגלית)' },
   { value: 'text', label: 'טקסט חופשי' },
   { value: 'find_count', label: 'בונוס: מצא כמות' },
 ];
@@ -51,6 +52,7 @@ function defaultTask(type) {
     case 'equalize': return { type: 'equalize', item: 'ball', a: 4, b: 3, answer: 1, prompt: '' };
     case 'write_count': return { type: 'write_count', groups: [{ item: 'bottle', count: 5, line: 'יש ___' }] };
     case 'match': return { type: 'match', prompt: 'חברו בקו בין כל קבוצה למספר.', pairs: [{ item: 'bottle', count: 2, label: 'קבוצה א׳' }, { item: 'bottle', count: 4, label: 'קבוצה ב׳' }], numbers: [2, 4] };
+    case 'word_picture': return { type: 'word_picture', item: 'bottle', word: '', distractors: ['ball', 'flag'] };
     case 'find_count': return { type: 'find_count', target: 5, text: 'מצאו ציור אחד שבו יש בדיוק 5 פריטים.' };
     default: return { type: 'text', text: '' };
   }
@@ -63,6 +65,14 @@ function taskFields(t, base) {
     case 'equalize': return fItem('פריט', `${base}.item`, t.item) + `<div class="row">${fNum('קבוצה א׳', `${base}.a`, t.a)}${fNum('קבוצה ב׳', `${base}.b`, t.b)}${fNum('להוסיף (=א−ב)', `${base}.answer`, t.answer)}</div>` + fText('שאלה (רשות)', `${base}.prompt`, t.prompt);
     case 'write_count': return groupsEditor(t.groups, `${base}.groups`);
     case 'match': return fText('הוראה', `${base}.prompt`, t.prompt) + pairsEditor(t.pairs, `${base}.pairs`) + fCsvNum('מספרים (יש להתאים לכמויות)', `${base}.numbers`, t.numbers);
+    case 'word_picture': {
+      const dist = (t.distractors || []).map((d, i) =>
+        `<div class="row" style="align-items:flex-end;gap:6px"><div style="flex:1">${fSelect('מסיח ' + (i + 1), `${base}.distractors.${i}`, d, itemOpts())}</div><button class="mini del" data-action="del" data-path="${base}.distractors.${i}" style="margin-bottom:12px">✕</button></div>`).join('');
+      return fItem('פריט נכון (התמונה הנכונה)', `${base}.item`, t.item)
+        + fText('מילה מוצגת (רשות; ריק = מהבנק המנוקד)', `${base}.word`, t.word || '')
+        + `<label style="display:block;font-weight:700;font-size:13px;margin:6px 0 2px">מסיחים (תמונות שגויות)</label>`
+        + dist + `<button class="mini add" data-action="addDistractor" data-path="${base}.distractors">+ הוסף מסיח</button>`;
+    }
     case 'find_count': return `<div class="row">${fNum('כמות יעד', `${base}.target`, t.target)}</div>` + fText('טקסט', `${base}.text`, t.text);
     default: return fText('טקסט', `${base}.text`, t.text) + (t.title !== undefined ? fText('כותרת (רשות)', `${base}.title`, t.title) : '');
   }
@@ -210,6 +220,7 @@ document.addEventListener('click', (e) => {
   if (act === 'addTask') { deepGet(spec, `pages.${el.dataset.page}.tasks`).push(defaultTask('count')); renderForm(); schedule(); }
   else if (act === 'addGroup') { deepGet(spec, el.dataset.path).push({ item: 'bottle', count: 3, line: 'יש ___' }); renderForm(); schedule(); }
   else if (act === 'addPair') { const arr = deepGet(spec, el.dataset.path); arr.push({ item: 'ball', count: 3, label: 'קבוצה' }); renderForm(); schedule(); }
+  else if (act === 'addDistractor') { deepGet(spec, el.dataset.path).push('ball'); renderForm(); schedule(); }
   else if (act === 'del') { deepDel(spec, el.dataset.path); renderForm(); schedule(); }
 });
 

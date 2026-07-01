@@ -88,6 +88,15 @@ h1,h2,h3,h4{ color:var(--ink); margin:0; font-weight:800; }
 .opt{ min-width:50px; height:44px; padding:0 6px; border-radius:12px; border:2.5px solid #e2e8f0; background:#fff;
   display:flex; align-items:center; justify-content:center; font-size:21px; font-weight:800; color:var(--ink); }
 
+/* ── WORD ↔ PICTURE (שפה/אנגלית) ── */
+.wp{ text-align:center; }
+.wp-word{ font-size:15px; color:var(--body); margin-bottom:8px; }
+.wp-word b{ font-size:20px; color:var(--ink); }
+.wp-opts{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.wp-opt{ width:74px; height:62px; border:2px solid #e2e8f0; border-radius:14px; background:#fff; display:flex; align-items:center; justify-content:center; }
+.wp-opt svg{ height:42px; width:auto; }
+.wp-opt.correct{ border:none; box-shadow:0 0 0 3px #8BC34A; background:var(--tint-lime); }
+
 /* ── TASK GRID ── */
 .tasks{ display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-bottom:7px; }
 .tasks.one{ grid-template-columns:1fr; }

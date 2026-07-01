@@ -16,6 +16,7 @@ ui_labels:
   mark:              { plain: "סמנו:",                 niqqud: "סַמְּנוּ:" }
   write:             { plain: "כתבו:",                 niqqud: "כִּתְבוּ:" }
   word_bank:         { plain: "בנק מילים",            niqqud: "בַּנְק מִלִּים" }
+  the_word:          { plain: "המילה:",               niqqud: "הַמִּלָּה:" }
 
 # --- משפטי רפלקציה (היום הצלחתי כי) ---
 success_reflection:

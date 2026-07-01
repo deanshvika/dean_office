@@ -84,6 +84,13 @@ export function validateDay(spec) {
         t.pairs.forEach((g) => checkIcon(page, g.item));
         return null;
       }
+      case 'word_picture': {
+        checkIcon(page, t.item);
+        const opts = t.options || [t.item, ...(t.distractors || [])];
+        opts.forEach((k) => checkIcon(page, k));
+        if (!opts.includes(t.item)) E(page, `${ctx}: הפריט הנכון אינו בין אפשרויות התמונה`);
+        return null;
+      }
       case 'text': case 'find_count':
         if (!t.text) E(page, `${ctx}: חסר text`);
         return null;
@@ -129,9 +136,9 @@ function collectText(pg) {
   const out = [];
   const push = (s) => { if (typeof s === 'string') out.push(s); };
   push(pg.intro); push(pg.instruction); push(pg.encouraging_message); push(pg.footer);
-  if (pg.example) { push(pg.example.caption); push(pg.example.prompt); }
+  if (pg.example) { push(pg.example.caption); push(pg.example.prompt); push(pg.example.word); }
   (pg.tasks || []).forEach((t) => {
-    push(t.prompt);
+    push(t.prompt); push(t.word);
     (t.groups || []).forEach((g) => { push(g.line); push(g.label); });
     (t.pairs || []).forEach((g) => push(g.label));
   });

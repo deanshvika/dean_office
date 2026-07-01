@@ -1,0 +1,149 @@
+# ── יום: שפה · שכבה א' · יום 2 (מילה ותמונה) ─────────────────────
+# שפה שכבה א' = ניקוד מלא. הטקסט החופשי מאוחסן מנוקד (מאומת מול הזהב).
+# מילות הפריטים נשלפות מהבנק המנוקד; הוולידטור אוכף שכל מילה עברית מנוקדת.
+# דף מדריך = ללא ניקוד (כמו הזהב).
+
+day_id: grade_1_language_day_2
+subject: language
+audience: grade_1
+niqqud: true
+day_label: "יוֹם 2 – מִלָּה וּתְמוּנָה"
+title: "מָה שָׂמִים בְּתִיק הַפְּעִילוּת?"
+core_skill: "זיהוי מילה והתאמתה לתמונה"
+subskills:
+  - "קריאה ראשונית של מילים מוכרות"
+theme: "ציוד לקבוצה"
+leading_value: "מוכנות ואחריות אישית"
+
+pages:
+
+  # ── עמוד 1 · מתחילים ─────────────────────────────
+  beginner:
+    level: beginner
+    intro: "הַקְּבוּצָה מִתְכּוֹנֶנֶת לִפְעִילוּת. בּוֹאוּ נִבְדֹּק אֵילוּ פָּרִיטִים אֲנַחְנוּ מַכִּירִים."
+    instruction: "קִרְאוּ אוֹ הַקְשִׁיבוּ לַמִּלָּה, וְהַקִּיפוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה."
+    example:
+      type: word_picture
+      item: bottle
+      word: "מַיִם"
+      distractors: [ball, flag]
+      caption: "מַקִּיפִים אֶת הַתְּמוּנָה שֶׁל בַּקְבּוּק מַיִם."
+    tasks:
+      - { type: word_picture, item: bag,   distractors: [bottle, ball] }
+      - { type: word_picture, item: ball,  distractors: [flag, shoes] }
+      - { type: word_picture, item: flag,  distractors: [bottle, bag] }
+      - { type: word_picture, item: shoes, distractors: [ball, bottle] }
+    encouraging_message: "כְּשֶׁאֲנַחְנוּ מִתְאַמְּנִים בַּקְּרִיאָה, אֲנַחְנוּ מִשְׁתַּפְּרִים צַעַד אַחַר צַעַד."
+    quick_check:
+      type: word_picture
+      item: bottle
+      word: "מַיִם"
+      distractors: [bag, flag]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "מִצְאוּ תְּמוּנָה אַחַת וְאִמְרוּ אֶת הַמִּלָּה שֶׁלָּהּ."
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — קוֹרְאִים, מְנַסִּים וְעוֹזְרִים לַקְּבוּצָה."
+
+  # ── עמוד 2 · ממשיכים ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עַכְשָׁיו נַתְאִים כָּל מִלָּה לַתְּמוּנָה הַנְּכוֹנָה מִבֵּין כַּמָּה אֶפְשָׁרֻיּוֹת."
+    instruction: "קִרְאוּ אֶת הַמִּלָּה וְהַקִּיפוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה."
+    example:
+      type: word_picture
+      item: ball
+      word: "כַּדּוּר"
+      distractors: [bag, hoop, flag]
+      caption: "מַקִּיפִים אֶת הַתְּמוּנָה שֶׁל כַּדּוּר."
+    tasks:
+      - { type: word_picture, item: bag,   distractors: [bottle, ball, flag] }
+      - { type: word_picture, item: hoop,  distractors: [ball, bag, shoes] }
+      - { type: word_picture, item: shoes, distractors: [flag, bottle, ball] }
+      - { type: word_picture, item: flag,  distractors: [bag, hoop, bottle] }
+    encouraging_message: "כְּשֶׁאֲנַחְנוּ מְנַסִּים שׁוּב, אֲנַחְנוּ לוֹמְדִים וּמִתְקַדְּמִים."
+    quick_check:
+      type: word_picture
+      item: hoop
+      word: "חִישׁוּק"
+      distractors: [ball, bag]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "אִמְרוּ מִלָּה לְחָבֵר, וּבִדְקוּ אִם מָצָא אֶת הַתְּמוּנָה הַנְּכוֹנָה."
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — מְנַסִּים, מַתְמִידִים וְעוֹזְרִים לַקְּבוּצָה."
+
+  # ── עמוד 3 · אתגר ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עַכְשָׁיו נִקְרָא מִלִּים וּנְזַהֶה אֶת הַתְּמוּנָה הַנְּכוֹנָה מִבֵּין אֶפְשָׁרֻיּוֹת דּוֹמוֹת."
+    instruction: "קִרְאוּ בְּעַצְמְכֶם אֶת הַמִּלָּה וְהַקִּיפוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה."
+    example:
+      type: word_picture
+      item: shoes
+      word: "נַעֲלַיִם"
+      distractors: [bag, hoop, flag]
+      caption: "מַקִּיפִים אֶת הַתְּמוּנָה שֶׁל נַעֲלַיִם."
+    tasks:
+      - { type: word_picture, item: flag,  distractors: [hoop, bag, shoes] }
+      - { type: word_picture, item: bottle, word: "מַיִם", distractors: [flag, ball, hoop] }
+      - { type: word_picture, item: hoop,  distractors: [ball, flag, shoes] }
+    encouraging_message: "מַאֲמָץ, קְרִיאָה וְהַתְמָדָה עוֹזְרִים לָנוּ לְהִשְׁתַּפֵּר בְּכָל יוֹם."
+    quick_check:
+      type: word_picture
+      item: bag
+      word: "תִּיק"
+      distractors: [bottle, ball]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "הַמְצִיאוּ מִשְׁפָּט קָצָר עַל אַחַת הַתְּמוּנוֹת בַּדַּף."
+    footer: "בְּנִיקָה אֲנַחְנוּ מִתְקַדְּמִים — כָּל יוֹם צַעַד קָטָן קָדִימָה."
+
+  # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "זיהוי מילה"
+      - "התאמת מילה לתמונה"
+      - "קריאה ראשונית של מילים מוכרות"
+      - "תחילת הבנה של קשר בין מילה לפריט"
+    leading_value:
+      name: "מוכנות ואחריות אישית"
+      text: "הילד מבין שהיכרות עם הפריטים והשפה עוזרת לו להתארגן טוב יותר."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לילדים שצריכים כניסה פשוטה:"
+        points: ["שמיעת מילה", "זיהוי תמונה מתאימה", "בחירה בין 3 אפשרויות"]
+      - level: mid
+        audience: "מיועד לילדים שיכולים:"
+        points: ["לזהות מילים חזותית", "לחבר בין מילה לתמונה", "לבחור מתוך כמה אפשרויות"]
+      - level: challenge
+        audience: "מיועד לילדים שיכולים:"
+        points: ["קריאה בביטחון יחסי", "הבחנה בין אפשרויות דומות", "השלמת מילה מתוך הקשר"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את המילה בקול ברור"
+      - "לבקש מהילד לחזור על המילה"
+      - "לעבוד לאט ובהצלחה"
+      - "אם צריך, להישאר רק בעמוד 'מתחילים'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לומר את המילה בקול שוב ושוב"
+      - "להשתמש בכרטיסיות מילה נפרדות"
+      - "להקטין מספר אפשרויות אם צריך"
+      - "לאפשר תשובה בהצבעה או בעל פה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לומר מילה לחבר"
+      - "לבקש לייצר משפט קצר מאוד"
+    coach_message:
+      lead: "הדגש הוא לא על 'קריאה מושלמת', אלא על:"
+      values: ["ניסיון", "היכרות", "חזרתיות", "ביטחון"]
+    phrases:
+      - "כל הכבוד שניסית."
+      - "ראיתי שהתמדת."
+      - "בדקת שוב וזה מעולה."
+      - "עזרת לקבוצה להתארגן."
+      - "התקדמת יפה."
+    footer_legend: ["ניסיון", "היכרות", "חזרתיות", "ביטחון", "תחושת הצלחה"]

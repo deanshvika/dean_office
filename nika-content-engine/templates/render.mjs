@@ -79,6 +79,13 @@ function taskBody(t, niq, worked = false) {
       const nums = t.numbers.map((n) => `<div class="mn">${n}</div>`).join('');
       return `${prompt}<div class="matchwrap"><div class="match-groups">${groups}</div><div></div><div class="match-nums">${nums}</div></div>`;
     }
+    case 'word_picture': {
+      const word = t.word || itemWord(t.item, { niqqud: niq });
+      const theWord = label('ui_labels', 'the_word', niq);
+      const opts = t.options || [t.item, ...(t.distractors || [])];
+      const boxes = opts.map((k) => `<div class="wp-opt${worked && k === t.item ? ' correct' : ''}">${iconSvg(k) || ''}</div>`).join('');
+      return `<div class="wp"><div class="wp-word">${esc(theWord)} <b>${esc(word)}</b></div><div class="wp-opts">${boxes}</div></div>`;
+    }
     case 'find_count':
     case 'text':
       return `<div class="bonus-body">${esc(t.text)}</div>`;
@@ -89,8 +96,9 @@ function taskBody(t, niq, worked = false) {
 
 // ── כותרת עמוד ──
 function header(spec, levelKey, role = null) {
-  const subj = label('subjects', spec.subject, false);
-  const grade = label('grades', spec.audience, false);
+  const niq = role ? false : !!spec.niqqud;
+  const subj = label('subjects', spec.subject, niq);
+  const grade = label('grades', spec.audience, niq);
   const crumbs = role
     ? `${esc(subj)} | ${esc(grade)} | <span class="role">${esc(role)}</span>`
     : `${esc(subj)} | ${esc(grade)}`;
@@ -103,7 +111,7 @@ function header(spec, levelKey, role = null) {
     return head + `<div class="titleblock"><div class="daylabel">${esc(spec.day_label)}</div>
       <div class="ptitle">${esc(spec.title)}</div></div>`;
   }
-  const lvlName = label('levels', levelKey, false);
+  const lvlName = label('levels', levelKey, niq);
   return head + `<div class="titleblock"><div class="daylabel">${esc(spec.day_label)}</div>
     <div class="ptitle">${esc(spec.title)}</div>
     <div class="levelbadge ${LEVEL_CLASS[levelKey]}"><span class="stars">${STAR[levelKey]}</span> ${esc(lvlName)}</div></div>`;
