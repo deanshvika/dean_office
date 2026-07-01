@@ -47,7 +47,9 @@
       "Bash(git check-ignore *)",
       "Bash(cd \"c:\\\\Users\\\\דין\\\\Desktop\\\\ANTIGRAVITY\\\\המוח השני\" && echo \"=== desicion.md tail ===\" && tail -20 desicion.md 2>&1; echo \"=== memory files matching shia/doc ===\" && ls \"C:\\\\Users\\\\דין\\\\.claude\\\\projects\\\\c--Users-----Desktop-ANTIGRAVITY----------\\\\memory\" | grep -iE \"shia|morot|doc|מורות\")",
       "Read(//c/Users/דין/.claude/projects/c--Users-----Desktop-ANTIGRAVITY----------/memory/**)",
-      "PowerShell(Get-ChildItem -Force \"c:\\\\Users\\\\דין\\\\Desktop\\\\ANTIGRAVITY\\\\המוח השני\" | Where-Object { $_.Name -notin @\\('node_modules','.git','.wwebjs_auth','base44_userdata'\\) } | Select-Object Name, @{n='Type';e={if\\($_.PSIsContainer\\){'DIR'}else{'file'}}} | Format-Table -AutoSize)"
+      "PowerShell(Get-ChildItem -Force \"c:\\\\Users\\\\דין\\\\Desktop\\\\ANTIGRAVITY\\\\המוח השני\" | Where-Object { $_.Name -notin @\\('node_modules','.git','.wwebjs_auth','base44_userdata'\\) } | Select-Object Name, @{n='Type';e={if\\($_.PSIsContainer\\){'DIR'}else{'file'}}} | Format-Table -AutoSize)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\דין\\Desktop\\תגי_שם_ימי_שיא"
