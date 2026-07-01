@@ -1,0 +1,181 @@
+# ── יום פיילוט: חשבון · שכבה א' · יום 1 ─────────────────────────────
+# נאמן לדף המאושר (gold standard). חשבון => ללא ניקוד (plain).
+# כל המספרים מפורשים; הרינדור מדביק אייקון בדיוק count פעמים; הוולידטור מאמת.
+
+day_id: grade_1_math_day_1
+subject: math
+audience: grade_1
+niqqud: false                     # חשבון שכבה א' = ללא ניקוד (כמו הזהב)
+day_label: "יום 1 – מנייה וכמות"
+title: "כמה מים צריך לקבוצה?"
+core_skill: "מנייה והתאמת כמות למספר"
+subskills:
+  - "ספירה עד 10"
+  - "השוואת כמויות (יותר/פחות)"
+  - "תחילת חיבור והשלמה"
+theme: "ציוד לקבוצה"
+leading_value: "אחריות קבוצתית"
+
+pages:
+
+  # ── עמוד 1 · מתחילים ─────────────────────────────
+  beginner:
+    level: beginner
+    intro: "הקבוצה מתכוננת לפעילות. בואו נעזור לספור כמה פריטים הכנו."
+    instruction: "ספרו את הפריטים וסמנו את המספר המתאים."
+    example:
+      type: count
+      item: bottle
+      count: 4
+      caption: "יש 4 בקבוקי מים. המספר המתאים הוא:"
+    tasks:
+      - { type: count, item: bottle, count: 5, options: [4, 5, 6] }
+      - { type: count, item: ball,   count: 7, options: [6, 7, 8] }
+      - { type: count, item: hoop,   count: 8, options: [7, 8, 9] }
+      - { type: count, item: flag,   count: 8, options: [8, 9, 10] }
+    encouraging_message: "כשאנחנו סופרים ביחד, אנחנו עוזרים לקבוצה להתארגן טוב יותר."
+    quick_check:
+      type: write_count
+      groups:
+        - { item: bottle, count: 6, line: "ספרו וכתבו: יש כאן ___ בקבוקי מים." }
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: find_count
+      target: 5
+      text: "מצאו ציור אחד שבו יש בדיוק 5 פריטים."
+    footer: "בניקה אנחנו מתקדמים כשאנחנו מנסים, מדייקים ועוזרים לקבוצה."
+
+  # ── עמוד 2 · ממשיכים ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עכשיו נבדוק כמה פריטים יש בכל קבוצה, ונראה איפה יש יותר ואיפה יש פחות."
+    instruction: "ספרו, כתבו את המספרים, וסמנו איפה יש יותר או פחות."
+    example:
+      type: compare
+      item: bottle
+      a: 4
+      b: 3
+      ask: more
+      caption: "בקבוצה א' יש 4 בקבוקים. בקבוצה ב' יש 3 בקבוקים. בקבוצה א' יש יותר."
+    tasks:
+      - type: write_count
+        groups:
+          - { item: bottle, count: 5, line: "בקבוצה א׳ יש ___" }
+          - { item: bottle, count: 3, line: "בקבוצה ב׳ יש ___" }
+      - { type: compare, item: bottle, a: 5, b: 3, ask: more }
+      - { type: compare, item: ball,   a: 4, b: 6, ask: less }
+      - type: write_count
+        groups:
+          - { item: hoop, count: 5, line: "יש ___ חישוקים" }
+          - { item: flag, count: 6, line: "יש ___ דגלים" }
+      - type: match
+        prompt: "חברו בקו בין כל קבוצה למספר המתאים."
+        pairs:
+          - { item: bottle, count: 2, label: "קבוצה א׳" }
+          - { item: bottle, count: 4, label: "קבוצה ב׳" }
+          - { item: ball,   count: 5, label: "קבוצה ג׳" }
+        numbers: [4, 2, 5]
+    encouraging_message: "בניקה אנחנו מתקדמים כשאנחנו מנסים, מדייקים ולא ממהרים מהר."
+    quick_check:
+      type: compare
+      item: ball
+      a: 5
+      b: 3
+      ask: more
+      line: "סמנו: למי יש יותר כדורים?"
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      title: "אתגר זוגי"
+      text: "בדקו עם חבר או חברה אם ספרתם אותו דבר."
+    footer: "בניקה מתקדמים יחד — מנסים, מתמידים ועוזרים לקבוצה."
+
+  # ── עמוד 3 · אתגר ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עכשיו נחשוב כמו קבוצה שמארגנת לפעילות ונבדוק אם יש מספיק ציוד לכולם."
+    instruction: "ספרו, חשבו, והשלימו את התשובות."
+    example:
+      type: arith
+      op: addition
+      a: { item: bottle, count: 4 }
+      b: { item: bottle, count: 3 }
+      result: 7
+      caption: "בקבוצה א' יש 4 בקבוקים. בקבוצה ב' יש 3 בקבוקים. כמה בקבוקים יש יחד?"
+    tasks:
+      - type: arith
+        op: addition
+        a: { item: bottle, count: 4 }
+        b: { item: bottle, count: 3 }
+        result: 7
+        prompt: "בקבוצה א' יש 4 בקבוקים. בקבוצה ב' יש 3 בקבוקים. כמה בקבוקים יש יחד?"
+      - type: compare
+        item: ball
+        a: 4
+        b: 7
+        ask: more
+        prompt: "למי יש יותר כדורים? קבוצה א': 4, קבוצה ב': 7"
+      - type: equalize
+        item: ball
+        a: 4
+        b: 3
+        answer: 1
+        prompt: "בקבוצה א' יש 4 כדורים. בקבוצה ב' יש 3 כדורים. כמה צריך להוסיף לקבוצה ב' כדי ששתי הקבוצות יהיה אותו מספר?"
+    encouraging_message: "מאמץ, מחשבה והתמדה עוזרים לנו להשתפר בכל יום."
+    quick_check:
+      type: write_count
+      groups:
+        - { item: bottle, count: 1, line: "כתבו: יש יחד ___ בקבוקי מים." }
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "המציאו שאלה חדשה על אחד האיורים בדף."
+    footer: "בניקה אנחנו מתקדמים — כל יום צעד קטן קדימה."
+
+  # ── דף מדריך/ה ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "מנייה"
+      - "התאמת כמות למספר"
+      - "השוואה בסיסית"
+      - "תחילת חשיבה של חיבור פשוט והשלמה"
+    leading_value:
+      name: "אחריות קבוצתית"
+      text: "הילד מבין שספירה מדויקת עוזרת לקבוצה להתארגן."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לילדים שצריכים כניסה פשוטה ובטוחה:"
+        points: ["ספירה עד 10", "התאמת כמות למספר", "סימון תשובה נכונה"]
+      - level: mid
+        audience: "מיועד לילדים שיכולים:"
+        points: ["לספור באופן עצמאי יחסית", "לכתוב מספר", "להבין יותר/פחות"]
+      - level: challenge
+        audience: "מיועד לילדים שיכולים:"
+        points: ["לחשוב מעבר לספירה עצמה", "לחבר כמויות", "להבין מה חסר כדי להגיע לשוויון"]
+    how_to_mediate:
+      - "להנחיל תמיד מהפתיח והדוגמה"
+      - "לבקש מהילד להצביע על כל פריט תוך כדי ספירה"
+      - "לעבוד לאט ובהצלחה"
+      - "לא למהר להעביר לעמוד הבא"
+      - "אם צריך, להישאר רק בעמוד 'מתחילים'"
+    adaptations:
+      - "לכסות חלקים אחרים בדף ולהציג רק משימה אחת בכל פעם"
+      - "לספור יחד בקול"
+      - "להשתמש באצבע או בטוש מחיק למעקב"
+      - "לתת בחירה בין שתי תשובות במקום שלוש אם צריך"
+      - "לאפשר לענות בעל פה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש מהילד להמציא שאלה משלו"
+      - "לבקש ממנו להסביר איך חשב"
+    coach_message:
+      lead: "הדגש הוא לא רק על קריאה נכונה, אלא על:"
+      values: ["ניסיון", "דיוק", "התמדה", "עזרה לקבוצה"]
+    phrases:
+      - "כל הכבוד שניסית."
+      - "ראיתי שהתמדת."
+      - "בדקת שוב וזה מעולה."
+      - "עזרת לקבוצה להתארגן."
+      - "התקדמת יפה."
+    footer_legend: ["אחריות קבוצתית", "התקדמות אישית", "מאמץ", "התמדה", "שיתוף פעולה"]

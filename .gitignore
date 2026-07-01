@@ -21,6 +21,9 @@ groups_list.txt
 new_group_numbers.txt
 create_group_result.json
 
+# NIKA content engine — תוצרים מתחדשים (רינדור)
+nika-content-engine/output/
+
 # OS
 .DS_Store
 Thumbs.db

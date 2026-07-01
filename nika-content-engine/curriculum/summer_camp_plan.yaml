@@ -1,0 +1,18 @@
+# לוח קייטנת קיץ — 21 יום × 2 שכבות. רוטציה: חשבון / שפה / אנגלית.
+# כל day_id מצביע על קובץ ב-days/. ✔ = קיים ומאומת. ○ = לכתוב.
+
+rotation: [math, language, english]     # יום 1/2/3 וחוזר
+
+audiences:
+  grade_1:
+    - { day: 1,  subject: math,     day_id: grade_1_math_day_1,     status: "✔ פיילוט" }
+    - { day: 2,  subject: language, day_id: grade_1_language_day_2, status: "○" }
+    - { day: 3,  subject: english,  day_id: grade_1_english_day_3,  status: "○" }
+    # ... המשך עד יום 21 באותה רוטציה
+  grades_2_3:
+    - { day: 1,  subject: math,     day_id: grades_2_3_math_day_1,     status: "○" }
+    - { day: 2,  subject: language, day_id: grades_2_3_language_day_2, status: "○" }
+    - { day: 3,  subject: english,  day_id: grades_2_3_english_day_3,  status: "○" }
+    # ... המשך עד יום 21
+
+# סדר הפקה מומלץ (שלב 7): קודם כל שכבה א', אחר כך ב'–ג'. אף פעם לא לערבב שכבות ב-batch.

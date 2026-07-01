@@ -1,0 +1,9 @@
+# בנק שפה — אוצר מילים סגור (עברית). כל מילה מנוקדת דרך niqqud_bank.items.
+# בשכבה א' הצד העברי מנוקד מלא; בשכבות ב'–ג' ללא ניקוד.
+
+word_pool: [bottle, ball, flag, hoop, bag, shoes, water]   # מפתחות אל niqqud_bank.items
+
+# מספר מסיחים (distractors) לכל משימת "מילה↔תמונה"
+distractors_per_task: 2
+
+# כלל קשיח: כל המסיחים והמילה הנכונה חייבים להיות מ-word_pool (אוצר סגור).

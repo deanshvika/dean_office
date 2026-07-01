@@ -1,0 +1,16 @@
+{
+  "name": "nika-content-engine",
+  "version": "0.1.0",
+  "description": "מנוע ייצור תוכן לימודי NIKA — דפי עבודה מדויקים (חשבון/שפה/אנגלית) ללא טעויות מספרים או ניקוד",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "app": "node scripts/server.mjs",
+    "validate": "node scripts/validate_page.mjs",
+    "pilot": "node scripts/run_batch.mjs --day grade_1_math_day_1"
+  },
+  "dependencies": {
+    "js-yaml": "^4.3.0"
+  },
+  "notes": "playwright נפתר מ-node_modules של תיקיית האב (המוח השני)"
+}

@@ -1,0 +1,14 @@
+# בנק אנגלית — בנק מילים סגור, קטן, חוזר ופשוט.
+# מילים באנגלית (plain) + מפתח אייקון תואם.
+
+words:
+  - { en: "water",  icon: bottle }
+  - { en: "bottle", icon: bottle }
+  - { en: "ball",   icon: ball }
+  - { en: "flag",   icon: flag }
+  - { en: "hoop",   icon: hoop }
+  - { en: "bag",    icon: bag }
+  - { en: "shoes",  icon: shoes }
+
+# כלל קשיח: מילה באנגלית בדף חייבת להימצא ברשימה הזו (אוצר סגור, בלי יצירתיות חופשית).
+# ההוראות בעברית בשכבה א' מנוקדות (דרך niqqud_bank).

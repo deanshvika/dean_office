@@ -1,0 +1,50 @@
+# בנק ניקוד סגור ומאומת — NIKA
+# כל ערך: plain (ללא ניקוד) + niqqud (מנוקד מלא, מאומת ידנית פעם אחת).
+# המנוע שולף מכאן. ה-AI לעולם לא מנקד חופשי.
+# מדיניות שימוש: language+grade_1 ו-english+grade_1 => צד עברי מנוקד. math ו-grades_2_3 => plain.
+# מילים חדשות: לעבור דרך scripts/niqqud_client.mjs (Dicta Nakdan) ואז להיכנס לכאן.
+
+# --- תוויות ממשק קבועות ---
+ui_labels:
+  what_to_do:        { plain: "מה עושים?",            niqqud: "מָה עוֹשִׂים?" }
+  example:           { plain: "דוגמה",                niqqud: "דֻּגְמָה" }
+  quick_check:       { plain: "בדיקה מהירה",          niqqud: "בְּדִיקָה מְהִירָה" }
+  bonus:             { plain: "בונוס",                niqqud: "בּוֹנוּס" }
+  bonus_champions:   { plain: "בונוס לקבוצת האלופים:", niqqud: "בּוֹנוּס לְקַבוּצַת הָאַלּוּפִים:" }
+  today_success:     { plain: "היום הצלחתי כי:",       niqqud: "הַיּוֹם הִצְלַחְתִּי כִּי:" }
+  complete:          { plain: "השלימו:",              niqqud: "הַשְׁלִימוּ:" }
+  mark:              { plain: "סמנו:",                 niqqud: "סַמְּנוּ:" }
+  write:             { plain: "כתבו:",                 niqqud: "כִּתְבוּ:" }
+  word_bank:         { plain: "בנק מילים",            niqqud: "בַּנְק מִלִּים" }
+
+# --- משפטי רפלקציה (היום הצלחתי כי) ---
+success_reflection:
+  tried:      { plain: "ניסיתי",   niqqud: "נִסִּיתִי" }
+  improved:   { plain: "השתפרתי",  niqqud: "הִשְׁתַּפַּרְתִּי" }
+  persevered: { plain: "התמדתי",   niqqud: "הִתְמַדְתִּי" }
+
+# --- רמות (badge) ---
+levels:
+  beginner:  { plain: "מתחילים",  niqqud: "מַתְחִילִים",  stars: 1 }
+  mid:       { plain: "ממשיכים",  niqqud: "מַמְשִׁיכִים", stars: 2 }
+  challenge: { plain: "אתגר",     niqqud: "אֶתְגָּר",     stars: 3 }
+
+# --- תחומים ושכבות (header) ---
+subjects:
+  math:     { plain: "חשבון",   niqqud: "חֶשְׁבּוֹן" }
+  language: { plain: "שפה",     niqqud: "שָׂפָה" }
+  english:  { plain: "אנגלית",  niqqud: "אַנְגְּלִית" }
+grades:
+  grade_1:    { plain: "שכבה א׳",     niqqud: "שִׁכְבָה א׳" }
+  grades_2_3: { plain: "שכבות ב׳–ג׳", niqqud: "שְׁכָבוֹת ב׳–ג׳" }
+
+# --- אוצר פריטי ספורט (משמש גם למנייה וגם לטקסט) ---
+items:
+  bottle: { plain: "בקבוק",  niqqud: "בַּקְבּוּק", plural_plain: "בקבוקים",  plural_niqqud: "בַּקְבּוּקִים",  en: "bottle" }
+  ball:   { plain: "כדור",   niqqud: "כַּדּוּר",   plural_plain: "כדורים",   plural_niqqud: "כַּדּוּרִים",   en: "ball" }
+  flag:   { plain: "דגל",    niqqud: "דֶּגֶל",     plural_plain: "דגלים",    plural_niqqud: "דְּגָלִים",     en: "flag" }
+  hoop:   { plain: "חישוק",  niqqud: "חִישׁוּק",   plural_plain: "חישוקים",  plural_niqqud: "חִישׁוּקִים",   en: "hoop" }
+  bag:    { plain: "תיק",    niqqud: "תִּיק",      plural_plain: "תיקים",    plural_niqqud: "תִּיקִים",      en: "bag" }
+  shoes:  { plain: "נעליים", niqqud: "נַעֲלַיִם",  plural_plain: "נעליים",   plural_niqqud: "נַעֲלַיִם",     en: "shoes" }
+  cone:   { plain: "קונוס",  niqqud: "קוֹנוּס",    plural_plain: "קונוסים",  plural_niqqud: "קוֹנוּסִים",    en: "cone" }
+  water:  { plain: "מים",    niqqud: "מַיִם",      plural_plain: "מים",      plural_niqqud: "מַיִם",        en: "water" }

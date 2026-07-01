@@ -1,0 +1,53 @@
+# ═══ תבנית Day Spec — העתק לקובץ days/<day_id>.yaml ומלא ═══
+# כלל: מספרים מפורשים תמיד. טקסט מנוקד רק לעמודים מנוקדים (ראה niqqud_rules).
+
+day_id: grade_1_math_day_1        # <audience>_<subject>_day_<n>
+subject: math                     # math | language | english
+audience: grade_1                 # grade_1 | grades_2_3
+niqqud: false                     # true רק ל: language+grade_1, english+grade_1
+day_label: "יום 1 – ..."
+title: "כותרת השאלה?"
+core_skill: "מיומנות ליבה"
+subskills: ["תת-מיומנות"]
+theme: "עולם תוכן"
+leading_value: "ערך מוביל"
+
+pages:
+  beginner:   # ⭐  (זהה למבנה למטה)
+    level: beginner
+    intro: "פתיח."
+    instruction: "מה עושים? — הוראה."
+    example:               # דוגמה פתורה (worked)
+      type: count          # count | compare | arith
+      item: bottle
+      count: 4
+      caption: "הסבר הדוגמה כולל התשובה."
+    tasks:                 # משימות (ריקות למילוי הילד)
+      # count:   { type: count, item: <key>, count: <n>, options: [n-1,n,n+1] }
+      # compare: { type: compare, item: <key>, a: <n>, b: <n>, ask: more|less }
+      # arith:   { type: arith, op: addition|subtraction, a:{item,count}, b:{item,count}, result: <n>, prompt: "..." }
+      # equalize:{ type: equalize, item: <key>, a: <n>, b: <n>, answer: <a-b>, prompt: "..." }
+      # write_count: { type: write_count, groups: [{item,count,line:"... ___ ..."}] }
+      # match:   { type: match, prompt:"...", pairs:[{item,count,label}], numbers:[...] }
+      - { type: count, item: bottle, count: 5, options: [4, 5, 6] }
+    encouraging_message: "מסר מחזק."
+    quick_check: { type: write_count, groups: [{ item: bottle, count: 6, line: "יש כאן ___ ." }] }
+    success_reflection: [tried, improved, persevered]   # מפתחות מ-niqqud_bank.success_reflection
+    bonus: { type: find_count, target: 5, text: "מצאו ציור עם בדיוק 5 פריטים." }  # או { type: text, text: "..." }
+    footer: "פוטר מעודד."
+  mid:        # ⭐⭐  (אותו מבנה)
+  challenge:  # ⭐⭐⭐ (אותו מבנה)
+
+  coach_guide:
+    daily_goal: ["...", "..."]
+    leading_value: { name: "...", text: "..." }
+    pages_overview:
+      - { level: beginner,  audience: "מיועד ל...:", points: ["...", "..."] }
+      - { level: mid,        audience: "מיועד ל...:", points: ["...", "..."] }
+      - { level: challenge,  audience: "מיועד ל...:", points: ["...", "..."] }
+    how_to_mediate: ["..."]
+    adaptations: ["..."]
+    fast_finishers: ["..."]
+    coach_message: { lead: "הדגש הוא על:", values: ["ניסיון", "דיוק"] }
+    phrases: ["..."]
+    footer_legend: ["...", "..."]

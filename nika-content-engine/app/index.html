@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIKA · לוח בקרה — מחולל דפי עבודה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;900&family=Varela+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">NIKA</span><span class="sub">לוח בקרה · מחולל דפי עבודה</span></div>
+    <div class="toolbar">
+      <select id="dayList" title="ימים קיימים"></select>
+      <button id="loadBtn" class="btn">טען יום</button>
+      <button id="newBtn" class="btn">+ יום חדש</button>
+      <span class="spacer"></span>
+      <button id="saveBtn" class="btn">💾 שמור יום</button>
+      <button id="pdfBtn" class="btn primary">⬇ הורד PDF</button>
+    </div>
+  </header>
+
+  <div id="valBanner" class="banner"></div>
+
+  <main class="layout">
+    <section class="formcol">
+      <div class="tabs" id="tabs"></div>
+      <div id="form" class="form"></div>
+    </section>
+    <section class="previewcol">
+      <div class="pv-toolbar">
+        <span class="pv-label">תצוגה חיה:</span>
+        <div id="pageChips" class="chips"></div>
+      </div>
+      <div class="pv-frame"><iframe id="preview" title="תצוגה מקדימה"></iframe></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="/app/app.js"></script>
+</body>
+</html>

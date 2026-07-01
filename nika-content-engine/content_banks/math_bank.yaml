@@ -1,0 +1,15 @@
+# בנק חשבון — פריטים מותרים לספירה + טווחי מספרים לפי שכבה
+# הפריטים חייבים להתקיים כאייקון ב-assets/icons/<key>.svg וכערך ב-niqqud_bank.items
+
+countable_items: [bottle, ball, flag, hoop, bag, shoes, cone, water]
+
+number_ranges:
+  grade_1:    { min: 1, max: 10 }   # מנייה עד 10
+  grades_2_3: { min: 1, max: 20 }
+
+operations: [addition, subtraction]
+
+# כלל קשיח (נאכף בוולידציה):
+#   count חייב להיות בטווח השכבה.
+#   בכל משימת count: options חייב להכיל את count, ו-count הוא התשובה הנכונה.
+#   בכל משימת arith: initial (operation) change == result, וכולם בטווח.

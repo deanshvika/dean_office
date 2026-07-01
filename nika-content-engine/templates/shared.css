@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════════════════════
+   NIKA — גיליון סגנון מותג לדפי עבודה (A4, RTL)
+   גרדיאנטים ניאוניים · רקע לבן · כרטיסיות מרחפות · line-art
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --ink:#0f1e3d;
+  --body:#3d4a63;
+  --muted:#8a97ad;
+  --line:#eaeef5;
+  --g-magenta:linear-gradient(135deg,#E91E63,#FF4081);
+  --g-blue:linear-gradient(135deg,#03A9F4,#673AB7);
+  --g-lime:linear-gradient(135deg,#8BC34A,#C0CA33);
+  --tint-blue:#eef7ff;
+  --tint-mag:#fff0f6;
+  --tint-lime:#f4fbe9;
+  --radius:16px;
+  --shadow:0 6px 18px rgba(15,30,61,.08);
+}
+
+@page{ size:A4; margin:0; }
+*{ box-sizing:border-box; }
+
+html,body{ margin:0; padding:0; background:#e9edf3; }
+body{
+  font-family:'Rubik','Segoe UI',Arial,sans-serif;
+  color:var(--body); line-height:1.42; -webkit-font-smoothing:antialiased;
+}
+
+/* עמוד A4 יחיד */
+.page{
+  position:relative;
+  width:210mm; min-height:297mm;
+  margin:0 auto; padding:9mm 9mm 12mm;
+  background:#fff;
+}
+.page + .page{ margin-top:6mm; }
+
+h1,h2,h3,h4{ color:var(--ink); margin:0; font-weight:800; }
+.gt-mag{ background:var(--g-magenta); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.gt-blue{ background:var(--g-blue); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+/* ── HEADER ── */
+.phead{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:8px; margin-bottom:2px; }
+.phead .scene{ width:120px; height:70px; }
+.phead .scene img{ max-width:100%; max-height:100%; }
+.brandmark{ text-align:center; }
+.brandmark .logo{ font-family:'Varela Round','Rubik'; font-size:28px; letter-spacing:2px;
+  background:var(--g-magenta); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.brandmark .logo img{ height:44px; }
+.brandmark .tagline{ font-size:9px; color:var(--muted); font-weight:500; margin-top:-2px; }
+.crumbs{ text-align:left; font-size:13px; font-weight:700; color:var(--ink); white-space:nowrap; }
+
+.titleblock{ text-align:center; margin:0 0 6px; }
+.daylabel{ display:inline-block; background:var(--g-blue); color:#fff; font-weight:700; font-size:13px;
+  padding:4px 16px; border-radius:999px; box-shadow:var(--shadow); }
+.ptitle{ font-family:'Varela Round','Rubik'; font-size:27px; font-weight:800; margin:5px 0 5px; line-height:1.05; }
+.levelbadge{ display:inline-flex; align-items:center; gap:7px; color:#fff; font-weight:700; font-size:15px;
+  padding:5px 18px; border-radius:999px; background:var(--g-magenta); box-shadow:0 6px 16px rgba(233,30,99,.35); }
+.levelbadge.mid{ background:var(--g-blue); }
+.levelbadge.challenge{ background:var(--g-lime); }
+.stars{ letter-spacing:1px; }
+
+.intro{ text-align:center; font-size:14px; color:var(--body); max-width:150mm; margin:0 auto 7px; font-weight:500; }
+
+/* ── SECTION BOX (כרטיסייה מרחפת) ── */
+.box{ background:#fff; border:1.5px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:10px 12px; }
+.box-head{ display:inline-flex; align-items:center; gap:7px; font-weight:800; font-size:14px; color:#fff;
+  padding:4px 13px; border-radius:999px; margin-bottom:6px; }
+.box-head.lime{ background:var(--g-lime); }
+.box-head.blue{ background:var(--g-blue); }
+.box-head.mag{ background:var(--g-magenta); }
+.box.tint-lime{ background:var(--tint-lime); }
+.box.tint-blue{ background:var(--tint-blue); }
+.box.tint-mag{ background:var(--tint-mag); }
+.box > div{ font-size:14px; }
+
+.two-col{ display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:9px; }
+
+/* ── ICONS (מנייה) ── */
+.iconrow{ display:flex; flex-wrap:wrap; gap:6px; align-items:flex-end; justify-content:center; }
+.iconrow svg{ height:38px; width:auto; flex:none; }
+.iconrow.sm svg{ height:20px; }
+
+/* ── OPTION BUBBLES ── */
+.opts{ display:flex; gap:10px; justify-content:center; margin-top:7px; }
+.opt{ min-width:50px; height:44px; padding:0 6px; border-radius:12px; border:2.5px solid #e2e8f0; background:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:21px; font-weight:800; color:var(--ink); }
+
+/* ── TASK GRID ── */
+.tasks{ display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-bottom:7px; }
+.tasks.one{ grid-template-columns:1fr; }
+.task{ position:relative; background:#fff; border:1.5px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:8px 10px; }
+.task.wide{ grid-column:1 / -1; }
+.tnum{ position:absolute; top:-10px; inset-inline-start:12px; width:26px; height:26px; border-radius:50%;
+  color:#fff; font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow); }
+.tnum.c0{ background:var(--g-magenta); } .tnum.c1{ background:var(--g-blue); }
+.tnum.c2{ background:var(--g-lime); }    .tnum.c3{ background:var(--g-magenta); }
+.tnum.c4{ background:var(--g-blue); }
+.task .prompt{ font-size:13.5px; color:var(--body); margin-bottom:6px; font-weight:500; }
+
+/* קבוצות השוואה / כתיבה */
+.groups{ display:flex; flex-direction:column; gap:4px; }
+.grp .glabel{ font-weight:700; color:var(--ink); font-size:12.5px; margin-bottom:1px; }
+.grp .gline{ font-size:13px; color:var(--body); margin-top:1px; }
+.blank{ display:inline-block; min-width:42px; border-bottom:2.5px solid #cbd5e1; margin:0 4px; height:1.05em; vertical-align:bottom; }
+.choicebox{ display:flex; align-items:center; gap:7px; font-size:13px; margin-top:3px; }
+.checkbox{ width:18px; height:18px; border:2.5px solid #cbd5e1; border-radius:5px; flex:none; }
+
+/* משוואה */
+.equation{ display:flex; direction:ltr; align-items:center; gap:9px; justify-content:center; font-size:22px; font-weight:800; color:var(--ink); margin-top:6px; }
+.eqbox{ min-width:46px; height:44px; border:2.5px dashed #cbd5e1; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; }
+.eqbox.filled{ border-style:solid; }
+
+/* match */
+/* שורת קבוצה קומפקטית: תווית + אייקונים באותה שורה (compare/match) */
+.mrow{ display:flex; align-items:center; gap:8px; margin-bottom:3px; }
+.mrow .glabel{ font-weight:700; color:var(--ink); font-size:12.5px; min-width:56px; margin:0; }
+.mrow .iconrow{ justify-content:flex-start; flex:1; }
+.mrow .dot{ margin-inline-start:auto; }
+
+.matchwrap{ display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; }
+.match-groups,.match-nums{ display:flex; flex-direction:column; gap:6px; }
+.match-nums .mn{ width:44px; height:44px; border-radius:10px; border:2.5px solid #e2e8f0; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:800; color:var(--ink); }
+.dot{ width:9px; height:9px; border-radius:50%; background:#c4b5fd; }
+
+/* ── ENCOURAGING STRIP ── */
+.encourage{ display:flex; align-items:center; gap:9px; justify-content:center; text-align:center;
+  background:linear-gradient(90deg,var(--tint-mag),var(--tint-blue)); border-radius:999px;
+  padding:8px 18px; font-weight:700; color:var(--ink); font-size:13.5px; margin:2px 0 8px; }
+.encourage .heart{ color:#E91E63; font-size:16px; }
+
+/* ── BOTTOM ROW ── */
+.bottom{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:9px; }
+.checkrow{ display:flex; flex-direction:column; gap:5px; }
+.checkrow .ci{ display:flex; align-items:center; gap:7px; font-size:13.5px; }
+.bonus-body{ font-size:13px; color:var(--body); }
+
+/* ── FOOTER ── */
+.pfooter{ position:absolute; inset-inline:9mm; bottom:5mm; text-align:center; font-weight:700; color:var(--ink);
+  font-size:12.5px; background:linear-gradient(90deg,var(--tint-lime),var(--tint-blue)); border-radius:999px; padding:7px 14px; }
+.pagenum{ position:absolute; bottom:5mm; inset-inline-start:9mm; width:30px; height:30px; border-radius:50%;
+  background:var(--g-blue); color:#fff; font-weight:800; font-size:12px; display:flex; align-items:center; justify-content:center; }
+
+/* ═══ COACH GUIDE ═══ */
+.coach .phead .crumbs .role{ color:#E91E63; }
+.coach-grid3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:9px; margin:6px 0 9px; }
+.coach-grid2{ display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:9px; }
+.coach .box ul{ margin:5px 0 0; padding-inline-start:18px; }
+.coach .box li{ font-size:13px; margin-bottom:2px; color:var(--body); line-height:1.35; }
+.coach .colhead{ font-weight:800; font-size:14.5px; color:var(--ink); display:flex; align-items:center; gap:6px; }
+.valchips{ display:flex; flex-wrap:wrap; gap:7px; margin-top:7px; }
+.valchip{ background:var(--tint-lime); border:1.5px solid #e4efd3; border-radius:999px; padding:4px 12px; font-weight:700; font-size:13px; color:var(--ink); }
+.phrase{ background:var(--tint-blue); border-radius:10px; padding:7px 11px; font-size:13px; margin-bottom:5px; color:var(--ink); }
+.legend{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:8px; font-size:12px; color:var(--muted); font-weight:600; }
