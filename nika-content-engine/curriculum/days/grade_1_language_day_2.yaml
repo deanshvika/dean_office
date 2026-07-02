@@ -1,99 +1,99 @@
-# ── יום: שפה · שכבה א' · יום 2 (מילה ותמונה) ─────────────────────
-# שפה שכבה א' = ניקוד מלא. הטקסט החופשי מאוחסן מנוקד (מאומת מול הזהב).
-# מילות הפריטים נשלפות מהבנק המנוקד; הוולידטור אוכף שכל מילה עברית מנוקדת.
-# דף מדריך = ללא ניקוד (כמו הזהב).
+# ── מחזור 1 · יום 2 · שפה · שכבה א' ─────────────────────────────
+# עולם תוכן: ספורט וקבוצה | ערך: שיתוף פעולה
+# דרגות קושי (מנגנון שונה): מתחילים=מילה→תמונה · ממשיכים=תמונה→מילה · אתגר=אות חסרה
+# בידול מ"אנגלית" (#7): עברית עובדת על אוצר "סט A" — דגל/חישוק/נעליים/מדליה/משרוקית/כובע
+#   (אנגלית עובדת על אובייקטים אחרים לגמרי — כדור/תיק/בקבוק/קונוס/גביע/רשת). כמעט בלי חפיפה → לא תרגום.
+# שפה שכבה א' = ניקוד מלא; מילים ואות חסרה מהבנק המנוקד. דף מדריך = ללא ניקוד.
 
 day_id: grade_1_language_day_2
 subject: language
 audience: grade_1
 niqqud: true
-day_label: "יוֹם 2 – מִלָּה וּתְמוּנָה"
-title: "מָה שָׂמִים בְּתִיק הַפְּעִילוּת?"
-core_skill: "זיהוי מילה והתאמתה לתמונה"
+day_label: "יוֹם 2 – מִלָּה, תְּמוּנָה וְאוֹת"
+title: "מַה מְשַׁתְּפִים בַּקְּבוּצָה?"
+core_skill: "זיהוי מילה, קריאתה, וניתוח האות החסרה"
 subskills:
-  - "קריאה ראשונית של מילים מוכרות"
-theme: "ציוד לקבוצה"
-leading_value: "מוכנות ואחריות אישית"
+  - "התאמת מילה לתמונה"
+  - "קריאת מילה ובחירתה"
+  - "זיהוי אות חסרה במילה"
+theme: "ספורט וקבוצה"
+leading_value: "שיתוף פעולה"
 
 pages:
 
-  # ── עמוד 1 · מתחילים ─────────────────────────────
+  # ── עמוד 1 · מתחילים · מילה → תמונה ─────────────────────────────
   beginner:
     level: beginner
-    intro: "הַקְּבוּצָה מִתְכּוֹנֶנֶת לִפְעִילוּת. בּוֹאוּ נִבְדֹּק אֵילוּ פָּרִיטִים אֲנַחְנוּ מַכִּירִים."
+    intro: "הַקְּבוּצָה מִתְכּוֹנֶנֶת לִפְעִילוּת. בּוֹאוּ נִבְדֹּק אֵילוּ פְּרִיטִים אֲנַחְנוּ מַכִּירִים."
     instruction: "קִרְאוּ אוֹ הַקְשִׁיבוּ לַמִּלָּה, וְהַקִּיפוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה."
     example:
       type: word_picture
-      item: bottle
-      word: "מַיִם"
-      distractors: [ball, flag]
-      caption: "מַקִּיפִים אֶת הַתְּמוּנָה שֶׁל בַּקְבּוּק מַיִם."
+      item: flag
+      distractors: [hoop, hat]
+      caption: "מַקִּיפִים אֶת הַתְּמוּנָה הַמַּתְאִימָה."
     tasks:
-      - { type: word_picture, item: bag,   distractors: [bottle, ball] }
-      - { type: word_picture, item: ball,  distractors: [flag, shoes] }
-      - { type: word_picture, item: flag,  distractors: [bottle, bag] }
-      - { type: word_picture, item: shoes, distractors: [ball, bottle] }
+      - { type: word_picture, item: hoop,    distractors: [flag, shoes] }
+      - { type: word_picture, item: medal,   distractors: [whistle, hat] }
+      - { type: word_picture, item: whistle, distractors: [hoop, medal] }
+      - { type: word_picture, item: shoes,   distractors: [flag, hat] }
     encouraging_message: "כְּשֶׁאֲנַחְנוּ מִתְאַמְּנִים בַּקְּרִיאָה, אֲנַחְנוּ מִשְׁתַּפְּרִים צַעַד אַחַר צַעַד."
     quick_check:
       type: word_picture
-      item: bottle
-      word: "מַיִם"
-      distractors: [bag, flag]
+      item: hat
+      distractors: [medal, flag]
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
-      text: "מִצְאוּ תְּמוּנָה אַחַת וְאִמְרוּ אֶת הַמִּלָּה שֶׁלָּהּ."
+      text: "מִצְאוּ תְּמוּנָה אַחַת וְאִמְרוּ אֶת הַמִּלָּה שֶׁלָּהּ לַחֲבֵרִים."
     footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — קוֹרְאִים, מְנַסִּים וְעוֹזְרִים לַקְּבוּצָה."
 
-  # ── עמוד 2 · ממשיכים ─────────────────────────────
+  # ── עמוד 2 · ממשיכים · תמונה → מילה ─────────────────────────────
   mid:
     level: mid
-    intro: "עַכְשָׁיו נַתְאִים כָּל מִלָּה לַתְּמוּנָה הַנְּכוֹנָה מִבֵּין כַּמָּה אֶפְשָׁרֻיּוֹת."
-    instruction: "קִרְאוּ אֶת הַמִּלָּה וְהַקִּיפוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה."
+    intro: "עַכְשָׁיו נִסְתַּכֵּל עַל הַתְּמוּנָה וְנִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה מִבֵּין כַּמָּה מִלִּים."
+    instruction: "הִסְתַּכְּלוּ עַל הַתְּמוּנָה וְסַמְּנוּ אֶת הַמִּלָּה הַמַּתְאִימָה."
     example:
-      type: word_picture
-      item: ball
-      word: "כַּדּוּר"
-      distractors: [bag, hoop, flag]
-      caption: "מַקִּיפִים אֶת הַתְּמוּנָה שֶׁל כַּדּוּר."
+      type: pic_word
+      item: flag
+      distractors: [hoop, shoes]
+      caption: "בּוֹחֲרִים אֶת הַמִּלָּה הַמַּתְאִימָה לַתְּמוּנָה."
     tasks:
-      - { type: word_picture, item: bag,   distractors: [bottle, ball, flag] }
-      - { type: word_picture, item: hoop,  distractors: [ball, bag, shoes] }
-      - { type: word_picture, item: shoes, distractors: [flag, bottle, ball] }
-      - { type: word_picture, item: flag,  distractors: [bag, hoop, bottle] }
+      - { type: pic_word, item: hoop,    distractors: [medal, hat] }
+      - { type: pic_word, item: medal,   distractors: [whistle, flag] }
+      - { type: pic_word, item: hat,     distractors: [shoes, hoop] }
+      - { type: pic_word, item: whistle, distractors: [medal, shoes] }
     encouraging_message: "כְּשֶׁאֲנַחְנוּ מְנַסִּים שׁוּב, אֲנַחְנוּ לוֹמְדִים וּמִתְקַדְּמִים."
     quick_check:
-      type: word_picture
-      item: hoop
-      word: "חִישׁוּק"
-      distractors: [ball, bag]
+      type: pic_word
+      item: shoes
+      distractors: [flag, whistle]
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
       text: "אִמְרוּ מִלָּה לְחָבֵר, וּבִדְקוּ אִם מָצָא אֶת הַתְּמוּנָה הַנְּכוֹנָה."
     footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — מְנַסִּים, מַתְמִידִים וְעוֹזְרִים לַקְּבוּצָה."
 
-  # ── עמוד 3 · אתגר ─────────────────────────────
+  # ── עמוד 3 · אתגר · אות חסרה ─────────────────────────────
   challenge:
     level: challenge
-    intro: "עַכְשָׁיו נִקְרָא מִלִּים וּנְזַהֶה אֶת הַתְּמוּנָה הַנְּכוֹנָה מִבֵּין אֶפְשָׁרֻיּוֹת דּוֹמוֹת."
-    instruction: "קִרְאוּ בְּעַצְמְכֶם אֶת הַמִּלָּה וְהַקִּיפוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה."
+    intro: "עַכְשָׁיו נִמְצָא אֵיזוֹ אוֹת חֲסֵרָה בְּכָל מִלָּה, וְנַשְׁלִים אוֹתָהּ."
+    instruction: "הַשְׁלִימוּ אֶת הָאוֹת הַחֲסֵרָה בְּכָל מִלָּה."
     example:
-      type: word_picture
-      item: shoes
-      word: "נַעֲלַיִם"
-      distractors: [bag, hoop, flag]
-      caption: "מַקִּיפִים אֶת הַתְּמוּנָה שֶׁל נַעֲלַיִם."
+      type: missing_letter
+      item: flag
+      answer: "ל"
+      options: ["ל", "ר", "ן"]
+      caption: "מַשְׁלִימִים אֶת הָאוֹת הַחֲסֵרָה בַּמִּלָּה."
     tasks:
-      - { type: word_picture, item: flag,  distractors: [hoop, bag, shoes] }
-      - { type: word_picture, item: bottle, word: "מַיִם", distractors: [flag, ball, hoop] }
-      - { type: word_picture, item: hoop,  distractors: [ball, flag, shoes] }
+      - { type: missing_letter, item: hoop,    answer: "ק", options: ["ק", "ר", "ן"] }
+      - { type: missing_letter, item: shoes,   answer: "ם", options: ["ם", "ן", "ך"] }
+      - { type: missing_letter, item: whistle, answer: "ת", options: ["ת", "ם", "ן"] }
     encouraging_message: "מַאֲמָץ, קְרִיאָה וְהַתְמָדָה עוֹזְרִים לָנוּ לְהִשְׁתַּפֵּר בְּכָל יוֹם."
     quick_check:
-      type: word_picture
-      item: bag
-      word: "תִּיק"
-      distractors: [bottle, ball]
+      type: missing_letter
+      item: medal
+      answer: "ה"
+      options: ["ה", "ת", "ר"]
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
@@ -103,47 +103,47 @@ pages:
   # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
   coach_guide:
     daily_goal:
-      - "זיהוי מילה"
-      - "התאמת מילה לתמונה"
-      - "קריאה ראשונית של מילים מוכרות"
-      - "תחילת הבנה של קשר בין מילה לפריט"
+      - "התאמת מילה לתמונה (זיהוי)"
+      - "בחירת המילה הנכונה לפי תמונה (קריאה)"
+      - "זיהוי והשלמת אות חסרה (ניתוח)"
+      - "חיזוק הקשר בין צליל, אות ומילה"
     leading_value:
-      name: "מוכנות ואחריות אישית"
-      text: "הילד מבין שהיכרות עם הפריטים והשפה עוזרת לו להתארגן טוב יותר."
+      name: "שיתוף פעולה"
+      text: "הילדים עוזרים זה לזה לקרוא ולזהות מילים — ולומדים שיחד מתקדמים טוב יותר."
     pages_overview:
       - level: beginner
         audience: "מיועד לילדים שצריכים כניסה פשוטה:"
-        points: ["שמיעת מילה", "זיהוי תמונה מתאימה", "בחירה בין 3 אפשרויות"]
+        points: ["שמיעת מילה", "זיהוי התמונה המתאימה", "בחירה בין 3 אפשרויות"]
       - level: mid
         audience: "מיועד לילדים שיכולים:"
-        points: ["לזהות מילים חזותית", "לחבר בין מילה לתמונה", "לבחור מתוך כמה אפשרויות"]
+        points: ["להסתכל על תמונה ולקרוא", "לבחור את המילה הנכונה", "להבחין בין מילים דומות"]
       - level: challenge
         audience: "מיועד לילדים שיכולים:"
-        points: ["קריאה בביטחון יחסי", "הבחנה בין אפשרויות דומות", "השלמת מילה מתוך הקשר"]
+        points: ["לקרוא מילה בביטחון יחסי", "לזהות איזו אות חסרה", "להשלים את המילה"]
     how_to_mediate:
       - "לפתוח תמיד מהפתיח ומהדוגמה"
-      - "לומר את המילה בקול ברור"
-      - "לבקש מהילד לחזור על המילה"
-      - "לעבוד לאט ובהצלחה"
+      - "לומר את המילה בקול ברור ולבקש מהילד לחזור"
+      - "בעמוד האות החסרה — לקרוא את המילה בלי האות ולשאול 'איזה צליל חסר?'"
+      - "לעודד ילדים לעזור זה לזה (שיתוף פעולה)"
       - "אם צריך, להישאר רק בעמוד 'מתחילים'"
     adaptations:
       - "להציג משימה אחת בכל פעם"
       - "לומר את המילה בקול שוב ושוב"
-      - "להשתמש בכרטיסיות מילה נפרדות"
+      - "להשתמש בכרטיסיות מילה/אות נפרדות"
       - "להקטין מספר אפשרויות אם צריך"
       - "לאפשר תשובה בהצבעה או בעל פה"
     fast_finishers:
       - "לעבור ל'אתגר'"
       - "לתת את הבונוס"
-      - "לבקש לומר מילה לחבר"
+      - "לבקש לומר מילה לחבר ולבדוק יחד"
       - "לבקש לייצר משפט קצר מאוד"
     coach_message:
       lead: "הדגש הוא לא על 'קריאה מושלמת', אלא על:"
-      values: ["ניסיון", "היכרות", "חזרתיות", "ביטחון"]
+      values: ["ניסיון", "עזרה הדדית", "חזרתיות", "ביטחון"]
     phrases:
       - "כל הכבוד שניסית."
-      - "ראיתי שהתמדת."
-      - "בדקת שוב וזה מעולה."
-      - "עזרת לקבוצה להתארגן."
+      - "יפה שעזרת לחבר."
+      - "קראת שוב וזה מעולה."
+      - "מצאת את האות החסרה."
       - "התקדמת יפה."
-    footer_legend: ["ניסיון", "היכרות", "חזרתיות", "ביטחון", "תחושת הצלחה"]
+    footer_legend: ["שיתוף פעולה", "עזרה הדדית", "חזרתיות", "ביטחון", "תחושת הצלחה"]

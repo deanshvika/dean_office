@@ -1,6 +1,6 @@
 // שער הוולידציה — מחסל טעויות לפני רינדור.
 // בודק: מבנה, שלמות מספרית (ספירה=מספר=תשובה), מדיניות ניקוד, אוצר סגור.
-import { p, loadYaml, loadDay, hasIcon, hasNiqqud, hebrewWords } from './lib.mjs';
+import { p, loadYaml, loadDay, hasIcon, hasNiqqud, hebrewWords, bank, itemWord, splitClusters } from './lib.mjs';
 
 const STUDENT_PAGES = ['beginner', 'mid', 'challenge'];
 
@@ -91,6 +91,41 @@ export function validateDay(spec) {
         if (!opts.includes(t.item)) E(page, `${ctx}: הפריט הנכון אינו בין אפשרויות התמונה`);
         return null;
       }
+      case 'pic_word': {
+        checkIcon(page, t.item);
+        const opts = t.options || [t.item, ...(t.distractors || [])];
+        if (!opts.includes(t.item)) E(page, `${ctx}: הפריט הנכון אינו בין אפשרויות המילים`);
+        if (new Set(opts).size !== opts.length) E(page, `${ctx}: מילות בחירה כפולות [${opts}]`);
+        opts.forEach((k) => { if (!bank().items[k]) E(page, `${ctx}: המילה "${k}" אינה באוצר הבנק הסגור`); });
+        return null;
+      }
+      case 'missing_letter': {
+        checkIcon(page, t.item);
+        if (!t.answer) { E(page, `${ctx}: חסרה האות החסרה (answer)`); return null; }
+        const opts = t.options || [];
+        if (opts.length < 2) E(page, `${ctx}: נדרשות לפחות 2 אפשרויות אותיות`);
+        if (!opts.includes(t.answer)) E(page, `${ctx}: האות "${t.answer}" אינה בין האפשרויות`);
+        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אותיות כפולות [${opts}]`);
+        // ודא שהאות אכן חלק מהמילה שבבנק — כך ה"חור" אמיתי (אפס טעות)
+        const item = bank().items[t.item];
+        if (!item) E(page, `${ctx}: הפריט "${t.item}" אינו בבנק`);
+        else {
+          const word = itemWord(t.item, { niqqud: true });
+          const cs = splitClusters(word);
+          if (!cs.includes(t.answer) && !cs.some((c) => c[0] === String(t.answer)[0]))
+            E(page, `${ctx}: האות "${t.answer}" אינה מופיעה במילה "${word}"`);
+        }
+        return null;
+      }
+      case 'complete_sentence': {
+        if (!t.sentence || !/_{2,}/.test(t.sentence)) E(page, `${ctx}: חסר משפט עם ___`);
+        const wb = t.word_bank || [];
+        if (wb.length < 2) E(page, `${ctx}: בנק המילים חייב לפחות 2 מילים`);
+        if (!wb.includes(t.answer)) E(page, `${ctx}: התשובה "${t.answer}" אינה בבנק המילים`);
+        if (new Set(wb).size !== wb.length) E(page, `${ctx}: מילים כפולות בבנק [${wb}]`);
+        if (t.item && !hasIcon(t.item)) E(page, `${ctx}: אין אייקון לפריט "${t.item}"`);
+        return null;
+      }
       case 'text': case 'find_count':
         if (!t.text) E(page, `${ctx}: חסר text`);
         return null;
@@ -147,11 +182,14 @@ function collectText(pg) {
   return out;
 }
 
+// אות בודדת + גרש/גרשיים = מספר סודר/תווית (א׳, ב׳) — לא מילה שניתן לנקד
+const isOrdinal = (w) => /^[א-ת][׳״'"]?$/.test(w);
+
 function checkNiqqud(page, strings, expected, E) {
   for (const s of strings) {
     const words = hebrewWords(s);
     if (expected) {
-      const missing = words.filter((w) => w.length > 1 && !hasNiqqud(w));
+      const missing = words.filter((w) => w.length > 1 && !hasNiqqud(w) && !isOrdinal(w));
       if (missing.length) E(page, `ניקוד חסר (שכבה מנוקדת) במילים: ${missing.slice(0, 4).join(', ')}${missing.length > 4 ? '…' : ''}`);
     } else {
       const extra = words.filter((w) => hasNiqqud(w));

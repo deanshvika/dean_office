@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 74" role="img" aria-label="גביע">
+  <defs><linearGradient id="g_cup" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD54F"/><stop offset="1" stop-color="#FF8F00"/></linearGradient></defs>
+  <path d="M12 14 H4 a9 9 0 0 0 9 15" fill="none" stroke="#E6A100" stroke-width="3.5"/>
+  <path d="M44 14 H52 a9 9 0 0 1 -9 15" fill="none" stroke="#E6A100" stroke-width="3.5"/>
+  <path d="M12 9 H44 V22 a16 16 0 0 1 -32 0 Z" fill="url(#g_cup)" stroke="#E6A100" stroke-width="2"/>
+  <rect x="24.5" y="39" width="7" height="13" fill="url(#g_cup)"/>
+  <rect x="15" y="52" width="26" height="6" rx="2" fill="url(#g_cup)"/>
+  <rect x="19" y="58" width="18" height="9" rx="2" fill="#E6A100"/>
+  <polygon points="28,15 30,20 35,20 31,23 32,28 28,25 24,28 25,23 21,20 26,20" fill="#fff"/>
+</svg>

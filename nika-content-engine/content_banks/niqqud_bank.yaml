@@ -18,6 +18,17 @@ ui_labels:
   word_bank:         { plain: "בנק מילים",            niqqud: "בַּנְק מִלִּים" }
   the_word:          { plain: "המילה:",               niqqud: "הַמִּלָּה:" }
 
+# --- תוויות קבועות במשימות חשבון (לצורך ניקוד שכבה א') ---
+math_labels:
+  group_a:    { plain: "קבוצה א׳",        niqqud: "קְבוּצָה א׳" }
+  group_b:    { plain: "קבוצה ב׳",        niqqud: "קְבוּצָה ב׳" }
+  group_c:    { plain: "קבוצה ג׳",        niqqud: "קְבוּצָה ג׳" }
+  in_group_a: { plain: "בקבוצה א׳ יש",    niqqud: "בִּקְבוּצָה א׳ יֵשׁ" }
+  in_group_b: { plain: "בקבוצה ב׳ יש",    niqqud: "בִּקְבוּצָה ב׳ יֵשׁ" }
+  more:       { plain: "יותר",            niqqud: "יוֹתֵר" }
+  less:       { plain: "פחות",            niqqud: "פָּחוֹת" }
+  add:        { plain: "צריך להוסיף",     niqqud: "צָרִיךְ לְהוֹסִיף" }
+
 # --- משפטי רפלקציה (היום הצלחתי כי) ---
 success_reflection:
   tried:      { plain: "ניסיתי",   niqqud: "נִסִּיתִי" }
@@ -49,3 +60,8 @@ items:
   shoes:  { plain: "נעליים", niqqud: "נַעֲלַיִם",  plural_plain: "נעליים",   plural_niqqud: "נַעֲלַיִם",     en: "shoes" }
   cone:   { plain: "קונוס",  niqqud: "קוֹנוּס",    plural_plain: "קונוסים",  plural_niqqud: "קוֹנוּסִים",    en: "cone" }
   water:  { plain: "מים",    niqqud: "מַיִם",      plural_plain: "מים",      plural_niqqud: "מַיִם",        en: "water" }
+  medal:   { plain: "מדליה",   niqqud: "מֶדַלְיָה",   plural_plain: "מדליות",   plural_niqqud: "מֶדַלְיוֹת",   en: "medal" }
+  whistle: { plain: "משרוקית", niqqud: "מַשְׁרוֹקִית", plural_plain: "משרוקיות", plural_niqqud: "מַשְׁרוֹקִיּוֹת", en: "whistle" }
+  cup:     { plain: "גביע",    niqqud: "גָּבִיעַ",    plural_plain: "גביעים",   plural_niqqud: "גְּבִיעִים",   en: "cup" }
+  hat:     { plain: "כובע",    niqqud: "כּוֹבַע",     plural_plain: "כובעים",   plural_niqqud: "כּוֹבָעִים",   en: "hat" }
+  net:     { plain: "רשת",     niqqud: "רֶשֶׁת",      plural_plain: "רשתות",    plural_niqqud: "רְשָׁתוֹת",    en: "net" }

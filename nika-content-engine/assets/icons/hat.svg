@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 46" role="img" aria-label="כובע">
+  <defs><linearGradient id="g_hat" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#03A9F4"/><stop offset="1" stop-color="#673AB7"/></linearGradient></defs>
+  <path d="M11 32 a22 22 0 0 1 44 0 Z" fill="url(#g_hat)" stroke="#1565C0" stroke-width="1.5"/>
+  <path d="M53 32 H63 a4 4 0 0 1 0 8 H33 Z" fill="url(#g_hat)" stroke="#1565C0" stroke-width="1.5"/>
+  <circle cx="33" cy="11" r="3.2" fill="#FFC107"/>
+  <path d="M33 11 V32" stroke="#1565C0" stroke-width="1.2" opacity="0.5"/>
+</svg>

@@ -1,6 +1,6 @@
 // מנוע רינדור NIKA — בונה HTML עצמאי לכל עמוד מתוך Day Spec.
 // עקרון: פריטי ספירה = הדבקת אייקון בדיוק count פעמים (דטרמיניסטי).
-import { p, fs, bank, iconSvg, itemWord, label, logoDataUri } from '../scripts/lib.mjs';
+import { p, fs, bank, iconSvg, itemWord, label, logoDataUri, displayWord, splitClusters } from '../scripts/lib.mjs';
 
 const CSS = fs.readFileSync(p('templates', 'shared.css'), 'utf8');
 const esc = (s) => String(s == null ? '' : s)
@@ -27,7 +27,7 @@ function defaultOptions(n) {
 }
 
 // ── גוף משימה לפי סוג (worked=true מציג תשובות, לדוגמה) ──
-function taskBody(t, niq, worked = false) {
+function taskBody(t, niq, worked = false, subject = 'math') {
   switch (t.type) {
     case 'count': {
       const opts = t.options || defaultOptions(t.count);
@@ -39,21 +39,24 @@ function taskBody(t, niq, worked = false) {
       ).join('') + `</div>`;
     }
     case 'compare': {
-      const askWord = t.ask === 'less' ? 'פחות' : 'יותר';
-      const prompt = t.prompt ? `<div class="prompt">${esc(t.prompt)}</div>` : '';
+      const askWord = esc(label('math_labels', t.ask === 'less' ? 'less' : 'more', niq));
+      const gA = esc(label('math_labels', 'group_a', niq)), gB = esc(label('math_labels', 'group_b', niq));
+      const inA = esc(label('math_labels', 'in_group_a', niq)), inB = esc(label('math_labels', 'in_group_b', niq));
+      const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
       const groups =
-        `<div class="mrow"><span class="glabel">קבוצה א׳</span>${iconsRow(t.item, t.a, 'sm')}</div>` +
-        `<div class="mrow"><span class="glabel">קבוצה ב׳</span>${iconsRow(t.item, t.b, 'sm')}</div>`;
+        `<div class="mrow"><span class="glabel">${gA}</span>${iconsRow(t.item, t.a, 'sm')}</div>` +
+        `<div class="mrow"><span class="glabel">${gB}</span>${iconsRow(t.item, t.b, 'sm')}</div>`;
       const choices =
-        `<div class="choicebox"><span class="checkbox"></span>בקבוצה א׳ יש ${askWord}</div>` +
-        `<div class="choicebox"><span class="checkbox"></span>בקבוצה ב׳ יש ${askWord}</div>`;
+        `<div class="choicebox"><span class="checkbox"></span>${inA} ${askWord}</div>` +
+        `<div class="choicebox"><span class="checkbox"></span>${inB} ${askWord}</div>`;
       return `${prompt}<div class="groups">${groups}</div>${choices}`;
     }
     case 'arith': {
-      const prompt = t.prompt ? `<div class="prompt">${esc(t.prompt)}</div>` : '';
+      const gA = esc(label('math_labels', 'group_a', niq)), gB = esc(label('math_labels', 'group_b', niq));
+      const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
       const groups = `<div class="two-col" style="margin:0 0 8px">` +
-        `<div class="grp"><div class="glabel">קבוצה א׳</div>${iconsRow(t.a.item, t.a.count, 'sm')}</div>` +
-        `<div class="grp"><div class="glabel">קבוצה ב׳</div>${iconsRow(t.b.item, t.b.count, 'sm')}</div></div>`;
+        `<div class="grp"><div class="glabel">${gA}</div>${iconsRow(t.a.item, t.a.count, 'sm')}</div>` +
+        `<div class="grp"><div class="glabel">${gB}</div>${iconsRow(t.b.item, t.b.count, 'sm')}</div></div>`;
       const opSym = t.op === 'subtraction' ? '−' : '+';
       const cell = (v) => worked
         ? `<span class="eqbox filled">${v}</span>`
@@ -62,13 +65,15 @@ function taskBody(t, niq, worked = false) {
       return `${prompt}${groups}${eq}`;
     }
     case 'equalize': {
-      const prompt = t.prompt ? `<div class="prompt">${esc(t.prompt)}</div>` : '';
+      const gA = esc(label('math_labels', 'group_a', niq)), gB = esc(label('math_labels', 'group_b', niq));
+      const addLbl = esc(label('math_labels', 'add', niq));
+      const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
       const groups = `<div class="two-col" style="margin:0 0 8px">` +
-        `<div class="grp"><div class="glabel">קבוצה א׳</div>${iconsRow(t.item, t.a, 'sm')}</div>` +
-        `<div class="grp"><div class="glabel">קבוצה ב׳</div>${iconsRow(t.item, t.b, 'sm')}</div></div>`;
+        `<div class="grp"><div class="glabel">${gA}</div>${iconsRow(t.item, t.a, 'sm')}</div>` +
+        `<div class="grp"><div class="glabel">${gB}</div>${iconsRow(t.item, t.b, 'sm')}</div></div>`;
       const line = worked
-        ? `<div class="gline">צריך להוסיף <span class="eqbox filled">${t.answer}</span></div>`
-        : `<div class="gline">צריך להוסיף <span class="blank"></span></div>`;
+        ? `<div class="gline">${addLbl} <span class="eqbox filled">${t.answer}</span></div>`
+        : `<div class="gline">${addLbl} <span class="blank"></span></div>`;
       return `${prompt}${groups}${line}`;
     }
     case 'match': {
@@ -85,6 +90,42 @@ function taskBody(t, niq, worked = false) {
       const opts = t.options || [t.item, ...(t.distractors || [])];
       const boxes = opts.map((k) => `<div class="wp-opt${worked && k === t.item ? ' correct' : ''}">${iconSvg(k) || ''}</div>`).join('');
       return `<div class="wp"><div class="wp-word" dir="auto">${esc(theWord)} <b>${esc(word)}</b></div><div class="wp-opts">${boxes}</div></div>`;
+    }
+    case 'pic_word': {
+      // תמונה מוצגת → בחירת המילה הנכונה. המילים תמיד מהבנק הסגור (אפס טעות ניקוד).
+      const opts = t.options || [t.item, ...(t.distractors || [])];
+      const pic = `<div class="pw-pic">${iconSvg(t.item) || ''}</div>`;
+      const boxes = opts.map((k) => {
+        const w = displayWord(subject, k, niq);
+        const correct = worked && k === t.item ? ' correct' : '';
+        return `<div class="pw-opt${correct}" dir="auto">${esc(w)}</div>`;
+      }).join('');
+      return `<div class="pw">${pic}<div class="pw-opts">${boxes}</div></div>`;
+    }
+    case 'missing_letter': {
+      // מילה עברית עם אות חסרה. המילה נשלפת מהבנק המנוקד ומפוצלת לאשכולות —
+      // אף אות/ניקוד לא מוקלד ידנית.
+      const word = itemWord(t.item, { niqqud: niq });
+      const cs = splitClusters(word);
+      let idx = cs.findIndex((c) => c === t.answer);
+      if (idx < 0) idx = cs.findIndex((c) => c[0] === String(t.answer || '')[0]);
+      const wordHtml = cs.map((c, i) => i === idx
+        ? `<span class="ml-box">${worked ? esc(t.answer) : ''}</span>`
+        : `<span class="ml-ch">${esc(c)}</span>`).join('');
+      const pic = iconSvg(t.item) ? `<div class="ml-pic">${iconSvg(t.item)}</div>` : '';
+      const opts = (t.options || []).map((o) =>
+        `<div class="opt ml-opt${worked && o === t.answer ? ' correct' : ''}">${esc(o)}</div>`).join('');
+      const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
+      return `${prompt}<div class="ml"><div class="ml-word" dir="rtl">${wordHtml}</div>${pic}</div><div class="opts">${opts}</div>`;
+    }
+    case 'complete_sentence': {
+      // משפט (אנגלית) עם ___ + בנק מילים. answer ∈ word_bank.
+      const sent = esc(t.sentence).replace(/_{2,}/,
+        worked && t.answer ? `<span class="cs-blank filled">${esc(t.answer)}</span>` : `<span class="cs-blank"></span>`);
+      const chips = (t.word_bank || []).map((w) =>
+        `<span class="chip-word${worked && w === t.answer ? ' correct' : ''}">${esc(w)}</span>`).join('');
+      const pic = t.item && iconSvg(t.item) ? `<div class="cs-pic">${iconSvg(t.item)}</div>` : '';
+      return `<div class="cs"><div class="cs-sent" dir="ltr">${sent}</div>${pic}<div class="cs-bank"><span class="cs-bank-label">Word bank:</span> ${chips}</div></div>`;
     }
     case 'find_count':
     case 'text':
@@ -103,6 +144,27 @@ function decorations() {
   ${cf}`;
 }
 
+// ── פרח דקורטיבי (ממלא מרחב פנוי בקופסה דלילה) ──
+function flourish() {
+  return `<svg class="flourish" viewBox="0 0 220 42" fill="none" aria-hidden="true">
+    <path d="M8 30 Q62 8 112 24 T212 18" stroke="#8BC34A" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+    <circle cx="40" cy="20" r="4.5" fill="#E91E63"/>
+    <circle cx="120" cy="27" r="4.5" fill="#03A9F4"/>
+    <circle cx="188" cy="18" r="4.5" fill="#FF6F00"/>
+    <polygon points="95,5 98,13 106,13 100,18 102,27 95,22 88,27 90,18 84,13 92,13" fill="#FFC107"/>
+  </svg>`;
+}
+// ── אשכול דקורטיבי לפינת הכותרת (במקום ה-scene הריק) ──
+function sceneDeco() {
+  return `<svg viewBox="0 0 120 70" fill="none" aria-hidden="true">
+    <circle cx="26" cy="34" r="13" fill="#03A9F4" opacity=".9"/>
+    <circle cx="54" cy="26" r="9" fill="#E91E63" opacity=".85"/>
+    <polygon points="80,16 84,27 96,27 86,34 90,46 80,39 70,46 74,34 64,27 76,27" fill="#FFC107"/>
+    <circle cx="96" cy="50" r="7" fill="#8BC34A" opacity=".9"/>
+    <path d="M14 58 Q40 48 70 56 T108 52" stroke="#673AB7" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+  </svg>`;
+}
+
 // ── כותרת עמוד ──
 function header(spec, levelKey, role = null) {
   const niq = role ? false : !!spec.niqqud;
@@ -115,7 +177,7 @@ function header(spec, levelKey, role = null) {
   const head = `<div class="phead">
     <div class="crumbs">${crumbs}</div>
     <div class="brandmark">${logo}</div>
-    <div class="scene"></div>
+    <div class="scene">${sceneDeco()}</div>
   </div>
   <div class="rainbowbar"></div>`;
   if (role) {
@@ -140,18 +202,18 @@ function studentPage(spec, key) {
     : label('ui_labels', 'bonus_champions', niq);
 
   const doBox = `<div class="box tint-lime"><div class="box-head lime">✔ ${esc(whatLabel)}</div>
-    <div dir="auto">${esc(pg.instruction)}</div></div>`;
+    <div dir="auto">${esc(pg.instruction)}</div>${flourish()}</div>`;
   const exBox = `<div class="box tint-blue"><div class="box-head blue">★ ${esc(exLabel)}</div>
-    ${taskBody(pg.example, niq, true)}
+    ${taskBody(pg.example, niq, true, spec.subject)}
     ${pg.example.caption ? `<div class="gline" dir="auto" style="text-align:center;margin-top:6px">${esc(pg.example.caption)}</div>` : ''}</div>`;
 
   const tasksHtml = pg.tasks.map((t, i) =>
-    `<div class="task"><div class="tnum c${i}">${i + 1}</div>${taskBody(t, niq)}</div>`
+    `<div class="task"><div class="tnum c${i}">${i + 1}</div>${taskBody(t, niq, false, spec.subject)}</div>`
   ).join('');
   const taskCols = pg.tasks.length <= 3 ? 'tasks one' : 'tasks';
 
   const qc = pg.quick_check;
-  const qcBox = `<div class="box tint-blue"><div class="box-head blue">⏱ ${esc(qcLabel)}</div>${taskBody(qc, niq)}</div>`;
+  const qcBox = `<div class="box tint-blue"><div class="box-head blue">⏱ ${esc(qcLabel)}</div>${taskBody(qc, niq, false, spec.subject)}</div>`;
 
   const successItems = (pg.success_reflection || []).map((k) =>
     `<div class="ci"><span class="checkbox"></span>${esc(label('success_reflection', k, niq))}</div>`).join('');

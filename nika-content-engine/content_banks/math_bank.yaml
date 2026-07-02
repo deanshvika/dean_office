@@ -1,7 +1,7 @@
 # בנק חשבון — פריטים מותרים לספירה + טווחי מספרים לפי שכבה
 # הפריטים חייבים להתקיים כאייקון ב-assets/icons/<key>.svg וכערך ב-niqqud_bank.items
 
-countable_items: [bottle, ball, flag, hoop, bag, shoes, cone, water]
+countable_items: [bottle, ball, flag, hoop, bag, shoes, cone, water, medal, whistle, cup, hat, net]
 
 number_ranges:
   grade_1:    { min: 1, max: 10 }   # מנייה עד 10

@@ -75,4 +75,27 @@ export const hasNiqqud = (s) => NIQQUD_RE.test(String(s || ''));
 // מילים עבריות בטקסט (רצפי אותיות א–ת, ללא סימני ניקוד)
 export const hebrewWords = (s) => String(s || '').match(/[א-ת][א-תְ-ׇ'"׳״]*/g) || [];
 
+// פיצול מילה לאשכולות "אות בסיס + סימני הניקוד שאחריה".
+// למשל "כַּדּוּר" → ["כַּ","דּ","וּ","ר"]. משמש למשימת אות-חסרה כדי לשלוף
+// את האות מהבנק המנוקד בלי להקליד ניקוד ידני (אפס טעות ניקוד).
+const HEB_BASE = /[א-ת]/;
+export function splitClusters(word) {
+  const out = [];
+  for (const ch of String(word || '')) {
+    if (HEB_BASE.test(ch)) out.push(ch);          // אות בסיס חדשה
+    else if (out.length) out[out.length - 1] += ch; // סימן ניקוד — נדבק לאשכול הקודם
+    else out.push(ch);
+  }
+  return out;
+}
+
+// מילת התצוגה של פריט לפי תחום ומדיניות ניקוד — תמיד מהבנק הסגור (אפס טעות).
+// אנגלית → השדה en; עברית → מנוקד/plain לפי המדיניות.
+export function displayWord(subject, key, niqqud = false) {
+  const it = bank().items[key];
+  if (!it) return key;
+  if (subject === 'english') return it.en || key;
+  return niqqud ? (it.niqqud || it.plain) : it.plain;
+}
+
 export { fs, path };

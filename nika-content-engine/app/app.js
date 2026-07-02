@@ -41,6 +41,9 @@ const TASK_TYPES = [
   { value: 'write_count', label: 'ספירה וכתיבה' },
   { value: 'match', label: 'התאמה (קו למספר)' },
   { value: 'word_picture', label: 'מילה ↔ תמונה (שפה/אנגלית)' },
+  { value: 'pic_word', label: 'תמונה ↔ מילה (שפה/אנגלית)' },
+  { value: 'missing_letter', label: 'אות חסרה (עברית)' },
+  { value: 'complete_sentence', label: 'השלמת משפט (אנגלית)' },
   { value: 'text', label: 'טקסט חופשי' },
   { value: 'find_count', label: 'בונוס: מצא כמות' },
 ];
@@ -53,6 +56,9 @@ function defaultTask(type) {
     case 'write_count': return { type: 'write_count', groups: [{ item: 'bottle', count: 5, line: 'יש ___' }] };
     case 'match': return { type: 'match', prompt: 'חברו בקו בין כל קבוצה למספר.', pairs: [{ item: 'bottle', count: 2, label: 'קבוצה א׳' }, { item: 'bottle', count: 4, label: 'קבוצה ב׳' }], numbers: [2, 4] };
     case 'word_picture': return { type: 'word_picture', item: 'bottle', word: '', distractors: ['ball', 'flag'] };
+    case 'pic_word': return { type: 'pic_word', item: 'ball', distractors: ['bag', 'flag'] };
+    case 'missing_letter': return { type: 'missing_letter', item: 'ball', answer: 'דּ', options: ['דּ', 'בּ', 'מ'], prompt: '' };
+    case 'complete_sentence': return { type: 'complete_sentence', sentence: 'In the bag there is a ___.', word_bank: ['ball', 'flag', 'bottle'], answer: 'ball', item: 'bag' };
     case 'find_count': return { type: 'find_count', target: 5, text: 'מצאו ציור אחד שבו יש בדיוק 5 פריטים.' };
     default: return { type: 'text', text: '' };
   }
@@ -74,6 +80,19 @@ function taskFields(t, base) {
         + `<label style="display:block;font-weight:700;font-size:13px;margin:6px 0 2px">מסיחים (תמונות שגויות)</label>`
         + dist + `<button class="mini add" data-action="addDistractor" data-path="${base}.distractors">+ הוסף מסיח</button>`;
     }
+    case 'pic_word': {
+      const dist = (t.distractors || []).map((d, i) =>
+        `<div class="row" style="align-items:flex-end;gap:6px"><div style="flex:1">${fSelect('מילה שגויה ' + (i + 1), `${base}.distractors.${i}`, d, itemOpts())}</div><button class="mini del" data-action="del" data-path="${base}.distractors.${i}" style="margin-bottom:12px">✕</button></div>`).join('');
+      return fItem('פריט (התמונה המוצגת)', `${base}.item`, t.item)
+        + `<label style="display:block;font-weight:700;font-size:13px;margin:6px 0 2px">מילות בחירה שגויות (מסיחים)</label>`
+        + dist + `<button class="mini add" data-action="addDistractor" data-path="${base}.distractors">+ הוסף מילה</button>`;
+    }
+    case 'missing_letter': return fItem('פריט (המילה)', `${base}.item`, t.item)
+      + `<div class="row">${fText('האות החסרה', `${base}.answer`, t.answer)}${fCsv('אפשרויות אותיות (פסיק)', `${base}.options`, t.options)}</div>`
+      + fText('הוראה (רשות)', `${base}.prompt`, t.prompt);
+    case 'complete_sentence': return fText('משפט (עם ___ )', `${base}.sentence`, t.sentence)
+      + `<div class="row">${fText('תשובה', `${base}.answer`, t.answer)}${fCsv('בנק מילים (פסיק)', `${base}.word_bank`, t.word_bank)}</div>`
+      + fItem('תמונה (רשות)', `${base}.item`, t.item);
     case 'find_count': return `<div class="row">${fNum('כמות יעד', `${base}.target`, t.target)}</div>` + fText('טקסט', `${base}.text`, t.text);
     default: return fText('טקסט', `${base}.text`, t.text) + (t.title !== undefined ? fText('כותרת (רשות)', `${base}.title`, t.title) : '');
   }
