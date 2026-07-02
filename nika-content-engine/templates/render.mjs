@@ -119,13 +119,59 @@ function taskBody(t, niq, worked = false, subject = 'math') {
       return `${prompt}<div class="ml"><div class="ml-word" dir="rtl">${wordHtml}</div>${pic}</div><div class="opts">${opts}</div>`;
     }
     case 'complete_sentence': {
-      // משפט (אנגלית) עם ___ + בנק מילים. answer ∈ word_bank.
+      // משפט עם ___ + בנק מילים. answer ∈ word_bank. משמש לאנגלית (משפט) ולעברית (בחירת מילה).
       const sent = esc(t.sentence).replace(/_{2,}/,
         worked && t.answer ? `<span class="cs-blank filled">${esc(t.answer)}</span>` : `<span class="cs-blank"></span>`);
       const chips = (t.word_bank || []).map((w) =>
         `<span class="chip-word${worked && w === t.answer ? ' correct' : ''}">${esc(w)}</span>`).join('');
       const pic = t.item && iconSvg(t.item) ? `<div class="cs-pic">${iconSvg(t.item)}</div>` : '';
-      return `<div class="cs"><div class="cs-sent" dir="ltr">${sent}</div>${pic}<div class="cs-bank"><span class="cs-bank-label">Word bank:</span> ${chips}</div></div>`;
+      const bankLabel = subject === 'english' ? 'Word bank:' : (esc(label('ui_labels', 'word_bank', niq)) + ':');
+      return `<div class="cs"><div class="cs-sent" dir="auto">${sent}</div>${pic}<div class="cs-bank"><span class="cs-bank-label">${bankLabel}</span> ${chips}</div></div>`;
+    }
+    case 'vertical_arith': {
+      // חיבור/חיסור אנכי (טורים) — מספרי, ללא אייקונים. שכבות ב-ג.
+      const opSym = t.op === 'subtraction' ? '−' : '+';
+      const ansBoxes = worked
+        ? String(t.result).split('').map((d) => `<span class="vbox filled">${d}</span>`).join('')
+        : Array.from({ length: String(t.result).length }, () => `<span class="vbox"></span>`).join('');
+      const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
+      return `${prompt}<div class="varith" dir="ltr">
+        <div class="vnum">${esc(String(t.a))}</div>
+        <div class="vnum"><span class="vop">${opSym}</span>${esc(String(t.b))}</div>
+        <div class="vline"></div>
+        <div class="vans">${ansBoxes}</div>
+      </div>`;
+    }
+    case 'place_value': {
+      // ערך מקום — פסי-עשרות + יחידות, נגזרים מהמספר. שכבות ב-ג.
+      const n = t.number;
+      const tens = Math.floor(n / 10), units = n % 10;
+      const tensBlocks = Array.from({ length: tens }, () => `<span class="pv-ten"></span>`).join('');
+      const unitBlocks = Array.from({ length: units }, () => `<span class="pv-unit"></span>`).join('');
+      const askMap = { tens: 'כמה עשרות?', units: 'כמה יחידות?', total: 'כמה בסך הכול?' };
+      const askText = t.prompt || askMap[t.ask] || askMap.total;
+      const answer = t.ask === 'tens' ? tens : t.ask === 'units' ? units : n;
+      const opts = t.options || [answer - 1, answer, answer + 1];
+      return `<div class="pv"><div class="pv-blocks"><span class="pv-tens">${tensBlocks}</span><span class="pv-units">${unitBlocks}</span></div>
+        <div class="prompt" dir="auto" style="text-align:center">${esc(askText)}</div>${optionBubbles(opts)}</div>`;
+    }
+    case 'multiply': {
+      // כפל כמערך (שורות×עמודות). שכבות ב-ג.
+      const svg = iconSvg(t.item || 'ball') || '';
+      const rowsHtml = Array.from({ length: t.rows }, () =>
+        `<div class="mul-row">${Array.from({ length: t.cols }, () => svg).join('')}</div>`).join('');
+      const cell = worked ? `<span class="eqbox filled">${t.result}</span>` : `<span class="eqbox"></span>`;
+      const eq = `<div class="equation">${t.rows}<span>×</span>${t.cols}<span>=</span>${cell}</div>`;
+      const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
+      return `${prompt}<div class="mul-grid">${rowsHtml}</div>${eq}`;
+    }
+    case 'reading_comprehension': {
+      // הבנת הנקרא — קטע + שאלה + בחירה. שכבות ב-ג (ללא ניקוד).
+      const passage = `<div class="rc-passage" dir="auto">${esc(t.passage)}</div>`;
+      const q = `<div class="rc-q" dir="auto">${esc(t.question)}</div>`;
+      const opts = (t.options || []).map((o) =>
+        `<div class="opt rc-opt${worked && o === t.answer ? ' correct' : ''}" dir="auto">${esc(o)}</div>`).join('');
+      return `<div class="rc">${passage}${q}<div class="rc-opts">${opts}</div></div>`;
     }
     case 'find_count':
     case 'text':

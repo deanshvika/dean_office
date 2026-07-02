@@ -43,7 +43,11 @@ const TASK_TYPES = [
   { value: 'word_picture', label: 'מילה ↔ תמונה (שפה/אנגלית)' },
   { value: 'pic_word', label: 'תמונה ↔ מילה (שפה/אנגלית)' },
   { value: 'missing_letter', label: 'אות חסרה (עברית)' },
-  { value: 'complete_sentence', label: 'השלמת משפט (אנגלית)' },
+  { value: 'complete_sentence', label: 'השלמת משפט (אנגלית/עברית)' },
+  { value: 'vertical_arith', label: 'חיבור/חיסור אנכי (ב-ג)' },
+  { value: 'place_value', label: 'ערך מקום (ב-ג)' },
+  { value: 'multiply', label: 'כפל כמערך (ב-ג)' },
+  { value: 'reading_comprehension', label: 'הבנת הנקרא (ב-ג)' },
   { value: 'text', label: 'טקסט חופשי' },
   { value: 'find_count', label: 'בונוס: מצא כמות' },
 ];
@@ -59,6 +63,10 @@ function defaultTask(type) {
     case 'pic_word': return { type: 'pic_word', item: 'ball', distractors: ['bag', 'flag'] };
     case 'missing_letter': return { type: 'missing_letter', item: 'ball', answer: 'דּ', options: ['דּ', 'בּ', 'מ'], prompt: '' };
     case 'complete_sentence': return { type: 'complete_sentence', sentence: 'In the bag there is a ___.', word_bank: ['ball', 'flag', 'bottle'], answer: 'ball', item: 'bag' };
+    case 'vertical_arith': return { type: 'vertical_arith', op: 'addition', a: 47, b: 25, result: 72, prompt: '' };
+    case 'place_value': return { type: 'place_value', number: 34, ask: 'total', options: [32, 34, 36] };
+    case 'multiply': return { type: 'multiply', rows: 3, cols: 4, item: 'ball', result: 12, prompt: '' };
+    case 'reading_comprehension': return { type: 'reading_comprehension', passage: '', question: '', options: ['', '', ''], answer: '' };
     case 'find_count': return { type: 'find_count', target: 5, text: 'מצאו ציור אחד שבו יש בדיוק 5 פריטים.' };
     default: return { type: 'text', text: '' };
   }
@@ -93,6 +101,10 @@ function taskFields(t, base) {
     case 'complete_sentence': return fText('משפט (עם ___ )', `${base}.sentence`, t.sentence)
       + `<div class="row">${fText('תשובה', `${base}.answer`, t.answer)}${fCsv('בנק מילים (פסיק)', `${base}.word_bank`, t.word_bank)}</div>`
       + fItem('תמונה (רשות)', `${base}.item`, t.item);
+    case 'vertical_arith': return fSelect('פעולה', `${base}.op`, t.op, [{ value: 'addition', label: 'חיבור +' }, { value: 'subtraction', label: 'חיסור −' }]) + `<div class="row">${fNum('מספר עליון', `${base}.a`, t.a)}${fNum('מספר תחתון', `${base}.b`, t.b)}${fNum('תוצאה', `${base}.result`, t.result)}</div>` + fText('שאלה (רשות)', `${base}.prompt`, t.prompt);
+    case 'place_value': return `<div class="row">${fNum('מספר', `${base}.number`, t.number)}${fSelect('שואלים', `${base}.ask`, t.ask, [{ value: 'total', label: 'סך הכול' }, { value: 'tens', label: 'עשרות' }, { value: 'units', label: 'יחידות' }])}</div>` + fCsvNum('אפשרויות (פסיק)', `${base}.options`, t.options);
+    case 'multiply': return `<div class="row">${fNum('שורות', `${base}.rows`, t.rows)}${fNum('עמודות', `${base}.cols`, t.cols)}${fNum('תוצאה', `${base}.result`, t.result)}</div>` + fItem('פריט', `${base}.item`, t.item) + fText('שאלה (רשות)', `${base}.prompt`, t.prompt);
+    case 'reading_comprehension': return fArea('קטע', `${base}.passage`, t.passage) + fText('שאלה', `${base}.question`, t.question) + fCsv('אפשרויות (פסיק)', `${base}.options`, t.options) + fText('תשובה', `${base}.answer`, t.answer);
     case 'find_count': return `<div class="row">${fNum('כמות יעד', `${base}.target`, t.target)}</div>` + fText('טקסט', `${base}.text`, t.text);
     default: return fText('טקסט', `${base}.text`, t.text) + (t.title !== undefined ? fText('כותרת (רשות)', `${base}.title`, t.title) : '');
   }

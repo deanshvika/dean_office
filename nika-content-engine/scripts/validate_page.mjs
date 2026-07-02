@@ -126,6 +126,41 @@ export function validateDay(spec) {
         if (t.item && !hasIcon(t.item)) E(page, `${ctx}: אין אייקון לפריט "${t.item}"`);
         return null;
       }
+      case 'vertical_arith': {
+        const res = t.op === 'subtraction' ? t.a - t.b : t.a + t.b;
+        if (res !== t.result)
+          E(page, `${ctx}: ${t.a} ${t.op === 'subtraction' ? '−' : '+'} ${t.b} = ${res}, אבל result=${t.result}`);
+        for (const [lbl, v] of [['a', t.a], ['b', t.b], ['result', t.result]])
+          if (!(Number.isInteger(v) && v >= 0 && v <= 1000)) E(page, `${ctx}: ${lbl}=${v} מחוץ לטווח (0–1000)`);
+        if (t.op === 'subtraction' && t.a < t.b) E(page, `${ctx}: חיסור שלילי (a<b)`);
+        return t.result;
+      }
+      case 'place_value': {
+        const n = t.number;
+        if (!(Number.isInteger(n) && n >= 0 && n <= 1000)) E(page, `${ctx}: number=${n} מחוץ לטווח (0–1000)`);
+        const ask = t.ask || 'total';
+        if (!['tens', 'units', 'total'].includes(ask)) E(page, `${ctx}: ask חייב tens/units/total`);
+        const answer = ask === 'tens' ? Math.floor(n / 10) : ask === 'units' ? n % 10 : n;
+        const opts = t.options || [answer - 1, answer, answer + 1];
+        if (!opts.includes(answer)) E(page, `${ctx}: options=[${opts}] לא מכיל את התשובה ${answer}`);
+        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אפשרויות כפולות [${opts}]`);
+        return null;
+      }
+      case 'multiply': {
+        if (t.rows * t.cols !== t.result) E(page, `${ctx}: ${t.rows}×${t.cols}=${t.rows * t.cols}, אבל result=${t.result}`);
+        if (!(t.rows >= 1 && t.rows <= 6 && t.cols >= 1 && t.cols <= 6)) E(page, `${ctx}: גורמים מחוץ לטווח הוויזואלי (1–6)`);
+        if (t.item) checkIcon(page, t.item);
+        return t.result;
+      }
+      case 'reading_comprehension': {
+        if (!t.passage) E(page, `${ctx}: חסר passage`);
+        if (!t.question) E(page, `${ctx}: חסרה שאלה`);
+        const opts = t.options || [];
+        if (opts.length < 2) E(page, `${ctx}: נדרשות לפחות 2 אפשרויות`);
+        if (!opts.includes(t.answer)) E(page, `${ctx}: התשובה "${t.answer}" אינה באפשרויות`);
+        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אפשרויות כפולות`);
+        return null;
+      }
       case 'text': case 'find_count':
         if (!t.text) E(page, `${ctx}: חסר text`);
         return null;
@@ -167,17 +202,21 @@ export function validateDay(spec) {
 }
 
 // אוסף טקסט גלוי מעמוד (לבדיקת ניקוד)
+function collectTaskText(t, push) {
+  if (!t) return;
+  push(t.prompt); push(t.word); push(t.caption); push(t.passage); push(t.question); push(t.sentence); push(t.line);
+  (t.groups || []).forEach((g) => { push(g.line); push(g.label); });
+  (t.pairs || []).forEach((g) => push(g.label));
+  (t.options || []).forEach(push);       // מספרים מסוננים אוטומטית (רק מחרוזות נבדקות)
+  (t.word_bank || []).forEach(push);
+}
 function collectText(pg) {
   const out = [];
   const push = (s) => { if (typeof s === 'string') out.push(s); };
   push(pg.intro); push(pg.instruction); push(pg.encouraging_message); push(pg.footer);
-  if (pg.example) { push(pg.example.caption); push(pg.example.prompt); push(pg.example.word); }
-  (pg.tasks || []).forEach((t) => {
-    push(t.prompt); push(t.word);
-    (t.groups || []).forEach((g) => { push(g.line); push(g.label); });
-    (t.pairs || []).forEach((g) => push(g.label));
-  });
-  if (pg.quick_check) { push(pg.quick_check.line); (pg.quick_check.groups || []).forEach((g) => push(g.line)); }
+  collectTaskText(pg.example, push);
+  (pg.tasks || []).forEach((t) => collectTaskText(t, push));
+  collectTaskText(pg.quick_check, push);
   if (pg.bonus) { push(pg.bonus.text); push(pg.bonus.title); }
   return out;
 }

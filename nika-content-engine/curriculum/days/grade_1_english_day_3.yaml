@@ -1,21 +1,22 @@
 # ── מחזור 1 · יום 3 · אנגלית · שכבה א' ─────────────────────────────
 # עולם תוכן: ספורט וקבוצה | ערך: הכלה (everyone plays together)
-# דרגות קושי (מנגנון שונה): מתחילים=word→picture · ממשיכים=picture→word · אתגר=complete sentence
+# דרגות קושי (מנגנון שונה): מתחילים=word→picture · ממשיכים=picture→word · אתגר=picture→word עם 4 אפשרויות
+#   ★ התאמת גיל: אנגלית בכיתה א' = חשיפה מוקדמת (שמיעה+זיהוי). קריאת משפט (complete_sentence) עלתה לשכבות ב-ג.
 # בידול מ"שפה" (#7): אנגלית עובדת על אוצר "סט B" — ball/bag/bottle/cone/cup/net
 #   (עברית עובדת על אובייקטים אחרים — דגל/חישוק/נעליים/מדליה/משרוקית/כובע). כמעט בלי חפיפה → לא תרגום.
-# מדיניות: הוראות/פתיח עברית מנוקדות; אנגלית plain. משפטי אתגר קצרים + רמז תמונה (#3).
+# מדיניות: הוראות/פתיח עברית מנוקדות; אנגלית plain.
 
 day_id: grade_1_english_day_3
 subject: english
 audience: grade_1
 niqqud: true
-day_label: "יוֹם 3 – Words and Sentences"
+day_label: "יוֹם 3 – Words and Pictures"
 title: "What does the team bring?"
-core_skill: "אוצר מילים באנגלית: זיהוי, בחירה, והשלמת משפט קצר"
+core_skill: "אוצר מילים באנגלית: זיהוי מילה↔תמונה (חשיפה מוקדמת)"
 subskills:
   - "התאמת מילה באנגלית לתמונה"
   - "בחירת המילה הנכונה לפי תמונה"
-  - "השלמת משפט קצר מבנק מילים"
+  - "זיהוי מילה מבין ארבע אפשרויות"
 theme: "ספורט וקבוצה"
 leading_value: "הכלה"
 
@@ -77,33 +78,28 @@ pages:
       text: "Partner challenge: Point to a picture. Can your friend say the word in English?"
     footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — מְנַסִּים, מַתְמִידִים וְעוֹזְרִים לַקְּבוּצָה."
 
-  # ── עמוד 3 · אתגר · complete sentence (קצר + רמז תמונה) ─────────────
+  # ── עמוד 3 · אתגר · picture → word עם 4 אפשרויות (זיהוי מורחב, מתאים-גיל) ──
   challenge:
     level: challenge
-    intro: "עַכְשָׁיו נַשְׁלִים מִשְׁפָּט קָצָר בְּאַנְגְּלִית מִתּוֹךְ בַּנְק מִלִּים."
-    instruction: "Read the short sentence. Choose the correct word from the word bank."
+    intro: "עַכְשָׁיו נִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה בְּאַנְגְּלִית מִבֵּין אַרְבַּע מִלִּים."
+    instruction: "Look at the picture and choose the correct word (4 choices)."
     example:
-      type: complete_sentence
-      sentence: "I bring a ___."
-      word_bank: [ball, bag, cup]
-      answer: ball
+      type: pic_word
       item: ball
-      caption: "The word that fits is: ball"
+      distractors: [bag, cup, net]
+      caption: "Choose the word: ball"
     tasks:
-      - { type: complete_sentence, sentence: "This is my ___.",   word_bank: [bag, ball, net], answer: bag, item: bag }
-      - { type: complete_sentence, sentence: "I have a ___.",      word_bank: [cup, cone, bag], answer: cup, item: cup }
-      - { type: complete_sentence, sentence: "We use a ___.",      word_bank: [net, ball, bottle], answer: net, item: net }
+      - { type: pic_word, item: bottle, distractors: [ball, cup, bag] }
+      - { type: pic_word, item: net,    distractors: [cone, bag, ball] }
     encouraging_message: "Great teamwork! Everyone can find the right word."
     quick_check:
-      type: complete_sentence
-      sentence: "I drink from a ___."
-      word_bank: [bottle, cup, bag]
-      answer: bottle
-      item: bottle
+      type: pic_word
+      item: cup
+      distractors: [ball, bottle, bag]
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
-      text: "Make your own short sentence in English about one of the pictures."
+      text: "Say a word in English for something your team uses. Can a friend point to it?"
     footer: "בְּנִיקָה אֲנַחְנוּ מִתְקַדְּמִים — כָּל יוֹם צַעַד קָטָן קָדִימָה."
 
   # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
@@ -111,8 +107,8 @@ pages:
     daily_goal:
       - "התאמת מילה באנגלית לתמונה (זיהוי)"
       - "בחירת המילה הנכונה לפי תמונה (הפקה)"
-      - "השלמת משפט קצר מבנק מילים"
-      - "חשיפה מוקדמת ובטוחה לאנגלית"
+      - "זיהוי מילה מבין ארבע אפשרויות"
+      - "חשיפה מוקדמת ובטוחה לאנגלית (שמיעה+זיהוי, בלי קריאת משפט)"
     leading_value:
       name: "הכלה"
       text: "כל ילד יכול להשתתף ולהצליח באנגלית ברמתו — everyone plays together."
@@ -125,11 +121,11 @@ pages:
         points: ["להסתכל על תמונה ולבחור מילה", "לקרוא מילה באנגלית", "להבחין בין מילים דומות"]
       - level: challenge
         audience: "מיועד לילדים שיכולים:"
-        points: ["לקרוא משפט קצר מאוד באנגלית", "לבחור מילה מבנק מילים", "להשלים משפט בעזרת התמונה"]
+        points: ["לזהות מילה מבין ארבע אפשרויות", "להבחין בין מילים דומות", "לקרוא/לשמוע מילה בביטחון"]
     how_to_mediate:
       - "לפתוח תמיד מהפתיח ומהדוגמה"
       - "לומר את המילה באנגלית בקול ברור ולבקש לחזור"
-      - "בעמוד המשפט — לקרוא את המשפט יחד ולהיעזר בתמונה שליד"
+      - "באתגר — להצביע על התמונה ולומר את ארבע המילים לפני הבחירה"
       - "להדגיש שכל ילד יכול להשתתף (הכלה)"
       - "להקטין מספר אפשרויות אם צריך"
     adaptations:
@@ -142,7 +138,7 @@ pages:
       - "לעבור ל'אתגר'"
       - "לתת את הבונוס"
       - "לבקש לומר מילה לחבר"
-      - "לבקש לייצר משפט קצר מאוד באנגלית"
+      - "לבקש למצוא עוד חפץ בכיתה ולומר את שמו באנגלית"
     coach_message:
       lead: "הדגש הוא לא על 'מבטא מושלם', אלא על:"
       values: ["ניסיון", "הכלה", "חזרתיות", "ביטחון", "תחושת הצלחה"]

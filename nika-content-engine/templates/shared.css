@@ -144,6 +144,36 @@ h1,h2,h3,h4{ color:var(--ink); margin:0; font-weight:800; }
   font-size:14px; font-weight:800; color:var(--ink); }
 .chip-word.correct{ background:var(--tint-lime); border-color:#8BC34A; box-shadow:0 0 0 2px #8BC34A; }
 
+/* ── VERTICAL ARITHMETIC (חיבור/חיסור אנכי — שכבות ב-ג) ── */
+.varith{ display:inline-flex; flex-direction:column; align-items:flex-end; gap:2px; font-family:'Rubik'; font-size:23px; font-weight:800; color:var(--ink); min-width:96px; margin:1px auto; letter-spacing:4px; }
+.varith .vnum{ position:relative; padding-inline-start:28px; }
+.varith .vop{ position:absolute; inset-inline-start:2px; color:#673AB7; }
+.varith .vline{ width:100%; height:3px; background:var(--ink); border-radius:2px; margin:2px 0; }
+.varith .vans{ display:flex; gap:4px; letter-spacing:0; }
+.vbox{ display:inline-flex; align-items:center; justify-content:center; width:27px; height:32px; border:2.5px dashed #cbd5e1; border-radius:8px; font-size:19px; }
+.vbox.filled{ border-style:solid; border-color:#8BC34A; color:#2e7d32; }
+/* wrap varith centered */
+.task .varith, .box .varith{ display:flex; align-items:center; }
+
+/* ── PLACE VALUE (ערך מקום) ── */
+.pv{ text-align:center; }
+.pv-blocks{ display:inline-flex; align-items:flex-end; gap:10px; justify-content:center; margin-bottom:6px; }
+.pv-tens{ display:inline-flex; gap:3px; }
+.pv-units{ display:inline-flex; flex-wrap:wrap; gap:3px; max-width:110px; align-content:flex-end; }
+.pv-ten{ width:11px; height:44px; background:var(--g-blue); border-radius:3px; display:inline-block; }
+.pv-unit{ width:11px; height:11px; background:var(--g-magenta); border-radius:3px; display:inline-block; }
+
+/* ── MULTIPLY (מערך כפל) ── */
+.mul-grid{ display:flex; flex-direction:column; gap:3px; align-items:center; margin:1px auto 3px; }
+.mul-row{ display:flex; gap:4px; }
+.mul-row svg{ height:18px; width:auto; }
+
+/* ── READING COMPREHENSION (הבנת הנקרא) ── */
+.rc-passage{ background:var(--tint-blue); border-radius:12px; padding:7px 12px; font-size:14.5px; line-height:1.5; color:var(--ink); margin-bottom:6px; }
+.rc-q{ font-weight:700; font-size:14px; color:var(--ink); margin-bottom:5px; }
+.rc-opts{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.rc-opt{ min-width:60px; height:auto; min-height:36px; padding:5px 13px; font-size:14.5px; }
+
 /* ── TASK GRID ── */
 .tasks{ display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-bottom:7px; }
 .tasks.one{ grid-template-columns:1fr; }
