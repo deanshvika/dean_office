@@ -1343,6 +1343,10 @@ function createBotInstance({ id, label, role }) {
         } catch(_) {}
         console.log(`[${id}] ✓ מחובר כ-${info.pushname} (${info.wid.user})`);
         _startHealthInterval();
+        // הודעה על חיבור מחדש (רק אם זה לא ה-startup הראשון)
+        if (Date.now() - state.startupTime > 30000) {
+            try { await client.sendMessage(state.selfId, `✅ בוט מחובר מחדש (${info.pushname})`); } catch(_) {}
+        }
     });
 
     client.on('auth_failure', () => {
@@ -1359,9 +1363,9 @@ function createBotInstance({ id, label, role }) {
         try { await client.destroy(); } catch(_) {}
         if (_pid) {
             try { require('child_process').execSync(`kill -9 ${_pid} 2>/dev/null || true`); } catch(_) {}
-        } else {
-            try { require('child_process').execSync('pkill -9 -f chrome 2>/dev/null || true'); } catch(_) {}
         }
+        try { require('child_process').execSync('pkill -9 -f chrome 2>/dev/null || true'); } catch(_) {}
+        try { require('child_process').execSync('pkill -9 -f chromium 2>/dev/null || true'); } catch(_) {}
         await new Promise(r => setTimeout(r, 2000));
         state.startupTime = Date.now();
         client.initialize().catch(e => {

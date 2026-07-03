@@ -15,8 +15,8 @@ const COPY_FILES = [
     'schedule_data.json', 'setup-server.sh'
 ];
 
-// תיקיות לסנכרון (ללא Chrome cache)
-const COPY_DIRS = ['.wwebjs_auth', 'base44_userdata'];
+// תיקיות לסנכרון (ללא Chrome cache, ללא סשן WhatsApp — נמנהל על השרת בלבד)
+const COPY_DIRS = ['base44_userdata'];
 const SKIP_SUBDIRS = ['Cache', 'Cache_Data', 'Code Cache', 'GPUCache', 'ShaderCache', 'DawnCache'];
 
 function ssh(conn, cmd) {
@@ -93,9 +93,6 @@ async function main() {
             await upload(sftp, lp, REMOTE_DIR + '/' + f);
         }
     }
-
-    console.log('\n=== מעלה session WhatsApp ===');
-    await uploadDir(sftp, path.join(LOCAL_DIR, '.wwebjs_auth'), REMOTE_DIR + '/.wwebjs_auth', SKIP_SUBDIRS);
 
     console.log('\n=== מעלה session Base44 ===');
     await uploadDir(sftp, path.join(LOCAL_DIR, 'base44_userdata'), REMOTE_DIR + '/base44_userdata', SKIP_SUBDIRS);
