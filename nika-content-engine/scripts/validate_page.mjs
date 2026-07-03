@@ -1,6 +1,6 @@
 // שער הוולידציה — מחסל טעויות לפני רינדור.
 // בודק: מבנה, שלמות מספרית (ספירה=מספר=תשובה), מדיניות ניקוד, אוצר סגור.
-import { p, loadYaml, loadDay, hasIcon, hasNiqqud, hebrewWords, bank, itemWord, splitClusters } from './lib.mjs';
+import { p, loadYaml, loadDay, hasIcon, hasNiqqud, hebrewWords, bank, itemWord, splitClusters, lettersBank, openingLetter } from './lib.mjs';
 
 const STUDENT_PAGES = ['beginner', 'mid', 'challenge'];
 
@@ -123,6 +123,30 @@ export function validateDay(spec) {
           if (!cs.includes(t.answer) && !cs.some((c) => c[0] === String(t.answer)[0]))
             E(page, `${ctx}: האות "${t.answer}" אינה מופיעה במילה "${word}"`);
         }
+        return null;
+      }
+      case 'letter_id': {
+        // זיהוי אות — אות בודדת + בחירה. כל האותיות מהאלפבית הסגור; מסיחים מובחנים (לא מ-confusable_pairs).
+        if (!t.letter) { E(page, `${ctx}: חסרה האות (letter)`); return null; }
+        const opts = t.options || [t.letter, ...(t.distractors || [])];
+        const alpha = lettersBank().alphabet;
+        if (opts.length < 2) E(page, `${ctx}: נדרשות לפחות 2 אפשרויות אותיות`);
+        if (!opts.includes(t.letter)) E(page, `${ctx}: האות "${t.letter}" אינה בין האפשרויות`);
+        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אותיות כפולות [${opts}]`);
+        opts.forEach((o) => { if (!alpha.includes(o)) E(page, `${ctx}: "${o}" אינה אות באלפבית הבנק`); });
+        return null;
+      }
+      case 'opening_letter': {
+        // האות הפותחת נגזרת מהבנק (openingLetter) — לא נכתבת ב-YAML → אי-אפשר לטעות בתשובה.
+        checkIcon(page, t.item);
+        if (!bank().items[t.item]) { E(page, `${ctx}: הפריט "${t.item}" אינו בבנק`); return null; }
+        const ans = openingLetter(t.item);
+        const opts = t.options || [];
+        const alpha = lettersBank().alphabet;
+        if (opts.length < 2) E(page, `${ctx}: נדרשות לפחות 2 אפשרויות אותיות`);
+        if (!opts.includes(ans)) E(page, `${ctx}: האות הפותחת "${ans}" (של "${itemWord(t.item, { niqqud: true })}") אינה בין האפשרויות`);
+        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אותיות כפולות [${opts}]`);
+        opts.forEach((o) => { if (!alpha.includes(o)) E(page, `${ctx}: "${o}" אינה אות באלפבית הבנק`); });
         return null;
       }
       case 'complete_sentence': {
