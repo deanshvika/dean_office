@@ -10,7 +10,7 @@ ui_labels:
   example:           { plain: "דוגמה",                niqqud: "דֻּגְמָה" }
   quick_check:       { plain: "בדיקה מהירה",          niqqud: "בְּדִיקָה מְהִירָה" }
   bonus:             { plain: "בונוס",                niqqud: "בּוֹנוּס" }
-  bonus_champions:   { plain: "בונוס לקבוצת האלופים:", niqqud: "בּוֹנוּס לְקַבוּצַת הָאַלּוּפִים:" }
+  bonus_champions:   { plain: "בונוס לקבוצת האלופים:", niqqud: "בּוֹנוּס לִקְבוּצַת הָאַלּוּפִים:" }
   today_success:     { plain: "היום הצלחתי כי:",       niqqud: "הַיּוֹם הִצְלַחְתִּי כִּי:" }
   complete:          { plain: "השלימו:",              niqqud: "הַשְׁלִימוּ:" }
   mark:              { plain: "סמנו:",                 niqqud: "סַמְּנוּ:" }
