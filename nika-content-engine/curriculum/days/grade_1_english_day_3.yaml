@@ -1,9 +1,8 @@
 # ── מחזור 1 · יום 3 · אנגלית · שכבה א' ─────────────────────────────
 # עולם תוכן: ספורט וקבוצה | ערך: הכלה (everyone plays together)
-# דרגות קושי (מנגנון שונה): מתחילים=word→picture · ממשיכים=picture→word · אתגר=picture→word עם 4 אפשרויות
-#   ★ התאמת גיל: אנגלית בכיתה א' = חשיפה מוקדמת (שמיעה+זיהוי). קריאת משפט (complete_sentence) עלתה לשכבות ב-ג.
-# ★ עוגן עברי (מחקר): מילה עברית קטנה בדוגמה בלבד (פיגום שנסוג) — רגע הצלחה לכל ילד; המשימות נשארות אנגלית.
-#   אנגלית = מילים-תחילה (oral-first), לא אותיות. אין תעתיק על הדף (th/w/r); גשר-צליל בעל-פה במדריך בלבד.
+# דרגות קושי: מתחילים=אותיות אנגליות (זיהוי אות + אות פותחת) · ממשיכים=picture→word · אתגר=picture→word עם 4 אפשרויות
+#   ★ אותיות בכל המקצועות (החלטת דין — גובר על המלצת oral-first): מתחילים נכנס מהאות. זיהוי אות בלבד (לא פונטיקה/תנועות).
+# ★ עוגן/גשר עברי: גשר-צליל בעל-פה במדריך ("B כמו בּ"); עוגן-מילה עברי בדוגמאות mid/challenge. אין תעתיק על הדף.
 # בידול מ"שפה" (#7): אנגלית עובדת על אוצר "סט B" — ball/bag/bottle/cone/cup/net
 #   (עברית עובדת על אובייקטים אחרים — דגל/חישוק/נעליים/מדליה/משרוקית/כובע). כמעט בלי חפיפה → לא תרגום.
 # מדיניות: הוראות/פתיח עברית מנוקדות; אנגלית plain.
@@ -12,11 +11,11 @@ day_id: grade_1_english_day_3
 subject: english
 audience: grade_1
 niqqud: true
-day_label: "יוֹם 3 – Words and Pictures"
+day_label: "יוֹם 3 – Letters and Words"
 title: "What does the team bring?"
-core_skill: "אוצר מילים באנגלית: זיהוי מילה↔תמונה (חשיפה מוקדמת)"
+core_skill: "אותיות אנגליות ואוצר מילים: זיהוי אות, אות פותחת, וזיהוי מילה↔תמונה"
 subskills:
-  - "התאמת מילה באנגלית לתמונה"
+  - "זיהוי אות אנגלית ואיזו אות פותחת מילה"
   - "בחירת המילה הנכונה לפי תמונה"
   - "זיהוי מילה מבין ארבע אפשרויות"
 theme: "ספורט וקבוצה"
@@ -24,36 +23,34 @@ leading_value: "הכלה"
 
 pages:
 
-  # ── עמוד 1 · מתחילים · word → picture ─────────────────────────────
+  # ── עמוד 1 · מתחילים · אותיות אנגליות (זיהוי אות + אות פותחת) ──────
+  # ★ נכנסים מהאות (החלטת דין: אותיות בכל המקצועות). זיהוי אות אנגלית + איזו אות פותחת את המילה.
+  #   האות הפותחת נגזרת מ-items[].en (openingLetterEn) — אפס טעות. גשר-צליל עברי בעל-פה במדריך.
+  #   זהירות: זיהוי אות בלבד (לא פונטיקה/תנועות מסובכות). מסיחים מובחנים.
   beginner:
     level: beginner
-    intro: "הַקְּבוּצָה מִתְכּוֹנֶנֶת לִפְעִילוּת. בּוֹאוּ נִבְדֹּק אֵילוּ מִלִּים בְּאַנְגְּלִית אֲנַחְנוּ כְּבָר מַכִּירִים."
-    instruction: "Read or listen to the word. Circle the matching picture."
+    intro: "בְּאַנְגְּלִית מַתְחִילִים מֵהָאוֹת. בּוֹאוּ נַכִּיר אֶת הָאוֹתִיּוֹת בְּאַנְגְּלִית."
+    instruction: "Look and choose the correct English letter."
     example:
-      type: word_picture
-      item: ball
-      word: "ball"
-      word_label: "Word:"
-      hebrew_anchor: true      # עוגן עברי (בדוגמה בלבד) — נגזר מהבנק: כַּדּוּר. אפס טעות ניקוד.
-      distractors: [bag, cone]
-      caption: "Circle: ball"
+      type: letter_id
+      letter: "B"
+      options: ["B", "M", "S"]
+      caption: "Circle the letter B."
     tasks:
-      - { type: word_picture, item: bag,    word: "bag",    word_label: "Word:", distractors: [bottle, ball] }
-      - { type: word_picture, item: cup,    word: "cup",    word_label: "Word:", distractors: [ball, net] }
-      - { type: word_picture, item: net,    word: "net",    word_label: "Word:", distractors: [bottle, cone] }
-      - { type: word_picture, item: bottle, word: "bottle", word_label: "Word:", distractors: [cup, bag] }
-    encouraging_message: "In NIKA everyone plays together. We try, we help, and we keep going."
+      - { type: letter_id,      letter: "C", options: ["C", "T", "M"] }
+      - { type: opening_letter, item: ball, options: ["B", "C", "N"] }
+      - { type: opening_letter, item: cone, options: ["C", "B", "N"] }
+      - { type: opening_letter, item: net,  options: ["N", "B", "C"] }
+    encouraging_message: "Great! Everyone can learn the English letters — one at a time."
     quick_check:
-      type: word_picture
-      item: cone
-      word: "cone"
-      word_label: "Word:"
-      distractors: [bag, ball]
+      type: opening_letter
+      item: bag
+      options: ["B", "N", "C"]
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
-      text: "Bonus: Say one word in English to a friend. Can they point to the picture?"
-    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — לוֹמְדִים, מְנַסִּים וְעוֹזְרִים לַקְּבוּצָה."
+      text: "Say one English letter you know, and find a word that starts with it."
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — אוֹת אַחַר אוֹת, מִלָּה אַחַר מִלָּה."
 
   # ── עמוד 2 · ממשיכים · picture → word ─────────────────────────────
   mid:
@@ -110,17 +107,17 @@ pages:
   # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
   coach_guide:
     daily_goal:
-      - "התאמת מילה באנגלית לתמונה (זיהוי)"
-      - "בחירת המילה הנכונה לפי תמונה (הפקה)"
+      - "זיהוי אות אנגלית ואיזו אות פותחת מילה (נקודת-כניסה)"
+      - "בחירת המילה הנכונה לפי תמונה"
       - "זיהוי מילה מבין ארבע אפשרויות"
-      - "חשיפה מוקדמת ובטוחה לאנגלית (שמיעה+זיהוי, בלי קריאת משפט)"
+      - "חשיפה מוקדמת ובטוחה לאנגלית (אות ומילה, בלי קריאת משפט)"
     leading_value:
       name: "הכלה"
       text: "כל ילד יכול להשתתף ולהצליח באנגלית ברמתו — everyone plays together."
     pages_overview:
       - level: beginner
-        audience: "מיועד לילדים שצריכים כניסה פשוטה:"
-        points: ["שמיעת מילה באנגלית", "זיהוי התמונה המתאימה", "בחירה בין 3 אפשרויות"]
+        audience: "מיועד לילדים שצריכים כניסה פשוטה ובטוחה:"
+        points: ["זיהוי אות אנגלית", "איזו אות פותחת מילה", "בחירה בין 3 אותיות"]
       - level: mid
         audience: "מיועד לילדים שיכולים:"
         points: ["להסתכל על תמונה ולבחור מילה", "לקרוא מילה באנגלית", "להבחין בין מילים דומות"]

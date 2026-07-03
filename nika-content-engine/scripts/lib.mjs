@@ -112,4 +112,16 @@ export function openingLetter(key) {
   return cs.length ? cs[0][0] : '';
 }
 
+// האות הפותחת באנגלית — האות הראשונה של items[key].en, ברישית (ball→B). נגזרת מהבנק → אפס טעות.
+export function openingLetterEn(key) {
+  const it = bank().items[key];
+  const en = it && it.en ? String(it.en) : '';
+  return en ? en[0].toUpperCase() : '';
+}
+
+// האות הפותחת לפי תחום (עברית/אנגלית) — עוטף את שתי הפונקציות.
+export function openingLetterFor(subject, key) {
+  return subject === 'english' ? openingLetterEn(key) : openingLetter(key);
+}
+
 export { fs, path };

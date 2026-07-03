@@ -1,6 +1,6 @@
 // מנוע רינדור NIKA — בונה HTML עצמאי לכל עמוד מתוך Day Spec.
 // עקרון: פריטי ספירה = הדבקת אייקון בדיוק count פעמים (דטרמיניסטי).
-import { p, fs, bank, iconSvg, itemWord, label, logoDataUri, displayWord, splitClusters, openingLetter } from '../scripts/lib.mjs';
+import { p, fs, bank, iconSvg, itemWord, label, logoDataUri, displayWord, splitClusters, openingLetterFor } from '../scripts/lib.mjs';
 
 const CSS = fs.readFileSync(p('templates', 'shared.css'), 'utf8');
 const esc = (s) => String(s == null ? '' : s)
@@ -106,21 +106,29 @@ function taskBody(t, niq, worked = false, subject = 'math') {
       return `<div class="pw">${pic}${anchor}<div class="pw-opts">${boxes}</div></div>`;
     }
     case 'letter_id': {
-      // זיהוי אות — אות בודדת גדולה + בחירת האות הזהה מבין אפשרויות. רמת-כניסה (שכבה א').
+      // זיהוי אות (עברית/אנגלית) — אות בודדת גדולה + בחירת האות הזהה. רמת-כניסה (שכבה א').
       const opts = t.options || [t.letter, ...(t.distractors || [])];
       const boxes = opts.map((o) =>
         `<div class="opt lt-opt${worked && o === t.letter ? ' correct' : ''}">${esc(o)}</div>`).join('');
       const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
-      return `${prompt}<div class="lt"><div class="letter-big" dir="rtl">${esc(t.letter)}</div><div class="opts lt-opts">${boxes}</div></div>`;
+      return `${prompt}<div class="lt"><div class="letter-big" dir="auto">${esc(t.letter)}</div><div class="opts lt-opts">${boxes}</div></div>`;
     }
     case 'opening_letter': {
-      // באיזו אות/צליל מתחילה המילה המצוירת. האות נגזרת מהבנק (openingLetter) — לא מוקלדת → אפס טעות.
-      const ans = openingLetter(t.item);
+      // באיזו אות/צליל מתחילה המילה המצוירת. האות נגזרת מהבנק לפי תחום (עברי/אנגלי) — לא מוקלדת → אפס טעות.
+      const ans = openingLetterFor(subject, t.item);
       const boxes = (t.options || []).map((o) =>
         `<div class="opt lt-opt${worked && o === ans ? ' correct' : ''}">${esc(o)}</div>`).join('');
       const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
       const pic = `<div class="ol-pic">${iconSvg(t.item) || ''}</div>`;
       return `${prompt}<div class="ol">${pic}<div class="opts lt-opts">${boxes}</div></div>`;
+    }
+    case 'number_id': {
+      // זיהוי ספרה — ספרה גדולה + בחירת הספרה הזהה. רמת-אטום (שכבה א' חשבון).
+      const opts = t.options || [t.number - 1, t.number, t.number + 1];
+      const boxes = opts.map((o) =>
+        `<div class="opt lt-opt${worked && o === t.number ? ' correct' : ''}">${esc(o)}</div>`).join('');
+      const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
+      return `${prompt}<div class="lt"><div class="letter-big" dir="auto">${esc(t.number)}</div><div class="opts lt-opts">${boxes}</div></div>`;
     }
     case 'spell_choice': {
       // תמונה + בחירת האיות הנכון (אנגלית, שכבות ב-ג). options = מחרוזות; answer = הנכון.
