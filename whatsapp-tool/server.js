@@ -1452,6 +1452,10 @@ function createBotInstance({ id, label, role }) {
                 console.log(`[${id}] הודעת טקסט ישנה — מדלג`);
                 return;
             }
+            // ניקוי pending ישנים (מעל 10 דקות)
+            for (const k of Object.keys(state.pending)) {
+                if (Date.now() - (state.pending[k]._ts || 0) > 10 * 60 * 1000) delete state.pending[k];
+            }
             const body = (msg.body || '').trim()
                 .replace(/עובדיום/g, 'עובדים ביום')
                 .replace(/משובציום/g, 'משובצים ביום');
