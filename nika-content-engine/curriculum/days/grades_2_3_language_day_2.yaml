@@ -19,26 +19,27 @@ leading_value: "שיתוף פעולה"
 
 pages:
 
-  # ── עמוד 1 · מתחילים · קריאת מילה → תמונה ─────────────────────────────
+  # ── עמוד 1 · מתחילים · תמונה → מילה (קריאה בלי ניקוד, 4 אפשרויות) ──────
+  # ★ בידול מא': א' מתחילים=word→picture (מנוקד); ב-ג מתחילים=picture→word (בלי ניקוד, קשה יותר).
   beginner:
     level: beginner
-    intro: "כדי לעבוד יחד טוב, כדאי להכיר את שמות הציוד. קראו כל מילה והתאימו לתמונה."
-    instruction: "קראו את המילה והקיפו את התמונה המתאימה."
+    intro: "בשכבות ב-ג קוראים בלי ניקוד. הסתכלו על התמונה ובחרו את המילה הנכונה מבין ארבע."
+    instruction: "הסתכלו על התמונה ובחרו את המילה המתאימה."
     example:
-      type: word_picture
+      type: pic_word
       item: flag
-      distractors: [hoop, hat]
-      caption: "מקיפים את התמונה של דגל."
+      distractors: [hoop, hat, medal]
+      caption: "בוחרים את המילה המתאימה לתמונה."
     tasks:
-      - { type: word_picture, item: hoop,    distractors: [flag, shoes] }
-      - { type: word_picture, item: medal,   distractors: [whistle, hat] }
-      - { type: word_picture, item: whistle, distractors: [hoop, medal] }
-      - { type: word_picture, item: shoes,   distractors: [flag, hat] }
+      - { type: pic_word, item: hoop,    distractors: [flag, shoes, whistle] }
+      - { type: pic_word, item: medal,   distractors: [whistle, hat, flag] }
+      - { type: pic_word, item: whistle, distractors: [hoop, medal, shoes] }
+      - { type: pic_word, item: shoes,   distractors: [flag, hat, hoop] }
     encouraging_message: "כשכל אחד מכיר את הציוד, קל יותר לעבוד יחד ולעזור זה לזה."
     quick_check:
-      type: word_picture
+      type: pic_word
       item: hat
-      distractors: [medal, flag]
+      distractors: [medal, flag, whistle]
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
@@ -112,7 +113,7 @@ pages:
   # ── דף מדריך/ה ─────────────────────────────
   coach_guide:
     daily_goal:
-      - "קריאת מילה והתאמה לתמונה (בלי ניקוד)"
+      - "קריאת מילה בלי ניקוד ובחירתה לפי תמונה"
       - "בחירת מילה נכונה למשפט"
       - "הבנת קטע קצר ומענה על שאלה"
       - "חיזוק קריאה שוטפת והבנה"
@@ -121,8 +122,8 @@ pages:
       text: "הקטעים והמשפטים עוסקים בעזרה הדדית — הילדים לומדים שיחד מתקדמים טוב יותר."
     pages_overview:
       - level: beginner
-        audience: "מיועד לתלמידים שצריכים חיזוק קריאה:"
-        points: ["קריאת מילה בודדת", "התאמה לתמונה", "בחירה בין 3 אפשרויות"]
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא מילה בלי ניקוד", "לבחור מילה לפי תמונה", "בחירה בין 4 אפשרויות"]
       - level: mid
         audience: "מיועד לתלמידים שיכולים:"
         points: ["לקרוא משפט שלם", "לבחור מילה מתאימה מההקשר", "להבחין בין מילים"]

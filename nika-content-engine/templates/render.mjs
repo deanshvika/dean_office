@@ -81,8 +81,8 @@ function taskBody(t, niq, worked = false, subject = 'math') {
       const groups = t.pairs.map((g) =>
         `<div class="mrow"><span class="glabel">${esc(g.label)}</span>${iconsRow(g.item, g.count, 'sm')}<span class="dot"></span></div>`
       ).join('');
-      const nums = t.numbers.map((n) => `<div class="mn">${n}</div>`).join('');
-      return `${prompt}<div class="matchwrap"><div class="match-groups">${groups}</div><div></div><div class="match-nums">${nums}</div></div>`;
+      const nums = t.numbers.map((n) => `<div class="mnrow"><span class="dot"></span><div class="mn">${n}</div></div>`).join('');
+      return `${prompt}<div class="matchwrap"><div class="match-groups">${groups}</div><div class="match-band"></div><div class="match-nums">${nums}</div></div>`;
     }
     case 'word_picture': {
       const word = t.word || itemWord(t.item, { niqqud: niq });
@@ -100,6 +100,13 @@ function taskBody(t, niq, worked = false, subject = 'math') {
         const correct = worked && k === t.item ? ' correct' : '';
         return `<div class="pw-opt${correct}" dir="auto">${esc(w)}</div>`;
       }).join('');
+      return `<div class="pw">${pic}<div class="pw-opts">${boxes}</div></div>`;
+    }
+    case 'spell_choice': {
+      // תמונה + בחירת האיות הנכון (אנגלית, שכבות ב-ג). options = מחרוזות; answer = הנכון.
+      const pic = `<div class="pw-pic">${iconSvg(t.item) || ''}</div>`;
+      const boxes = (t.options || []).map((o) =>
+        `<div class="pw-opt${worked && o === t.answer ? ' correct' : ''}" dir="ltr">${esc(o)}</div>`).join('');
       return `<div class="pw">${pic}<div class="pw-opts">${boxes}</div></div>`;
     }
     case 'missing_letter': {
@@ -254,7 +261,7 @@ function studentPage(spec, key) {
     ${pg.example.caption ? `<div class="gline" dir="auto" style="text-align:center;margin-top:6px">${esc(pg.example.caption)}</div>` : ''}</div>`;
 
   const tasksHtml = pg.tasks.map((t, i) =>
-    `<div class="task"><div class="tnum c${i}">${i + 1}</div>${taskBody(t, niq, false, spec.subject)}</div>`
+    `<div class="task${t.type === 'match' ? ' wide' : ''}"><div class="tnum c${i}">${i + 1}</div>${taskBody(t, niq, false, spec.subject)}</div>`
   ).join('');
   const taskCols = pg.tasks.length <= 3 ? 'tasks one' : 'tasks';
 

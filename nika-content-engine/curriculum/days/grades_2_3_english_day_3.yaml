@@ -1,75 +1,74 @@
 # ── מחזור 1 · יום 3 · אנגלית · שכבות ב-ג ─────────────────────────────
 # עולם תוכן: ספורט וקבוצה | ערך: הכלה
-# דרגות קושי (ב-ג): מתחילים=word→picture · ממשיכים=picture→word · אתגר=complete sentence
-#   ★ complete_sentence (קריאת משפט) שייך לכאן — קריאת משפט באנגלית = מיומנות ב-ג.
-# שכבות ב-ג = ללא ניקוד (הוראות עברית plain; אנגלית plain). בידול: אנגלית על סט B (ball/bag/bottle/cone/cup/net).
+# ★ בידול-רמה מא' (פידבק חי): כל שלב שונה מהמקביל בשכבה א'.
+#   ב-ג: מתחילים=picture→word (4 אפשרויות, אוצר מורחב) · ממשיכים=spell_choice (בחירת איות) · אתגר=complete sentence.
+#   (א' לעומת זאת: word→picture · picture→word(3) · picture→word(4).)
+# שכבות ב-ג = ללא ניקוד (הוראות עברית plain; אנגלית plain). אוצר מורחב: ball/bag/bottle/cone/cup/net/hat/medal/flag.
 
 day_id: grades_2_3_english_day_3
 subject: english
 audience: grades_2_3
 niqqud: false
-day_label: "יום 3 – Words and Sentences"
+day_label: "יום 3 – Words and Spelling"
 title: "What does the team bring?"
-core_skill: "אוצר מורחב, זיהוי מילה והשלמת משפט באנגלית"
+core_skill: "אוצר מורחב, זיהוי מילה, איות נכון והשלמת משפט"
 subskills:
-  - "זיהוי מילה↔תמונה (אוצר מורחב)"
-  - "בחירת המילה הנכונה לפי תמונה"
+  - "זיהוי מילה לפי תמונה (אוצר מורחב, 4 אפשרויות)"
+  - "בחירת האיות הנכון של מילה"
   - "השלמת משפט מבנק מילים"
 theme: "ספורט וקבוצה"
 leading_value: "הכלה"
 
 pages:
 
-  # ── עמוד 1 · מתחילים · word → picture ─────────────────────────────
+  # ── עמוד 1 · מתחילים · picture → word (4 אפשרויות, אוצר מורחב) ─────────
   beginner:
     level: beginner
-    intro: "בשכבות ב-ג ממשיכים להרחיב את אוצר המילים באנגלית. קראו כל מילה והתאימו לתמונה."
-    instruction: "Read the word and circle the matching picture."
+    intro: "בשכבות ב-ג מרחיבים את אוצר המילים באנגלית. הסתכלו על התמונה ובחרו את המילה הנכונה מבין ארבע."
+    instruction: "Look at the picture and choose the correct word (4 choices)."
     example:
-      type: word_picture
+      type: pic_word
       item: ball
-      word: "ball"
-      word_label: "Word:"
-      distractors: [bag, cup]
-      caption: "Circle: ball"
+      distractors: [bag, cup, net]
+      caption: "Choose the word: ball"
     tasks:
-      - { type: word_picture, item: bag,    word: "bag",    word_label: "Word:", distractors: [bottle, ball] }
-      - { type: word_picture, item: cone,   word: "cone",   word_label: "Word:", distractors: [cup, net] }
-      - { type: word_picture, item: net,    word: "net",    word_label: "Word:", distractors: [ball, bottle] }
-      - { type: word_picture, item: cup,    word: "cup",    word_label: "Word:", distractors: [bag, cone] }
+      - { type: pic_word, item: bottle, distractors: [ball, cup, hat] }
+      - { type: pic_word, item: net,    distractors: [cone, bag, medal] }
+      - { type: pic_word, item: cup,    distractors: [bottle, ball, flag] }
+      - { type: pic_word, item: cone,   distractors: [net, bag, hat] }
     encouraging_message: "In NIKA everyone plays together. Everyone can learn new words."
     quick_check:
-      type: word_picture
-      item: bottle
-      word: "bottle"
-      word_label: "Word:"
-      distractors: [cup, bag]
+      type: pic_word
+      item: bag
+      distractors: [ball, bottle, medal]
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
       text: "Write two English words for sports equipment you know."
     footer: "בניקה מתקדמים יחד — לומדים, מנסים ועוזרים לקבוצה."
 
-  # ── עמוד 2 · ממשיכים · picture → word ─────────────────────────────
+  # ── עמוד 2 · ממשיכים · spell_choice (בחירת האיות הנכון) ─────────────
   mid:
     level: mid
-    intro: "עכשיו נסתכל על התמונה ונבחר את המילה הנכונה באנגלית."
-    instruction: "Look at the picture and choose the correct word."
+    intro: "עכשיו נקרא בדיוק: לכל תמונה נבחר את המילה שכתובה נכון באנגלית."
+    instruction: "Look at the picture. Choose the word that is spelled correctly."
     example:
-      type: pic_word
+      type: spell_choice
       item: ball
-      distractors: [bag, net]
-      caption: "Choose the word: ball"
+      options: [ball, bal, balll]
+      answer: ball
+      caption: "The correct spelling is: ball"
     tasks:
-      - { type: pic_word, item: bottle, distractors: [ball, cup] }
-      - { type: pic_word, item: net,    distractors: [cone, bag] }
-      - { type: pic_word, item: cup,    distractors: [bottle, ball] }
-      - { type: pic_word, item: cone,   distractors: [net, bag] }
+      - { type: spell_choice, item: bottle, options: [bottle, botle, bottel], answer: bottle }
+      - { type: spell_choice, item: cone,   options: [cone, coan, conne],    answer: cone }
+      - { type: spell_choice, item: net,    options: [net, neet, nnet],      answer: net }
+      - { type: spell_choice, item: cup,    options: [cup, cupp, cuup],      answer: cup }
     encouraging_message: "When we practice together, everyone improves — step by step."
     quick_check:
-      type: pic_word
+      type: spell_choice
       item: bag
-      distractors: [ball, bottle]
+      options: [bag, bagg, baag]
+      answer: bag
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
@@ -107,29 +106,29 @@ pages:
   # ── דף מדריך/ה ─────────────────────────────
   coach_guide:
     daily_goal:
-      - "זיהוי מילה↔תמונה (אוצר מורחב)"
-      - "בחירת המילה הנכונה לפי תמונה"
+      - "זיהוי מילה לפי תמונה (אוצר מורחב, 4 אפשרויות)"
+      - "בחירת האיות הנכון של מילה"
       - "השלמת משפט קצר מבנק מילים"
-      - "קריאה בסיסית של משפט באנגלית"
+      - "קריאה ואיות מדויקים באנגלית"
     leading_value:
       name: "הכלה"
       text: "כל תלמיד יכול להשתתף ולהצליח באנגלית ברמתו — everyone plays together."
     pages_overview:
       - level: beginner
-        audience: "מיועד לתלמידים שצריכים חיזוק:"
-        points: ["קריאת מילה באנגלית", "התאמה לתמונה", "בחירה בין 3 אפשרויות"]
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לזהות מילה לפי תמונה", "לבחור מבין 4 אפשרויות", "אוצר מילים מורחב"]
       - level: mid
         audience: "מיועד לתלמידים שיכולים:"
-        points: ["לזהות מילה לפי תמונה", "לקרוא מילה בביטחון", "להבחין בין מילים דומות"]
+        points: ["לקרוא מילה בדיוק", "לבחור את האיות הנכון", "להבחין בין איות נכון לשגוי"]
       - level: challenge
         audience: "מיועד לתלמידים שיכולים:"
         points: ["לקרוא משפט קצר באנגלית", "לבחור מילה מבנק מילים", "להשלים משפט לפי ההקשר"]
     how_to_mediate:
       - "לפתוח תמיד מהפתיח ומהדוגמה"
       - "לומר את המילה באנגלית בקול ולבקש לחזור"
+      - "באיות — להשוות אות-אות בין האפשרויות ולמצוא את השגיאה"
       - "במשפט — לקרוא יחד ולבדוק איזו מילה הגיונית"
       - "להדגיש שכל תלמיד יכול להשתתף (הכלה)"
-      - "להקטין מספר אפשרויות אם צריך"
     adaptations:
       - "להציג משימה אחת בכל פעם"
       - "לחזור על המילה כמה פעמים"

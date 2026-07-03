@@ -49,6 +49,8 @@ async function main() {
   const pages = renderAll(spec);
   const renderer = await createRenderer();
   const produced = [];
+  const A4_H = 1122.5;              // גובה A4 ב-CSS px (297mm)
+  const overflows = [];
   reportLines.push('## קבצים שהופקו', '');
   for (const [key, html] of Object.entries(pages)) {
     const htmlPath = path.join(outDir, `${key}.html`);
@@ -56,12 +58,18 @@ async function main() {
     const pngPath = path.join(outDir, `${key}.png`);
     fs.writeFileSync(htmlPath, html, 'utf8');
     await renderer.toPdf(html, pdfPath);
-    await renderer.toPng(html, pngPath);
+    const h = await renderer.toPng(html, pngPath);
     produced.push(pdfPath);
-    reportLines.push(`- ${key}: html + pdf + png ✔`);
-    console.log(`  ✔ ${key} → html/pdf/png`);
+    const over = h > A4_H + 8;       // סובלנות קטנה
+    if (over) overflows.push(`${key} (${Math.round(h)}px)`);
+    reportLines.push(`- ${key}: html + pdf + png ✔${over ? `  ⚠ גלישת A4 (${Math.round(h)}px > ${Math.round(A4_H)})` : ''}`);
+    console.log(`  ${over ? '⚠' : '✔'} ${key} → html/pdf/png${over ? `  ⚠⚠ גלישת A4: ${Math.round(h)}px!` : ''}`);
   }
   await renderer.close();
+  if (overflows.length) {
+    reportLines.push('', `### ⚠ אזהרת גלישת A4: ${overflows.join(' · ')} — צמצם תוכן!`);
+    console.log(`\n  ⚠⚠⚠ גלישת A4 ב: ${overflows.join(' · ')} — צמצם תוכן!\n`);
+  }
 
   // 3) מיזוג ל-PDF יומי מלא
   const merged = await PDFDocument.create();

@@ -99,6 +99,14 @@ export function validateDay(spec) {
         opts.forEach((k) => { if (!bank().items[k]) E(page, `${ctx}: המילה "${k}" אינה באוצר הבנק הסגור`); });
         return null;
       }
+      case 'spell_choice': {
+        checkIcon(page, t.item);
+        const opts = t.options || [];
+        if (opts.length < 2) E(page, `${ctx}: נדרשות לפחות 2 אפשרויות איות`);
+        if (!opts.includes(t.answer)) E(page, `${ctx}: התשובה "${t.answer}" אינה באפשרויות`);
+        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אפשרויות איות כפולות [${opts}]`);
+        return null;
+      }
       case 'missing_letter': {
         checkIcon(page, t.item);
         if (!t.answer) { E(page, `${ctx}: חסרה האות החסרה (answer)`); return null; }

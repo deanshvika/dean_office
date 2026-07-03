@@ -25,8 +25,15 @@ export async function createRenderer() {
     async toPng(html, pngPath) {
       await load(html);
       const el = await page.$('.page');
-      if (el) await el.screenshot({ path: pngPath });
-      else await page.screenshot({ path: pngPath, fullPage: true });
+      let height = 0;
+      if (el) {
+        const box = await el.boundingBox();
+        height = box ? box.height : 0;   // גובה ה-.page ב-CSS px (A4 = 1122.5)
+        await el.screenshot({ path: pngPath });
+      } else {
+        await page.screenshot({ path: pngPath, fullPage: true });
+      }
+      return height;
     },
     async close() { await browser.close(); },
   };
