@@ -1,6 +1,6 @@
 // שער הוולידציה — מחסל טעויות לפני רינדור.
 // בודק: מבנה, שלמות מספרית (ספירה=מספר=תשובה), מדיניות ניקוד, אוצר סגור.
-import { p, loadYaml, loadDay, hasIcon, hasNiqqud, hebrewWords, bank, itemWord, splitClusters, lettersBank, openingLetterFor } from './lib.mjs';
+import { p, loadYaml, loadDay, hasIcon, hasNiqqud, hebrewWords, bank, itemWord, splitClusters } from './lib.mjs';
 
 const STUDENT_PAGES = ['beginner', 'mid', 'challenge'];
 
@@ -124,41 +124,6 @@ export function validateDay(spec) {
             E(page, `${ctx}: האות "${t.answer}" אינה מופיעה במילה "${word}"`);
         }
         return null;
-      }
-      case 'letter_id': {
-        // זיהוי אות (עברית/אנגלית) — אות בודדת + בחירה. אלפבית לפי תחום; מסיחים מובחנים.
-        if (!t.letter) { E(page, `${ctx}: חסרה האות (letter)`); return null; }
-        const opts = t.options || [t.letter, ...(t.distractors || [])];
-        const alpha = spec.subject === 'english' ? lettersBank().english_alphabet : lettersBank().alphabet;
-        if (opts.length < 2) E(page, `${ctx}: נדרשות לפחות 2 אפשרויות אותיות`);
-        if (!opts.includes(t.letter)) E(page, `${ctx}: האות "${t.letter}" אינה בין האפשרויות`);
-        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אותיות כפולות [${opts}]`);
-        opts.forEach((o) => { if (!alpha.includes(o)) E(page, `${ctx}: "${o}" אינה אות באלפבית (${spec.subject === 'english' ? 'אנגלי' : 'עברי'})`); });
-        return null;
-      }
-      case 'opening_letter': {
-        // האות הפותחת נגזרת מהבנק לפי תחום (עברי/אנגלי) — לא נכתבת ב-YAML → אי-אפשר לטעות בתשובה.
-        checkIcon(page, t.item);
-        if (!bank().items[t.item]) { E(page, `${ctx}: הפריט "${t.item}" אינו בבנק`); return null; }
-        const ans = openingLetterFor(spec.subject, t.item);
-        const w = spec.subject === 'english' ? (bank().items[t.item].en || t.item) : itemWord(t.item, { niqqud: true });
-        const opts = t.options || [];
-        const alpha = spec.subject === 'english' ? lettersBank().english_alphabet : lettersBank().alphabet;
-        if (opts.length < 2) E(page, `${ctx}: נדרשות לפחות 2 אפשרויות אותיות`);
-        if (!opts.includes(ans)) E(page, `${ctx}: האות הפותחת "${ans}" (של "${w}") אינה בין האפשרויות`);
-        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אותיות כפולות [${opts}]`);
-        opts.forEach((o) => { if (!alpha.includes(o)) E(page, `${ctx}: "${o}" אינה אות באלפבית (${spec.subject === 'english' ? 'אנגלי' : 'עברי'})`); });
-        return null;
-      }
-      case 'number_id': {
-        // זיהוי ספרה — מספר בטווח + בחירת המספר הזהה. רמת-אטום (שכבה א' חשבון).
-        if (!Number.isInteger(t.number)) { E(page, `${ctx}: number חייב להיות מספר שלם`); return null; }
-        if (!inRange(t.number)) E(page, `${ctx}: number=${t.number} מחוץ לטווח ${rng.min}-${rng.max}`);
-        const opts = t.options || [t.number - 1, t.number, t.number + 1];
-        if (opts.length < 2) E(page, `${ctx}: נדרשות לפחות 2 אפשרויות`);
-        if (!opts.includes(t.number)) E(page, `${ctx}: options=[${opts}] לא מכיל את התשובה ${t.number}`);
-        if (new Set(opts).size !== opts.length) E(page, `${ctx}: אפשרויות כפולות [${opts}]`);
-        return null; // ספרה אינה "ציור עם N פריטים" — לא נכנסת למאגר של find_count
       }
       case 'complete_sentence': {
         if (!t.sentence || !/_{2,}/.test(t.sentence)) E(page, `${ctx}: חסר משפט עם ___`);

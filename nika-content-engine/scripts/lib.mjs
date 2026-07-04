@@ -98,30 +98,4 @@ export function displayWord(subject, key, niqqud = false) {
   return niqqud ? (it.niqqud || it.plain) : it.plain;
 }
 
-// בנק אותיות סגור (אלפבית + צורות סופיות + זוגות דומים) — משמש למשימות רמת-אות.
-let _letters = null;
-export function lettersBank() {
-  if (!_letters) _letters = loadYaml(p('content_banks', 'letters_bank.yaml'));
-  return _letters;
-}
-
-// האות הפותחת של פריט — נגזרת מהמילה המנוקדת בבנק (אות בסיס נטו, בלי ניקוד).
-// מקור-אמת יחיד ל-render ול-validate; התשובה מחושבת ולא מוקלדת → אי-אפשר לטעות בה.
-export function openingLetter(key) {
-  const cs = splitClusters(itemWord(key, { niqqud: true }));
-  return cs.length ? cs[0][0] : '';
-}
-
-// האות הפותחת באנגלית — האות הראשונה של items[key].en, ברישית (ball→B). נגזרת מהבנק → אפס טעות.
-export function openingLetterEn(key) {
-  const it = bank().items[key];
-  const en = it && it.en ? String(it.en) : '';
-  return en ? en[0].toUpperCase() : '';
-}
-
-// האות הפותחת לפי תחום (עברית/אנגלית) — עוטף את שתי הפונקציות.
-export function openingLetterFor(subject, key) {
-  return subject === 'english' ? openingLetterEn(key) : openingLetter(key);
-}
-
 export { fs, path };

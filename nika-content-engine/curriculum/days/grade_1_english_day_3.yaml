@@ -1,8 +1,7 @@
 # ── מחזור 1 · יום 3 · אנגלית · שכבה א' ─────────────────────────────
 # עולם תוכן: ספורט וקבוצה | ערך: הכלה (everyone plays together)
-# דרגות קושי: מתחילים=אותיות אנגליות (זיהוי אות + אות פותחת) · ממשיכים=picture→word · אתגר=picture→word עם 4 אפשרויות
-#   ★ אותיות בכל המקצועות (החלטת דין — גובר על המלצת oral-first): מתחילים נכנס מהאות. זיהוי אות בלבד (לא פונטיקה/תנועות).
-# ★ עוגן/גשר עברי: גשר-צליל בעל-פה במדריך ("B כמו בּ"); עוגן-מילה עברי בדוגמאות mid/challenge. אין תעתיק על הדף.
+# דרגות קושי (מנגנון שונה): מתחילים=word→picture · ממשיכים=picture→word · אתגר=picture→word עם 4 אפשרויות
+#   ★ התאמת גיל: אנגלית בכיתה א' = חשיפה מוקדמת (שמיעה+זיהוי). קריאת משפט (complete_sentence) עלתה לשכבות ב-ג.
 # בידול מ"שפה" (#7): אנגלית עובדת על אוצר "סט B" — ball/bag/bottle/cone/cup/net
 #   (עברית עובדת על אובייקטים אחרים — דגל/חישוק/נעליים/מדליה/משרוקית/כובע). כמעט בלי חפיפה → לא תרגום.
 # מדיניות: הוראות/פתיח עברית מנוקדות; אנגלית plain.
@@ -11,11 +10,11 @@ day_id: grade_1_english_day_3
 subject: english
 audience: grade_1
 niqqud: true
-day_label: "יוֹם 3 – Letters and Words"
+day_label: "יוֹם 3 – Words and Pictures"
 title: "What does the team bring?"
-core_skill: "אותיות אנגליות ואוצר מילים: זיהוי אות, אות פותחת, וזיהוי מילה↔תמונה"
+core_skill: "אוצר מילים באנגלית: זיהוי מילה↔תמונה (חשיפה מוקדמת)"
 subskills:
-  - "זיהוי אות אנגלית ואיזו אות פותחת מילה"
+  - "התאמת מילה באנגלית לתמונה"
   - "בחירת המילה הנכונה לפי תמונה"
   - "זיהוי מילה מבין ארבע אפשרויות"
 theme: "ספורט וקבוצה"
@@ -23,34 +22,35 @@ leading_value: "הכלה"
 
 pages:
 
-  # ── עמוד 1 · מתחילים · אותיות אנגליות (זיהוי אות + אות פותחת) ──────
-  # ★ נכנסים מהאות (החלטת דין: אותיות בכל המקצועות). זיהוי אות אנגלית + איזו אות פותחת את המילה.
-  #   האות הפותחת נגזרת מ-items[].en (openingLetterEn) — אפס טעות. גשר-צליל עברי בעל-פה במדריך.
-  #   זהירות: זיהוי אות בלבד (לא פונטיקה/תנועות מסובכות). מסיחים מובחנים.
+  # ── עמוד 1 · מתחילים · word → picture ─────────────────────────────
   beginner:
     level: beginner
-    intro: "בְּאַנְגְּלִית מַתְחִילִים מֵהָאוֹת. בּוֹאוּ נַכִּיר אֶת הָאוֹתִיּוֹת בְּאַנְגְּלִית."
-    instruction: "Look and choose the correct English letter."
+    intro: "הַקְּבוּצָה מִתְכּוֹנֶנֶת לִפְעִילוּת. בּוֹאוּ נִבְדֹּק אֵילוּ מִלִּים בְּאַנְגְּלִית אֲנַחְנוּ כְּבָר מַכִּירִים."
+    instruction: "Read or listen to the word. Circle the matching picture."
     example:
-      type: letter_id
-      letter: "B"
-      options: ["B", "M", "S"]
-      caption: "Circle the letter B."
+      type: word_picture
+      item: ball
+      word: "ball"
+      word_label: "Word:"
+      distractors: [bag, cone]
+      caption: "Circle: ball"
     tasks:
-      - { type: letter_id,      letter: "C", options: ["C", "T", "M"] }
-      - { type: opening_letter, item: ball, options: ["B", "C", "N"] }
-      - { type: opening_letter, item: cone, options: ["C", "B", "N"] }
-      - { type: opening_letter, item: net,  options: ["N", "B", "C"] }
-    encouraging_message: "Great! Everyone can learn the English letters — one at a time."
+      - { type: word_picture, item: bag,    word: "bag",    word_label: "Word:", distractors: [bottle, ball] }
+      - { type: word_picture, item: cup,    word: "cup",    word_label: "Word:", distractors: [ball, net] }
+      - { type: word_picture, item: net,    word: "net",    word_label: "Word:", distractors: [bottle, cone] }
+      - { type: word_picture, item: bottle, word: "bottle", word_label: "Word:", distractors: [cup, bag] }
+    encouraging_message: "In NIKA everyone plays together. We try, we help, and we keep going."
     quick_check:
-      type: opening_letter
-      item: bag
-      options: ["B", "N", "C"]
+      type: word_picture
+      item: cone
+      word: "cone"
+      word_label: "Word:"
+      distractors: [bag, ball]
     success_reflection: [tried, improved, persevered]
     bonus:
       type: text
-      text: "Say one English letter you know, and find a word that starts with it."
-    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — אוֹת אַחַר אוֹת, מִלָּה אַחַר מִלָּה."
+      text: "Bonus: Say one word in English to a friend. Can they point to the picture?"
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — לוֹמְדִים, מְנַסִּים וְעוֹזְרִים לַקְּבוּצָה."
 
   # ── עמוד 2 · ממשיכים · picture → word ─────────────────────────────
   mid:
@@ -60,7 +60,6 @@ pages:
     example:
       type: pic_word
       item: ball
-      hebrew_anchor: true      # עוגן עברי בדוגמה בלבד (נגזר מהבנק: כַּדּוּר)
       distractors: [bag, net]
       caption: "Choose the word for the picture: ball"
     tasks:
@@ -87,7 +86,6 @@ pages:
     example:
       type: pic_word
       item: ball
-      hebrew_anchor: true      # עוגן עברי בדוגמה בלבד (נגזר מהבנק: כַּדּוּר)
       distractors: [bag, cup, net]
       caption: "Choose the word: ball"
     tasks:
@@ -107,17 +105,17 @@ pages:
   # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
   coach_guide:
     daily_goal:
-      - "זיהוי אות אנגלית ואיזו אות פותחת מילה (נקודת-כניסה)"
-      - "בחירת המילה הנכונה לפי תמונה"
+      - "התאמת מילה באנגלית לתמונה (זיהוי)"
+      - "בחירת המילה הנכונה לפי תמונה (הפקה)"
       - "זיהוי מילה מבין ארבע אפשרויות"
-      - "חשיפה מוקדמת ובטוחה לאנגלית (אות ומילה, בלי קריאת משפט)"
+      - "חשיפה מוקדמת ובטוחה לאנגלית (שמיעה+זיהוי, בלי קריאת משפט)"
     leading_value:
       name: "הכלה"
       text: "כל ילד יכול להשתתף ולהצליח באנגלית ברמתו — everyone plays together."
     pages_overview:
       - level: beginner
-        audience: "מיועד לילדים שצריכים כניסה פשוטה ובטוחה:"
-        points: ["זיהוי אות אנגלית", "איזו אות פותחת מילה", "בחירה בין 3 אותיות"]
+        audience: "מיועד לילדים שצריכים כניסה פשוטה:"
+        points: ["שמיעת מילה באנגלית", "זיהוי התמונה המתאימה", "בחירה בין 3 אפשרויות"]
       - level: mid
         audience: "מיועד לילדים שיכולים:"
         points: ["להסתכל על תמונה ולבחור מילה", "לקרוא מילה באנגלית", "להבחין בין מילים דומות"]
@@ -126,10 +124,10 @@ pages:
         points: ["לזהות מילה מבין ארבע אפשרויות", "להבחין בין מילים דומות", "לקרוא/לשמוע מילה בביטחון"]
     how_to_mediate:
       - "לפתוח תמיד מהפתיח ומהדוגמה"
-      - "העוגן העברי בדוגמה נותן ודאות — אחר כך המשימות באנגלית בלבד"
-      - "גשר-צליל בעל-פה: 'B כמו בּ', 'M כמו מ' — רק לצלילים שמתאימים (לא th/w/r)"
       - "לומר את המילה באנגלית בקול ברור ולבקש לחזור"
+      - "באתגר — להצביע על התמונה ולומר את ארבע המילים לפני הבחירה"
       - "להדגיש שכל ילד יכול להשתתף (הכלה)"
+      - "להקטין מספר אפשרויות אם צריך"
     adaptations:
       - "להציג משימה אחת בכל פעם"
       - "לחזור על המילה כמה פעמים"
