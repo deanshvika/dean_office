@@ -1,0 +1,31 @@
+# בנק אותיות אנגליות — NIKA (דפי לימוד אות)
+# לכל אות: sound (הצליל העיקרי) + heb_bridge (גשר-צליל עברי — רק כשהוא כן; מושמט לתנועות/צלילים שאין להם מקבילה)
+#   + words: 2-3 × {word, emoji} — מילים ידידותיות-לילד שמתחילות באות.
+# ★ עיקרון אפס-טעות: כל word חייב להתחיל באות (הוולידטור אוכף). האיור (אימוג'י) מחובר למילה שמתחילה באות.
+letters:
+  A: { sound: "/a/",  words: [ {word: Apple, emoji: "🍎"}, {word: Ant, emoji: "🐜"}, {word: Airplane, emoji: "✈️"} ] }
+  B: { sound: "/b/",  heb_bridge: "בּ", words: [ {word: Ball, emoji: "⚽"}, {word: Bag, emoji: "🎒"}, {word: Bear, emoji: "🐻"} ] }
+  C: { sound: "/k/",  heb_bridge: "כּ", words: [ {word: Cat, emoji: "🐈"}, {word: Car, emoji: "🚗"}, {word: Cake, emoji: "🎂"} ] }
+  D: { sound: "/d/",  heb_bridge: "דּ", words: [ {word: Dog, emoji: "🐕"}, {word: Duck, emoji: "🦆"}, {word: Door, emoji: "🚪"} ] }
+  E: { sound: "/e/",  words: [ {word: Egg, emoji: "🥚"}, {word: Elephant, emoji: "🐘"}, {word: Envelope, emoji: "✉️"} ] }
+  F: { sound: "/f/",  heb_bridge: "פ", words: [ {word: Fish, emoji: "🐟"}, {word: Flag, emoji: "🚩"}, {word: Frog, emoji: "🐸"} ] }
+  G: { sound: "/g/",  heb_bridge: "גּ", words: [ {word: Goat, emoji: "🐐"}, {word: Gift, emoji: "🎁"}, {word: Grapes, emoji: "🍇"} ] }
+  H: { sound: "/h/",  heb_bridge: "ה", words: [ {word: Hat, emoji: "🎩"}, {word: Hand, emoji: "✋"}, {word: House, emoji: "🏠"} ] }
+  I: { sound: "/i/",  words: [ {word: Insect, emoji: "🐛"}, {word: Island, emoji: "🏝️"}, {word: Ice, emoji: "🧊"} ] }
+  J: { sound: "/j/",  heb_bridge: "ג׳", words: [ {word: Juice, emoji: "🧃"}, {word: Jacket, emoji: "🧥"}, {word: Jeans, emoji: "👖"} ] }
+  K: { sound: "/k/",  heb_bridge: "ק", words: [ {word: Key, emoji: "🔑"}, {word: Kite, emoji: "🪁"}, {word: King, emoji: "🤴"} ] }
+  L: { sound: "/l/",  heb_bridge: "ל", words: [ {word: Lion, emoji: "🦁"}, {word: Leaf, emoji: "🍃"}, {word: Lemon, emoji: "🍋"} ] }
+  M: { sound: "/m/",  heb_bridge: "מ", words: [ {word: Moon, emoji: "🌙"}, {word: Mouse, emoji: "🐭"}, {word: Milk, emoji: "🥛"} ] }
+  N: { sound: "/n/",  heb_bridge: "נ", words: [ {word: Nose, emoji: "👃"}, {word: Net, emoji: "🥅"}, {word: Nut, emoji: "🥜"} ] }
+  O: { sound: "/o/",  words: [ {word: Orange, emoji: "🍊"}, {word: Owl, emoji: "🦉"}, {word: Octopus, emoji: "🐙"} ] }
+  P: { sound: "/p/",  heb_bridge: "פּ", words: [ {word: Pig, emoji: "🐷"}, {word: Pizza, emoji: "🍕"}, {word: Pen, emoji: "🖊️"} ] }
+  Q: { sound: "/kw/", words: [ {word: Queen, emoji: "👸"}, {word: Question, emoji: "❓"}, {word: Quiet, emoji: "🤫"} ] }
+  R: { sound: "/r/",  heb_bridge: "ר", words: [ {word: Rabbit, emoji: "🐰"}, {word: Rainbow, emoji: "🌈"}, {word: Ring, emoji: "💍"} ] }
+  S: { sound: "/s/",  heb_bridge: "ס", words: [ {word: Sun, emoji: "☀️"}, {word: Star, emoji: "⭐"}, {word: Snake, emoji: "🐍"} ] }
+  T: { sound: "/t/",  heb_bridge: "ט", words: [ {word: Tree, emoji: "🌳"}, {word: Turtle, emoji: "🐢"}, {word: Tiger, emoji: "🐯"} ] }
+  U: { sound: "/u/",  words: [ {word: Umbrella, emoji: "☂️"}, {word: Unicorn, emoji: "🦄"}, {word: Up, emoji: "⬆️"} ] }
+  V: { sound: "/v/",  heb_bridge: "ב", words: [ {word: Van, emoji: "🚐"}, {word: Violin, emoji: "🎻"}, {word: Volcano, emoji: "🌋"} ] }
+  W: { sound: "/w/",  words: [ {word: Whale, emoji: "🐳"}, {word: Watch, emoji: "⌚"}, {word: Web, emoji: "🕸️"} ] }
+  X: { sound: "/ks/", words: [ {word: "X-ray", emoji: "🦴"}, {word: Xylophone, emoji: "🎹"} ] }
+  Y: { sound: "/y/",  heb_bridge: "י", words: [ {word: "Yo-yo", emoji: "🪀"}, {word: Yarn, emoji: "🧶"}, {word: Yacht, emoji: "⛵"} ] }
+  Z: { sound: "/z/",  heb_bridge: "ז", words: [ {word: Zebra, emoji: "🦓"}, {word: Zero, emoji: "0️⃣"}, {word: Zombie, emoji: "🧟"} ] }
