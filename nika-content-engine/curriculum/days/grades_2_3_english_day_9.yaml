@@ -1,0 +1,151 @@
+# ── מחזור 3 · יום 9 · אנגלית · שכבות ב-ג ─────────────────────────────
+# עולם תוכן: גוף ובריאות | ערך: בריאות
+# ב-ג: מתחילים=picture→word(4) · ממשיכים=spell_choice · אתגר=complete sentence
+# בידול מ"שפה": אנגלית על סט hand/nose/mouth/tooth/heart. איות שגוי = אי-מילה ברורה.
+# שכבות ב-ג = ללא ניקוד (הוראות עברית plain; אנגלית plain). פריטי-אימוג'י מהבנק.
+
+day_id: grades_2_3_english_day_9
+subject: english
+audience: grades_2_3
+niqqud: false
+day_label: "יום 9 – Body: Words and Spelling"
+title: "Take care of your body"
+core_skill: "אוצר גוף באנגלית, זיהוי מילה, איות נכון והשלמת משפט"
+subskills:
+  - "זיהוי שם חלק גוף לפי תמונה (4 אפשרויות)"
+  - "בחירת האיות הנכון של שם חלק גוף"
+  - "השלמת משפט מבנק מילים"
+theme: "גוף ובריאות"
+leading_value: "בריאות"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · picture → word (4 אפשרויות) ─────────
+  beginner:
+    level: beginner
+    intro: "בשכבות ב-ג מרחיבים את אוצר הגוף באנגלית. הסתכלו על חלק הגוף ובחרו את המילה הנכונה מבין ארבע."
+    instruction: "Look at the body part and choose the correct word (4 choices)."
+    example:
+      type: pic_word
+      item: hand
+      distractors: [nose, mouth, tooth]
+      caption: "Choose the word: hand"
+    tasks:
+      - { type: pic_word, item: nose,  distractors: [hand, tooth, mouth] }
+      - { type: pic_word, item: mouth, distractors: [heart, hand, nose] }
+      - { type: pic_word, item: tooth, distractors: [mouth, nose, hand] }
+      - { type: pic_word, item: heart, distractors: [hand, tooth, mouth] }
+    encouraging_message: "In NIKA everyone learns to care for the body. Everyone can learn new words."
+    quick_check:
+      type: pic_word
+      item: mouth
+      distractors: [hand, nose, tooth]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Write two English body words you know."
+    footer: "בניקה מתקדמים יחד — לומדים, מנסים ושומרים על הבריאות."
+
+  # ── עמוד 2 · ממשיכים · spell_choice ─────────────
+  mid:
+    level: mid
+    intro: "עכשיו נקרא בדיוק: לכל חלק גוף נבחר את המילה שכתובה נכון באנגלית."
+    instruction: "Look at the body part. Choose the word that is spelled correctly."
+    example:
+      type: spell_choice
+      item: hand
+      options: [hand, hend, hnd]
+      answer: hand
+      caption: "The correct spelling is: hand"
+    tasks:
+      - { type: spell_choice, item: nose,  options: [nose, noze, nowse],   answer: nose }
+      - { type: spell_choice, item: mouth, options: [mouth, mowth, mouht],  answer: mouth }
+      - { type: spell_choice, item: tooth, options: [tooth, tuth, tooht],   answer: tooth }
+      - { type: spell_choice, item: heart, options: [heart, heert, herat],  answer: heart }
+    encouraging_message: "When we practice together, everyone improves — step by step."
+    quick_check:
+      type: spell_choice
+      item: hand
+      options: [hand, haand, hnad]
+      answer: hand
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Point to a body part and say the word in English to a friend."
+    footer: "בניקה מתקדמים יחד — מנסים, מתמידים ובריאים."
+
+  # ── עמוד 3 · אתגר · complete sentence ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עכשיו נקרא משפט באנגלית על הגוף ונשלים אותו מתוך בנק מילים."
+    instruction: "Read the sentence and choose the correct word from the word bank."
+    example:
+      type: complete_sentence
+      sentence: "I clap with my ___."
+      word_bank: [hand, nose, tooth]
+      answer: hand
+      item: hand
+      caption: "The word that fits is: hand"
+    tasks:
+      - { type: complete_sentence, sentence: "I smell a flower with my ___.", word_bank: [nose, mouth, hand], answer: nose,  item: nose }
+      - { type: complete_sentence, sentence: "I eat my food with my ___.",    word_bank: [mouth, nose, tooth], answer: mouth, item: mouth }
+    encouraging_message: "Great! When everyone joins in, we all find the right word."
+    quick_check:
+      type: complete_sentence
+      sentence: "The dentist checks my ___."
+      word_bank: [tooth, hand, nose]
+      answer: tooth
+      item: tooth
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Write your own short sentence in English about your body."
+    footer: "בניקה אנחנו מתקדמים — כל יום צעד קטן קדימה, ביחד."
+
+  # ── דף מדריך/ה ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "זיהוי שם חלק גוף לפי תמונה (4 אפשרויות)"
+      - "בחירת האיות הנכון של מילה"
+      - "השלמת משפט קצר מבנק מילים"
+      - "קריאה ואיות מדויקים באנגלית"
+    leading_value:
+      name: "בריאות"
+      text: "הכרת הגוף באנגלית מחזקת מודעות לבריאות — התלמיד לומד לכבד ולטפח את גופו."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לזהות חלק גוף לפי תמונה", "לבחור מבין 4 אפשרויות", "אוצר גוף מורחב"]
+      - level: mid
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא מילה בדיוק", "לבחור את האיות הנכון", "להבחין בין איות נכון לשגוי"]
+      - level: challenge
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא משפט קצר באנגלית", "לבחור מילה מבנק מילים", "להשלים משפט לפי ההקשר"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את שם חלק הגוף באנגלית בקול ולבקש לחזור ולגעת בו"
+      - "באיות — להשוות אות-אות בין האפשרויות ולמצוא את השגיאה"
+      - "במשפט — לקרוא יחד ולבדוק איזה חלק גוף הגיוני"
+      - "לחבר לבריאות: 'איך שומרים על החלק הזה?'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לחזור על המילה כמה פעמים"
+      - "לחבר בין המילה לחלק גוף אמיתי (לגעת/להצביע)"
+      - "לתת בחירה בין שתי תשובות במקום שלוש"
+      - "לאפשר תשובה בהצבעה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לומר משפט קצר באנגלית על הגוף"
+      - "לבקש להצביע על חלק גוף נוסף ולומר את שמו"
+    coach_message:
+      lead: "הדגש הוא לא על 'מבטא מושלם', אלא על:"
+      values: ["בריאות", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]
+    phrases:
+      - "Great try."
+      - "You take care of your body."
+      - "You read it well."
+      - "You helped your friend."
+      - "You kept going."
+    footer_legend: ["בריאות", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]

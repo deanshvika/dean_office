@@ -77,3 +77,15 @@ items:
   butterfly: { plain: "פרפר",    niqqud: "פַּרְפַּר",   plural_plain: "פרפרים",   plural_niqqud: "פַּרְפָּרִים", en: "butterfly", emoji: "🦋" }
   lion:      { plain: "אריה",    niqqud: "אַרְיֵה",     plural_plain: "אריות",    plural_niqqud: "אֲרָיוֹת",     en: "lion",      emoji: "🦁" }
   frog:      { plain: "צפרדע",   niqqud: "צְפַרְדֵּעַ",  plural_plain: "צפרדעים",  plural_niqqud: "צְפַרְדְּעִים", en: "frog",     emoji: "🐸" }
+
+  # --- מחזור 3: גוף ובריאות (פריטי-אימוג'י) ---
+  hand:   { plain: "יד",    niqqud: "יָד",     plural_plain: "ידיים",   plural_niqqud: "יָדַיִם",   en: "hand",   emoji: "✋" }
+  eye:    { plain: "עין",   niqqud: "עַיִן",   plural_plain: "עיניים",  plural_niqqud: "עֵינַיִם",  en: "eye",    emoji: "👁️" }
+  nose:   { plain: "אף",    niqqud: "אַף",     plural_plain: "אפים",    plural_niqqud: "אַפִּים",   en: "nose",   emoji: "👃" }
+  ear:    { plain: "אוזן",  niqqud: "אֹזֶן",   plural_plain: "אוזניים", plural_niqqud: "אָזְנַיִם", en: "ear",    emoji: "👂" }
+  mouth:  { plain: "פה",    niqqud: "פֶּה",    plural_plain: "פיות",    plural_niqqud: "פִּיּוֹת",  en: "mouth",  emoji: "👄" }
+  leg:    { plain: "רגל",   niqqud: "רֶגֶל",   plural_plain: "רגליים",  plural_niqqud: "רַגְלַיִם", en: "leg",    emoji: "🦵" }
+  tooth:  { plain: "שן",    niqqud: "שֵׁן",    plural_plain: "שיניים",  plural_niqqud: "שִׁנַּיִם", en: "tooth",  emoji: "🦷" }
+  heart:  { plain: "לב",    niqqud: "לֵב",     plural_plain: "לבבות",   plural_niqqud: "לְבָבוֹת",  en: "heart",  emoji: "❤️" }
+  finger: { plain: "אצבע",  niqqud: "אֶצְבַּע", plural_plain: "אצבעות",  plural_niqqud: "אֶצְבָּעוֹת", en: "finger", emoji: "👆" }
+  tongue: { plain: "לשון",  niqqud: "לָשׁוֹן", plural_plain: "לשונות",  plural_niqqud: "לְשׁוֹנוֹת", en: "tongue", emoji: "👅" }

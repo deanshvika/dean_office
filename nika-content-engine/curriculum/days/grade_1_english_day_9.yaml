@@ -1,0 +1,149 @@
+# ── מחזור 3 · יום 9 · אנגלית · שכבה א' ─────────────────────────────
+# עולם תוכן: גוף ובריאות | ערך: בריאות
+# בידול מ"שפה" (#7): אנגלית על סט hand/nose/mouth/tooth/heart
+#   (עברית עובדת על אוזן/רגל/אצבע/לשון/עין). כמעט בלי חפיפה → לא תרגום.
+# מדיניות: הוראות/פתיח עברית מנוקדות; אנגלית plain. פריטי-אימוג'י מהבנק.
+
+day_id: grade_1_english_day_9
+subject: english
+audience: grade_1
+niqqud: true
+day_label: "יוֹם 9 – Body: Words and Pictures"
+title: "My body"
+core_skill: "אוצר מילים באנגלית: זיהוי מילה↔תמונה (הגוף)"
+subskills:
+  - "התאמת מילה באנגלית לתמונה של חלק גוף"
+  - "בחירת המילה הנכונה לפי תמונה"
+  - "זיהוי מילה מבין ארבע אפשרויות"
+theme: "גוף ובריאות"
+leading_value: "בריאות"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · word → picture ─────────────────────────────
+  beginner:
+    level: beginner
+    intro: "לַגּוּף שֶׁלָּנוּ יֵשׁ שֵׁמוֹת גַּם בְּאַנְגְּלִית. בּוֹאוּ נַכִּיר אוֹתָם."
+    instruction: "Read or listen to the word. Circle the matching picture."
+    example:
+      type: word_picture
+      item: hand
+      word: "hand"
+      word_label: "Word:"
+      distractors: [nose, heart]
+      caption: "Circle: hand"
+    tasks:
+      - { type: word_picture, item: nose,  word: "nose",  word_label: "Word:", distractors: [tooth, hand] }
+      - { type: word_picture, item: mouth, word: "mouth", word_label: "Word:", distractors: [heart, nose] }
+      - { type: word_picture, item: tooth, word: "tooth", word_label: "Word:", distractors: [hand, mouth] }
+      - { type: word_picture, item: heart, word: "heart", word_label: "Word:", distractors: [nose, tooth] }
+    encouraging_message: "In NIKA we keep our body healthy. We learn its names together."
+    quick_check:
+      type: word_picture
+      item: mouth
+      word: "mouth"
+      word_label: "Word:"
+      distractors: [hand, nose]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Point to one body part and say its name in English."
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — לוֹמְדִים, מְנַסִּים וְשׁוֹמְרִים עַל הַבְּרִיאוּת."
+
+  # ── עמוד 2 · ממשיכים · picture → word ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עַכְשָׁיו נִסְתַּכֵּל עַל חֵלֶק הַגּוּף וְנִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה בְּאַנְגְּלִית."
+    instruction: "Look at the body part and choose the correct word."
+    example:
+      type: pic_word
+      item: hand
+      distractors: [nose, tooth]
+      caption: "Choose the word for the picture: hand"
+    tasks:
+      - { type: pic_word, item: nose,  distractors: [mouth, hand] }
+      - { type: pic_word, item: mouth, distractors: [tooth, nose] }
+      - { type: pic_word, item: tooth, distractors: [hand, heart] }
+      - { type: pic_word, item: heart, distractors: [nose, mouth] }
+    encouraging_message: "When we look closely, we learn — our body is amazing."
+    quick_check:
+      type: pic_word
+      item: tooth
+      distractors: [hand, nose]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Point to a body part. Can your friend say the word in English?"
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — מְנַסִּים, מַתְמִידִים וּבְרִיאִים."
+
+  # ── עמוד 3 · אתגר · picture → word עם 4 אפשרויות ──────────────────
+  challenge:
+    level: challenge
+    intro: "עַכְשָׁיו נִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה בְּאַנְגְּלִית מִבֵּין אַרְבַּע מִלִּים."
+    instruction: "Look at the body part and choose the correct word (4 choices)."
+    example:
+      type: pic_word
+      item: hand
+      distractors: [nose, mouth, tooth]
+      caption: "Choose the word: hand"
+    tasks:
+      - { type: pic_word, item: mouth, distractors: [hand, nose, tooth] }
+      - { type: pic_word, item: heart, distractors: [tooth, mouth, nose] }
+    encouraging_message: "Great! Everyone can learn the body words."
+    quick_check:
+      type: pic_word
+      item: nose
+      distractors: [hand, mouth, tooth]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Name one more body part in English you know."
+    footer: "בְּנִיקָה אֲנַחְנוּ מִתְקַדְּמִים — כָּל יוֹם צַעַד קָטָן קָדִימָה."
+
+  # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "זיהוי מילה באנגלית לפי תמונה של חלק גוף"
+      - "בחירת המילה הנכונה לפי תמונה"
+      - "זיהוי מילה מבין ארבע אפשרויות"
+      - "חשיפה מוקדמת ובטוחה לאנגלית (שמיעה+זיהוי)"
+    leading_value:
+      name: "בריאות"
+      text: "הכרת הגוף היא הצעד הראשון לשמור עליו — לומדים לכבד ולטפח את הבריאות שלנו."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לילדים שצריכים כניסה פשוטה:"
+        points: ["שמיעת מילה באנגלית", "זיהוי חלק הגוף המתאים", "בחירה בין 3 אפשרויות"]
+      - level: mid
+        audience: "מיועד לילדים שיכולים:"
+        points: ["להסתכל על תמונה ולבחור מילה", "לזהות שם חלק גוף באנגלית", "להבחין בין מילים דומות"]
+      - level: challenge
+        audience: "מיועד לילדים שיכולים:"
+        points: ["לזהות מילה מבין ארבע אפשרויות", "להבחין בין שמות חלקי גוף", "לשמוע/לומר מילה בביטחון"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את שם חלק הגוף באנגלית בקול ולבקש לחזור ולגעת בו"
+      - "באתגר — להצביע על החלק ולומר את ארבע המילים לפני הבחירה"
+      - "לחבר לבריאות: 'איך שומרים על החלק הזה?'"
+      - "להקטין מספר אפשרויות אם צריך"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לחזור על המילה כמה פעמים"
+      - "לחבר בין המילה לחלק גוף אמיתי (לגעת/להצביע)"
+      - "לתת בחירה בין שתי תשובות במקום שלוש"
+      - "לאפשר לענות בהצבעה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לומר שם חלק גוף נוסף באנגלית"
+      - "לבקש להצביע על החלק בגוף ולומר את שמו"
+    coach_message:
+      lead: "הדגש הוא לא על 'מבטא מושלם', אלא על:"
+      values: ["בריאות", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]
+    phrases:
+      - "Great try."
+      - "You know your body."
+      - "You found the part."
+      - "You helped your friend."
+      - "You kept going."
+    footer_legend: ["בריאות", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]
