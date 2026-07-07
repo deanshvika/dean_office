@@ -1,0 +1,147 @@
+# ── מחזור 2 · יום 5 · שפה · שכבה א' ─────────────────────────────
+# עולם תוכן: החי (חיות) | ערך: אכפתיות וכבוד לכל יצור
+# דרגות קושי: מתחילים=מילה→תמונה · ממשיכים=תמונה→מילה · אתגר=אות חסרה
+# ★ פריטי-אימוג'י (חיות): 🐱🐶🐦🐟🐰 — מהבנק (שדה emoji), אין SVG. שפה שכבה א' = ניקוד מלא.
+
+day_id: grade_1_language_day_5
+subject: language
+audience: grade_1
+niqqud: true
+day_label: "יוֹם 5 – חַיּוֹת: מִלָּה, תְּמוּנָה וְאוֹת"
+title: "מִי גָּר אִתָּנוּ? עוֹלַם הַחַי"
+core_skill: "זיהוי מילה, קריאתה, וניתוח האות החסרה — בעולם החי"
+subskills:
+  - "התאמת מילה לתמונה של חיה"
+  - "קריאת מילה ובחירתה"
+  - "זיהוי אות חסרה במילה"
+theme: "החי"
+leading_value: "אכפתיות"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · מילה → תמונה ─────────────────────────────
+  beginner:
+    level: beginner
+    intro: "בְּעוֹלַם הַחַי יֵשׁ הַרְבֵּה חַיּוֹת. בּוֹאוּ נַכִּיר אוֹתָן וְנִלְמַד לִשְׁמֹר עֲלֵיהֶן."
+    instruction: "קִרְאוּ אֶת הַמִּלָּה, וְהַקִּיפוּ אֶת הַחַיָּה הַמַּתְאִימָה."
+    example:
+      type: word_picture
+      item: cat
+      distractors: [dog, fish]
+      caption: "מַקִּיפִים אֶת הַתְּמוּנָה הַמַּתְאִימָה."
+    tasks:
+      - { type: word_picture, item: dog,    distractors: [cat, bird] }
+      - { type: word_picture, item: bird,   distractors: [fish, rabbit] }
+      - { type: word_picture, item: fish,   distractors: [cat, dog] }
+      - { type: word_picture, item: rabbit, distractors: [bird, cat] }
+    encouraging_message: "כְּשֶׁאֲנַחְנוּ מַכִּירִים אֶת הַחַיּוֹת, אֲנַחְנוּ יוֹדְעִים לִשְׁמֹר עֲלֵיהֶן."
+    quick_check:
+      type: word_picture
+      item: bird
+      distractors: [dog, fish]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "סַפְּרוּ עַל חַיָּה אַחַת שֶׁאַתֶּם אוֹהֲבִים."
+    footer: "בְּנִיקָה דּוֹאֲגִים לְכָל יְצוּר — לוֹמְדִים, שׁוֹמְרִים וְאוֹהֲבִים."
+
+  # ── עמוד 2 · ממשיכים · תמונה → מילה ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עַכְשָׁיו נִסְתַּכֵּל עַל הַחַיָּה וְנִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה."
+    instruction: "הִסְתַּכְּלוּ עַל הַתְּמוּנָה וְסַמְּנוּ אֶת הַמִּלָּה הַמַּתְאִימָה."
+    example:
+      type: pic_word
+      item: cat
+      distractors: [dog, rabbit]
+      caption: "בּוֹחֲרִים אֶת הַמִּלָּה הַמַּתְאִימָה לַתְּמוּנָה."
+    tasks:
+      - { type: pic_word, item: dog,    distractors: [cat, fish] }
+      - { type: pic_word, item: fish,   distractors: [bird, cat] }
+      - { type: pic_word, item: rabbit, distractors: [dog, bird] }
+      - { type: pic_word, item: bird,   distractors: [fish, rabbit] }
+    encouraging_message: "כָּל חַיָּה מְיֻחֶדֶת — כְּשֶׁאֲנַחְנוּ קוֹרְאִים, אֲנַחְנוּ לוֹמְדִים עֲלֵיהֶן."
+    quick_check:
+      type: pic_word
+      item: fish
+      distractors: [cat, dog]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "אִמְרוּ מִלָּה שֶׁל חַיָּה לְחָבֵר, וּבִדְקוּ אִם מָצָא אוֹתָהּ."
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — מְנַסִּים, מַתְמִידִים וְדוֹאֲגִים לְכָל יְצוּר."
+
+  # ── עמוד 3 · אתגר · אות חסרה ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עַכְשָׁיו נִמְצָא אֵיזוֹ אוֹת חֲסֵרָה בְּשֵׁם הַחַיָּה, וְנַשְׁלִים אוֹתָהּ."
+    instruction: "הַשְׁלִימוּ אֶת הָאוֹת הַחֲסֵרָה בְּכָל מִלָּה."
+    example:
+      type: missing_letter
+      item: cat
+      answer: "ת"
+      options: ["ת", "מ", "ר"]
+      caption: "מַשְׁלִימִים אֶת הָאוֹת הַחֲסֵרָה בַּמִּלָּה."
+    tasks:
+      - { type: missing_letter, item: dog,    answer: "ל", options: ["ל", "ר", "ן"] }
+      - { type: missing_letter, item: fish,   answer: "ג", options: ["ג", "מ", "ל"] }
+      - { type: missing_letter, item: rabbit, answer: "נ", options: ["נ", "מ", "ד"] }
+    encouraging_message: "מַאֲמָץ, קְרִיאָה וְהַתְמָדָה עוֹזְרִים לָנוּ לְהִשְׁתַּפֵּר בְּכָל יוֹם."
+    quick_check:
+      type: missing_letter
+      item: bird
+      answer: "פ"
+      options: ["פ", "ת", "מ"]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "הַמְצִיאוּ מִשְׁפָּט קָצָר עַל אַחַת הַחַיּוֹת בַּדַּף."
+    footer: "בְּנִיקָה אֲנַחְנוּ מִתְקַדְּמִים — כָּל יוֹם צַעַד קָטָן קָדִימָה."
+
+  # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "התאמת מילה של חיה לתמונה (זיהוי)"
+      - "בחירת המילה הנכונה לפי תמונה (קריאה)"
+      - "זיהוי והשלמת אות חסרה (ניתוח)"
+      - "חיזוק הקשר בין צליל, אות ומילה"
+    leading_value:
+      name: "אכפתיות"
+      text: "עולם החי מזמן שיחה על אחריות ודאגה לחלשים — הילדים לומדים לשמור ולכבד כל יצור."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לילדים שצריכים כניסה פשוטה:"
+        points: ["שמיעת מילה", "זיהוי החיה המתאימה", "בחירה בין 3 אפשרויות"]
+      - level: mid
+        audience: "מיועד לילדים שיכולים:"
+        points: ["להסתכל על תמונה ולקרוא", "לבחור את המילה הנכונה", "להבחין בין מילים דומות"]
+      - level: challenge
+        audience: "מיועד לילדים שיכולים:"
+        points: ["לקרוא מילה בביטחון יחסי", "לזהות איזו אות חסרה", "להשלים את המילה"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את שם החיה בקול ברור ולבקש מהילד לחזור"
+      - "בעמוד האות החסרה — לקרוא את המילה בלי האות ולשאול 'איזה צליל חסר?'"
+      - "לחבר לערך: 'איך שומרים על החיה הזאת?'"
+      - "אם צריך, להישאר רק בעמוד 'מתחילים'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לומר את המילה בקול שוב ושוב"
+      - "להשתמש בכרטיסיות מילה/אות נפרדות"
+      - "להקטין מספר אפשרויות אם צריך"
+      - "לאפשר תשובה בהצבעה או בעל פה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לספר על חיה אהובה"
+      - "לבקש לייצר משפט קצר על חיה"
+    coach_message:
+      lead: "הדגש הוא לא על 'קריאה מושלמת', אלא על:"
+      values: ["אכפתיות", "סקרנות", "חזרתיות", "ביטחון"]
+    phrases:
+      - "כל הכבוד שקראת."
+      - "יפה שאכפת לך מהחיות."
+      - "מצאת את האות החסרה."
+      - "בדקת שוב וזה מעולה."
+      - "התקדמת יפה."
+    footer_legend: ["אכפתיות", "כבוד לכל יצור", "סקרנות", "ביטחון", "תחושת הצלחה"]

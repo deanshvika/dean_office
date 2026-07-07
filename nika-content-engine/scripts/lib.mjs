@@ -61,6 +61,14 @@ export function itemWord(key, { niqqud = false, plural = false } = {}) {
   return niqqud ? (it.niqqud || it.plain) : it.plain;
 }
 
+// אימוג'י של פריט (אם הוגדר בבנק) — לפריטי תמות חדשות שאין להם SVG (חיות/אוכל/גוף…).
+export function itemEmoji(key) {
+  const it = bank().items[key];
+  return (it && it.emoji) ? it.emoji : null;
+}
+// האם לפריט יש ייצוג ויזואלי (SVG או אימוג'י)
+export function hasVisual(key) { return iconSvg(key) !== null || itemEmoji(key) !== null; }
+
 // תווית ממשק מהבנק
 export function label(group, key, niqqud = false) {
   const g = bank()[group];

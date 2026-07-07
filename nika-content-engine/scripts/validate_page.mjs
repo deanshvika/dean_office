@@ -1,6 +1,6 @@
 // שער הוולידציה — מחסל טעויות לפני רינדור.
 // בודק: מבנה, שלמות מספרית (ספירה=מספר=תשובה), מדיניות ניקוד, אוצר סגור.
-import { p, loadYaml, loadDay, hasIcon, hasNiqqud, hebrewWords, bank, itemWord, splitClusters } from './lib.mjs';
+import { p, loadYaml, loadDay, hasVisual, hasNiqqud, hebrewWords, bank, itemWord, splitClusters } from './lib.mjs';
 
 const STUDENT_PAGES = ['beginner', 'mid', 'challenge'];
 
@@ -29,7 +29,7 @@ export function validateDay(spec) {
   const inRange = (n) => Number.isInteger(n) && n >= rng.min && n <= rng.max;
   const niqExpected = !!spec.niqqud;
 
-  const checkIcon = (page, item) => { if (!hasIcon(item)) E(page, `אין אייקון לפריט "${item}" (assets/icons/${item}.svg)`); };
+  const checkIcon = (page, item) => { if (!hasVisual(item)) E(page, `אין ייצוג ויזואלי לפריט "${item}" (assets/icons/${item}.svg או שדה emoji בבנק)`); };
 
   // ── בדיקת משימה בודדת ──
   function checkTask(page, t, ctx) {
@@ -131,7 +131,7 @@ export function validateDay(spec) {
         if (wb.length < 2) E(page, `${ctx}: בנק המילים חייב לפחות 2 מילים`);
         if (!wb.includes(t.answer)) E(page, `${ctx}: התשובה "${t.answer}" אינה בבנק המילים`);
         if (new Set(wb).size !== wb.length) E(page, `${ctx}: מילים כפולות בבנק [${wb}]`);
-        if (t.item && !hasIcon(t.item)) E(page, `${ctx}: אין אייקון לפריט "${t.item}"`);
+        if (t.item && !hasVisual(t.item)) E(page, `${ctx}: אין ייצוג ויזואלי לפריט "${t.item}"`);
         return null;
       }
       case 'vertical_arith': {

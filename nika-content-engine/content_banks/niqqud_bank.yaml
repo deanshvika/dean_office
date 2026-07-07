@@ -65,3 +65,15 @@ items:
   cup:     { plain: "גביע",    niqqud: "גָּבִיעַ",    plural_plain: "גביעים",   plural_niqqud: "גְּבִיעִים",   en: "cup" }
   hat:     { plain: "כובע",    niqqud: "כּוֹבַע",     plural_plain: "כובעים",   plural_niqqud: "כּוֹבָעִים",   en: "hat" }
   net:     { plain: "רשת",     niqqud: "רֶשֶׁת",      plural_plain: "רשתות",    plural_niqqud: "רְשָׁתוֹת",    en: "net" }
+
+  # --- מחזור 2: החי (פריטי-אימוג'י, אין SVG) ---
+  cat:    { plain: "חתול",  niqqud: "חָתוּל",   plural_plain: "חתולים",  plural_niqqud: "חֲתוּלִים",  en: "cat",    emoji: "🐱" }
+  dog:    { plain: "כלב",   niqqud: "כֶּלֶב",    plural_plain: "כלבים",   plural_niqqud: "כְּלָבִים",   en: "dog",    emoji: "🐶" }
+  bird:   { plain: "ציפור", niqqud: "צִפּוֹר",   plural_plain: "ציפורים", plural_niqqud: "צִפּוֹרִים",  en: "bird",   emoji: "🐦" }
+  fish:   { plain: "דג",    niqqud: "דָּג",      plural_plain: "דגים",    plural_niqqud: "דָּגִים",     en: "fish",   emoji: "🐟" }
+  rabbit: { plain: "ארנב",  niqqud: "אַרְנָב",   plural_plain: "ארנבים",  plural_niqqud: "אַרְנָבִים",  en: "rabbit", emoji: "🐰" }
+  turtle:    { plain: "צב",      niqqud: "צָב",        plural_plain: "צבים",     plural_niqqud: "צָבִים",       en: "turtle",    emoji: "🐢" }
+  bee:       { plain: "דבורה",   niqqud: "דְּבוֹרָה",   plural_plain: "דבורים",   plural_niqqud: "דְּבוֹרִים",   en: "bee",       emoji: "🐝" }
+  butterfly: { plain: "פרפר",    niqqud: "פַּרְפַּר",   plural_plain: "פרפרים",   plural_niqqud: "פַּרְפָּרִים", en: "butterfly", emoji: "🦋" }
+  lion:      { plain: "אריה",    niqqud: "אַרְיֵה",     plural_plain: "אריות",    plural_niqqud: "אֲרָיוֹת",     en: "lion",      emoji: "🦁" }
+  frog:      { plain: "צפרדע",   niqqud: "צְפַרְדֵּעַ",  plural_plain: "צפרדעים",  plural_niqqud: "צְפַרְדְּעִים", en: "frog",     emoji: "🐸" }

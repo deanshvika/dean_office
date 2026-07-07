@@ -1,0 +1,158 @@
+# ── מחזור 2 · יום 5 · שפה · שכבות ב-ג ─────────────────────────────
+# עולם תוכן: החי | ערך: אכפתיות וכבוד לכל יצור
+# שכבות ב-ג = ללא ניקוד. מתחילים=תמונה→מילה · ממשיכים=בחירת מילה למשפט · אתגר=הבנת הנקרא
+# ★ פריטי-אימוג'י (חיות): עברית על סט cat/dog/bird/fish/rabbit (בידול מאנגלית).
+
+day_id: grades_2_3_language_day_5
+subject: language
+audience: grades_2_3
+niqqud: false
+day_label: "יום 5 – החי: קריאה, משפט והבנה"
+title: "מי חי סביבנו?"
+core_skill: "קריאה שוטפת, בחירת מילה למשפט והבנת הנקרא"
+subskills:
+  - "קריאת שם חיה והתאמתו לתמונה"
+  - "בחירת המילה הנכונה למשפט"
+  - "הבנת קטע קצר על חיות"
+theme: "החי"
+leading_value: "אכפתיות"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · תמונה → מילה (4 אפשרויות) ──────
+  beginner:
+    level: beginner
+    intro: "בשכבות ב-ג קוראים בלי ניקוד. הסתכלו על החיה ובחרו את שמה הנכון מבין ארבע."
+    instruction: "הסתכלו על התמונה ובחרו את המילה המתאימה."
+    example:
+      type: pic_word
+      item: cat
+      distractors: [dog, fish, bird]
+      caption: "בוחרים את המילה המתאימה לתמונה."
+    tasks:
+      - { type: pic_word, item: dog,    distractors: [cat, rabbit, fish] }
+      - { type: pic_word, item: bird,   distractors: [fish, cat, dog] }
+      - { type: pic_word, item: fish,   distractors: [rabbit, bird, cat] }
+      - { type: pic_word, item: rabbit, distractors: [dog, bird, fish] }
+    encouraging_message: "כשמכירים את שמות החיות, קל יותר לספר עליהן ולדאוג להן."
+    quick_check:
+      type: pic_word
+      item: bird
+      distractors: [cat, dog, fish]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו שתי חיות שאתם מכירים."
+    footer: "בניקה מתקדמים יחד — קוראים, מנסים ודואגים לכל יצור."
+
+  # ── עמוד 2 · ממשיכים · בחירת מילה למשפט ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עכשיו נשלים משפטים על החיות. בחרו את המילה שמתאימה לכל משפט."
+    instruction: "קראו את המשפט ובחרו מהמילים את המילה הנכונה."
+    example:
+      type: complete_sentence
+      sentence: "ה___ נובח בחצר."
+      word_bank: [כלב, חתול, דג]
+      answer: כלב
+      item: dog
+      caption: "המילה המתאימה: כלב."
+    tasks:
+      - { type: complete_sentence, sentence: "ה___ מיילל על הגג.",  word_bank: [חתול, כלב, ארנב], answer: חתול, item: cat }
+      - { type: complete_sentence, sentence: "ה___ שוחה במים.",     word_bank: [דג, ציפור, ארנב], answer: דג,   item: fish }
+      - { type: complete_sentence, sentence: "ה___ עפה בשמיים.",    word_bank: [ציפור, דג, כלב],  answer: ציפור, item: bird }
+    encouraging_message: "כשאנחנו קוראים בשיתוף ובוחרים יחד, לומדים מהר יותר."
+    quick_check:
+      type: complete_sentence
+      sentence: "ה___ קופץ מהר בשדה."
+      word_bank: [ארנב, דג, חתול]
+      answer: ארנב
+      item: rabbit
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו משפט אחד על חיה אהובה עליכם."
+    footer: "בניקה מתקדמים יחד — קוראים, בוחרים ודואגים לכל יצור."
+
+  # ── עמוד 3 · אתגר · הבנת הנקרא ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עכשיו נקרא קטעים קצרים על חיות ועל דאגה להן, ונענה על שאלה בכל קטע."
+    instruction: "קראו את הקטע וסמנו את התשובה הנכונה."
+    example:
+      type: reading_comprehension
+      passage: "הכלב רץ בפארק. הוא ראה חתול על העץ, ונבח בשמחה."
+      question: "את מי ראה הכלב?"
+      options: [חתול, ציפור, דג]
+      answer: חתול
+    tasks:
+      - type: reading_comprehension
+        passage: "נועה מצאה ציפור קטנה שנפלה מהקן. היא נתנה לה מים, והציפור התחזקה."
+        question: "מה נתנה נועה לציפור?"
+        options: [מים, כדור, מדליה]
+        answer: מים
+      - type: reading_comprehension
+        passage: "הדגים בבריכה היו רעבים. הילדים פיזרו להם אוכל, וכל הדגים אכלו יחד."
+        question: "למה הדגים אכלו?"
+        options: [כי פיזרו להם אוכל, כי היו עצובים, כי שחו מהר]
+        answer: כי פיזרו להם אוכל
+    encouraging_message: "כשמבינים מה קראנו ודואגים לחיות, אנחנו נעשים אחראים יותר."
+    quick_check:
+      type: reading_comprehension
+      passage: "הארנב הקטן פחד מהרעש. חברו הכלב שכב לידו בשקט, והארנב נרגע."
+      question: "מה עשה הכלב?"
+      options: [שכב לידו בשקט, ברח, נבח חזק]
+      answer: שכב לידו בשקט
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו משפט אחד: איך אפשר לעזור לחיה שנפגעה?"
+    footer: "בניקה אנחנו מתקדמים — כל יום צעד קטן קדימה, ביחד."
+
+  # ── דף מדריך/ה ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "קריאת שם חיה בלי ניקוד ובחירתו לפי תמונה"
+      - "בחירת מילה נכונה למשפט"
+      - "הבנת קטע קצר ומענה על שאלה"
+      - "חיזוק קריאה שוטפת והבנה"
+    leading_value:
+      name: "אכפתיות"
+      text: "הקטעים והמשפטים עוסקים בדאגה לחיות — הילדים לומדים אחריות וכבוד לכל יצור."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא מילה בלי ניקוד", "לבחור מילה לפי תמונה", "בחירה בין 4 אפשרויות"]
+      - level: mid
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא משפט שלם", "לבחור מילה מתאימה מההקשר", "להבחין בין מילים"]
+      - level: challenge
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא קטע קצר", "להבין את הרעיון", "לענות על שאלת הבנה"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לבקש לקרוא בקול ואז בלב"
+      - "בהבנת הנקרא — לקרוא את השאלה לפני חיפוש התשובה בקטע"
+      - "לחבר לערך: 'איך היינו עוזרים לחיה הזאת?'"
+      - "אם צריך, להישאר רק בעמוד 'מתחילים'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "להדגיש מילים קשות לפני הקריאה"
+      - "לאפשר קריאה חוזרת של הקטע"
+      - "להקטין מספר אפשרויות אם צריך"
+      - "לאפשר תשובה בעל פה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לספר על הקטע במילים שלהם"
+      - "לבקש לכתוב משפט המשך לקטע"
+    coach_message:
+      lead: "הדגש הוא לא על 'קריאה מושלמת', אלא על:"
+      values: ["הבנה", "אכפתיות", "אחריות", "ביטחון"]
+    phrases:
+      - "כל הכבוד שקראת עד הסוף."
+      - "יפה שאכפת לך מהחיה."
+      - "הבנת את הקטע — מצוין."
+      - "בדקת שוב וזה נהדר."
+      - "התקדמת יפה."
+    footer_legend: ["אכפתיות", "כבוד לכל יצור", "הבנה", "אחריות", "תחושת הצלחה"]

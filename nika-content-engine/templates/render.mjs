@@ -1,6 +1,14 @@
 // מנוע רינדור NIKA — בונה HTML עצמאי לכל עמוד מתוך Day Spec.
 // עקרון: פריטי ספירה = הדבקת אייקון בדיוק count פעמים (דטרמיניסטי).
-import { p, fs, bank, iconSvg, itemWord, label, logoDataUri, displayWord, splitClusters } from '../scripts/lib.mjs';
+import { p, fs, bank, iconSvg, itemEmoji, itemWord, label, logoDataUri, displayWord, splitClusters } from '../scripts/lib.mjs';
+
+// ייצוג ויזואלי של פריט: SVG מותג אם קיים, אחרת אימוג'י מהבנק (חיות/תמות חדשות), אחרת ריק.
+function glyph(key) {
+  const svg = iconSvg(key);
+  if (svg) return svg;
+  const e = itemEmoji(key);
+  return e ? `<span class="emo">${e}</span>` : '';
+}
 
 const CSS = fs.readFileSync(p('templates', 'shared.css'), 'utf8');
 const esc = (s) => String(s == null ? '' : s)
@@ -14,8 +22,8 @@ const STAR = { beginner: '★', mid: '★★', challenge: '★★★' };
 
 // ── רכיבים בסיסיים ──
 function iconsRow(item, count, cls = '') {
-  const svg = iconSvg(item) || '';
-  return `<div class="iconrow ${cls}">${Array.from({ length: count }, () => svg).join('')}</div>`;
+  const g = glyph(item);
+  return `<div class="iconrow ${cls}">${Array.from({ length: count }, () => g).join('')}</div>`;
 }
 function optionBubbles(options) {
   return `<div class="opts">${options.map((o) => `<div class="opt">${o}</div>`).join('')}</div>`;
@@ -88,13 +96,13 @@ function taskBody(t, niq, worked = false, subject = 'math') {
       const word = t.word || itemWord(t.item, { niqqud: niq });
       const theWord = t.word_label || label('ui_labels', 'the_word', niq);
       const opts = t.options || [t.item, ...(t.distractors || [])];
-      const boxes = opts.map((k) => `<div class="wp-opt${worked && k === t.item ? ' correct' : ''}">${iconSvg(k) || ''}</div>`).join('');
+      const boxes = opts.map((k) => `<div class="wp-opt${worked && k === t.item ? ' correct' : ''}">${glyph(k)}</div>`).join('');
       return `<div class="wp"><div class="wp-word" dir="auto">${esc(theWord)} <b>${esc(word)}</b></div><div class="wp-opts">${boxes}</div></div>`;
     }
     case 'pic_word': {
       // תמונה מוצגת → בחירת המילה הנכונה. המילים תמיד מהבנק הסגור (אפס טעות ניקוד).
       const opts = t.options || [t.item, ...(t.distractors || [])];
-      const pic = `<div class="pw-pic">${iconSvg(t.item) || ''}</div>`;
+      const pic = `<div class="pw-pic">${glyph(t.item)}</div>`;
       const boxes = opts.map((k) => {
         const w = displayWord(subject, k, niq);
         const correct = worked && k === t.item ? ' correct' : '';
@@ -104,7 +112,7 @@ function taskBody(t, niq, worked = false, subject = 'math') {
     }
     case 'spell_choice': {
       // תמונה + בחירת האיות הנכון (אנגלית, שכבות ב-ג). options = מחרוזות; answer = הנכון.
-      const pic = `<div class="pw-pic">${iconSvg(t.item) || ''}</div>`;
+      const pic = `<div class="pw-pic">${glyph(t.item)}</div>`;
       const boxes = (t.options || []).map((o) =>
         `<div class="pw-opt${worked && o === t.answer ? ' correct' : ''}" dir="ltr">${esc(o)}</div>`).join('');
       return `<div class="pw">${pic}<div class="pw-opts">${boxes}</div></div>`;
@@ -119,7 +127,7 @@ function taskBody(t, niq, worked = false, subject = 'math') {
       const wordHtml = cs.map((c, i) => i === idx
         ? `<span class="ml-box">${worked ? esc(t.answer) : ''}</span>`
         : `<span class="ml-ch">${esc(c)}</span>`).join('');
-      const pic = iconSvg(t.item) ? `<div class="ml-pic">${iconSvg(t.item)}</div>` : '';
+      const pic = glyph(t.item) ? `<div class="ml-pic">${glyph(t.item)}</div>` : '';
       const opts = (t.options || []).map((o) =>
         `<div class="opt ml-opt${worked && o === t.answer ? ' correct' : ''}">${esc(o)}</div>`).join('');
       const prompt = t.prompt ? `<div class="prompt" dir="auto">${esc(t.prompt)}</div>` : '';
@@ -131,7 +139,7 @@ function taskBody(t, niq, worked = false, subject = 'math') {
         worked && t.answer ? `<span class="cs-blank filled">${esc(t.answer)}</span>` : `<span class="cs-blank"></span>`);
       const chips = (t.word_bank || []).map((w) =>
         `<span class="chip-word${worked && w === t.answer ? ' correct' : ''}">${esc(w)}</span>`).join('');
-      const pic = t.item && iconSvg(t.item) ? `<div class="cs-pic">${iconSvg(t.item)}</div>` : '';
+      const pic = t.item && glyph(t.item) ? `<div class="cs-pic">${glyph(t.item)}</div>` : '';
       const bankLabel = subject === 'english' ? 'Word bank:' : (esc(label('ui_labels', 'word_bank', niq)) + ':');
       return `<div class="cs"><div class="cs-sent" dir="auto">${sent}</div>${pic}<div class="cs-bank"><span class="cs-bank-label">${bankLabel}</span> ${chips}</div></div>`;
     }
@@ -164,7 +172,7 @@ function taskBody(t, niq, worked = false, subject = 'math') {
     }
     case 'multiply': {
       // כפל כמערך (שורות×עמודות). שכבות ב-ג.
-      const svg = iconSvg(t.item || 'ball') || '';
+      const svg = glyph(t.item || 'ball');
       const rowsHtml = Array.from({ length: t.rows }, () =>
         `<div class="mul-row">${Array.from({ length: t.cols }, () => svg).join('')}</div>`).join('');
       const cell = worked ? `<span class="eqbox filled">${t.result}</span>` : `<span class="eqbox"></span>`;

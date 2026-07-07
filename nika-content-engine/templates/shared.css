@@ -98,6 +98,16 @@ h1,h2,h3,h4{ color:var(--ink); margin:0; font-weight:800; }
 .iconrow svg{ height:38px; width:auto; flex:none; }
 .iconrow.sm svg{ height:20px; }
 
+/* ── פריטי-אימוג'י (תמות חדשות: חיות/אוכל/גוף…) — גודל תואם לאייקוני SVG ── */
+.emo{ display:inline-flex; align-items:center; justify-content:center; font-size:34px; line-height:1; flex:none; }
+.iconrow .emo{ font-size:34px; }
+.iconrow.sm .emo{ font-size:16px; }
+.wp-opt .emo{ font-size:40px; }
+.pw-pic .emo{ font-size:40px; }
+.ml-pic .emo{ font-size:34px; }
+.cs-pic .emo{ font-size:28px; }
+.mul-row .emo{ font-size:17px; }
+
 /* ── OPTION BUBBLES ── */
 .opts{ display:flex; gap:10px; justify-content:center; margin-top:7px; }
 .opt{ min-width:50px; height:44px; padding:0 6px; border-radius:12px; border:2.5px solid #e2e8f0; background:#fff;

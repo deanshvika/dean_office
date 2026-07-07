@@ -1,0 +1,149 @@
+# ── מחזור 2 · יום 6 · אנגלית · שכבה א' ─────────────────────────────
+# עולם תוכן: החי | ערך: סקרנות
+# בידול מ"שפה" (#7): אנגלית על סט חיות שונה — frog/bee/lion/turtle/butterfly
+#   (עברית עובדת על cat/dog/bird/fish/rabbit). כמעט בלי חפיפה → לא תרגום.
+# מדיניות: הוראות/פתיח עברית מנוקדות; אנגלית plain. פריטי-אימוג'י מהבנק.
+
+day_id: grade_1_english_day_6
+subject: english
+audience: grade_1
+niqqud: true
+day_label: "יוֹם 6 – Animals: Words and Pictures"
+title: "Animals around us"
+core_skill: "אוצר מילים באנגלית: זיהוי מילה↔תמונה (חיות)"
+subskills:
+  - "התאמת מילה באנגלית לתמונה של חיה"
+  - "בחירת המילה הנכונה לפי תמונה"
+  - "זיהוי מילה מבין ארבע אפשרויות"
+theme: "החי"
+leading_value: "סקרנות"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · word → picture ─────────────────────────────
+  beginner:
+    level: beginner
+    intro: "בְּעוֹלַם הַחַי יֵשׁ חַיּוֹת רַבּוֹת. בּוֹאוּ נַכִּיר אֶת שְׁמוֹתֵיהֶן בְּאַנְגְּלִית."
+    instruction: "Read or listen to the word. Circle the matching animal."
+    example:
+      type: word_picture
+      item: frog
+      word: "frog"
+      word_label: "Word:"
+      distractors: [bee, lion]
+      caption: "Circle: frog"
+    tasks:
+      - { type: word_picture, item: bee,       word: "bee",       word_label: "Word:", distractors: [turtle, frog] }
+      - { type: word_picture, item: lion,      word: "lion",      word_label: "Word:", distractors: [frog, butterfly] }
+      - { type: word_picture, item: turtle,    word: "turtle",    word_label: "Word:", distractors: [bee, lion] }
+      - { type: word_picture, item: butterfly, word: "butterfly", word_label: "Word:", distractors: [lion, turtle] }
+    encouraging_message: "In NIKA we are curious. We learn new animal names together."
+    quick_check:
+      type: word_picture
+      item: lion
+      word: "lion"
+      word_label: "Word:"
+      distractors: [bee, frog]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Say one animal name in English to a friend. Can they point to it?"
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — לוֹמְדִים, מְנַסִּים וְסַקְרָנִים."
+
+  # ── עמוד 2 · ממשיכים · picture → word ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עַכְשָׁיו נִסְתַּכֵּל עַל הַחַיָּה וְנִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה בְּאַנְגְּלִית."
+    instruction: "Look at the animal and choose the correct word."
+    example:
+      type: pic_word
+      item: frog
+      distractors: [bee, turtle]
+      caption: "Choose the word for the picture: frog"
+    tasks:
+      - { type: pic_word, item: bee,       distractors: [lion, frog] }
+      - { type: pic_word, item: lion,      distractors: [turtle, bee] }
+      - { type: pic_word, item: turtle,    distractors: [frog, butterfly] }
+      - { type: pic_word, item: butterfly, distractors: [bee, lion] }
+    encouraging_message: "When we look closely, we learn — every animal is special."
+    quick_check:
+      type: pic_word
+      item: turtle
+      distractors: [lion, bee]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Point to an animal. Can your friend say the word in English?"
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — מְנַסִּים, מַתְמִידִים וְסַקְרָנִים."
+
+  # ── עמוד 3 · אתגר · picture → word עם 4 אפשרויות ──────────────────
+  challenge:
+    level: challenge
+    intro: "עַכְשָׁיו נִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה בְּאַנְגְּלִית מִבֵּין אַרְבַּע מִלִּים."
+    instruction: "Look at the animal and choose the correct word (4 choices)."
+    example:
+      type: pic_word
+      item: frog
+      distractors: [bee, lion, turtle]
+      caption: "Choose the word: frog"
+    tasks:
+      - { type: pic_word, item: lion,      distractors: [frog, bee, turtle] }
+      - { type: pic_word, item: butterfly, distractors: [turtle, lion, bee] }
+    encouraging_message: "Great! Everyone can learn the animal names."
+    quick_check:
+      type: pic_word
+      item: bee
+      distractors: [frog, lion, turtle]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Name one more animal in English you know."
+    footer: "בְּנִיקָה אֲנַחְנוּ מִתְקַדְּמִים — כָּל יוֹם צַעַד קָטָן קָדִימָה."
+
+  # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "זיהוי מילה באנגלית לפי תמונה של חיה"
+      - "בחירת המילה הנכונה לפי תמונה"
+      - "זיהוי מילה מבין ארבע אפשרויות"
+      - "חשיפה מוקדמת ובטוחה לאנגלית (שמיעה+זיהוי)"
+    leading_value:
+      name: "סקרנות"
+      text: "עולם החי מלא הפתעות — הסקרנות מזמינה את הילד לגלות וללמוד מילים חדשות בשמחה."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לילדים שצריכים כניסה פשוטה:"
+        points: ["שמיעת מילה באנגלית", "זיהוי החיה המתאימה", "בחירה בין 3 אפשרויות"]
+      - level: mid
+        audience: "מיועד לילדים שיכולים:"
+        points: ["להסתכל על תמונה ולבחור מילה", "לזהות שם חיה באנגלית", "להבחין בין מילים דומות"]
+      - level: challenge
+        audience: "מיועד לילדים שיכולים:"
+        points: ["לזהות מילה מבין ארבע אפשרויות", "להבחין בין שמות חיות", "לשמוע/לומר מילה בביטחון"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את שם החיה באנגלית בקול ברור ולבקש לחזור"
+      - "באתגר — להצביע על החיה ולומר את ארבע המילים לפני הבחירה"
+      - "לעורר סקרנות: 'איזו חיה זו? איך אומרים באנגלית?'"
+      - "להקטין מספר אפשרויות אם צריך"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לחזור על המילה כמה פעמים"
+      - "לחבר בין המילה לחיה אמיתית או לתנועה שלה"
+      - "לתת בחירה בין שתי תשובות במקום שלוש"
+      - "לאפשר לענות בהצבעה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לומר שם חיה נוספת באנגלית"
+      - "לבקש לחקות את קול החיה ולומר את שמה"
+    coach_message:
+      lead: "הדגש הוא לא על 'מבטא מושלם', אלא על:"
+      values: ["סקרנות", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]
+    phrases:
+      - "Great try."
+      - "You are curious."
+      - "You found the animal."
+      - "You helped your friend."
+      - "You kept going."
+    footer_legend: ["סקרנות", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]
