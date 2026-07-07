@@ -1,7 +1,7 @@
 # ── מחזור 3 · יום 8 · שפה · שכבות ב-ג ─────────────────────────────
 # עולם תוכן: גוף ובריאות | ערך: התמדה והקשבה לגוף
 # שכבות ב-ג = ללא ניקוד. מתחילים=תמונה→מילה · ממשיכים=בחירת מילה למשפט · אתגר=הבנת הנקרא
-# ★ פריטי-אימוג'י (חלקי גוף): עברית על עין/אוזן/אף/רגל/לשון.
+# ★ פריטי-אימוג'י (חלקי גוף): עברית על עין/אוזן/אצבע/רגל/לשון (מיושר עם grade_1, בידול מ-nose האנגלי).
 
 day_id: grades_2_3_language_day_8
 subject: language
@@ -27,17 +27,17 @@ pages:
     example:
       type: pic_word
       item: eye
-      distractors: [ear, nose, leg]
+      distractors: [ear, finger, leg]
       caption: "בוחרים את המילה המתאימה לתמונה."
     tasks:
-      - { type: pic_word, item: ear,    distractors: [eye, leg, nose] }
-      - { type: pic_word, item: nose,   distractors: [leg, eye, ear] }
+      - { type: pic_word, item: ear,    distractors: [eye, leg, finger] }
+      - { type: pic_word, item: finger, distractors: [leg, eye, ear] }
       - { type: pic_word, item: leg,    distractors: [tongue, ear, eye] }
-      - { type: pic_word, item: tongue, distractors: [nose, leg, ear] }
+      - { type: pic_word, item: tongue, distractors: [finger, leg, ear] }
     encouraging_message: "כשמכירים את שמות חלקי הגוף, קל יותר לספר עליהם ולשמור עליהם."
     quick_check:
       type: pic_word
-      item: nose
+      item: finger
       distractors: [eye, ear, leg]
     success_reflection: [tried, improved, persevered]
     bonus:
@@ -58,14 +58,14 @@ pages:
       item: eye
       caption: "המילה המתאימה: עיניים."
     tasks:
-      - { type: complete_sentence, sentence: "שומעים מוזיקה עם ה___.", word_bank: [אוזניים, עיניים, אף], answer: אוזניים, item: ear }
-      - { type: complete_sentence, sentence: "מריחים פרח עם ה___.",   word_bank: [אף, פה, יד],       answer: אף,      item: nose }
+      - { type: complete_sentence, sentence: "שומעים מוזיקה עם ה___.", word_bank: [אוזניים, עיניים, רגליים], answer: אוזניים, item: ear }
+      - { type: complete_sentence, sentence: "מצביעים על החבר עם ה___.", word_bank: [אצבע, רגל, אוזן], answer: אצבע, item: finger }
       - { type: complete_sentence, sentence: "הולכים ורצים על ה___.", word_bank: [רגליים, ידיים, אוזניים], answer: רגליים, item: leg }
     encouraging_message: "כשאנחנו קוראים בהתמדה ובוחרים בזהירות, לומדים מהר יותר."
     quick_check:
       type: complete_sentence
       sentence: "טועמים את האוכל עם ה___."
-      word_bank: [לשון, אף, עין]
+      word_bank: [לשון, יד, עין]
       answer: לשון
       item: tongue
     success_reflection: [tried, improved, persevered]
