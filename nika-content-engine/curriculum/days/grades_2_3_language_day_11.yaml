@@ -1,0 +1,157 @@
+# ── מחזור 4 · יום 11 · שפה · שכבות ב-ג ─────────────────────────────
+# עולם תוכן: אוכל בריא | ערך: בחירה נבונה
+# שכבות ב-ג = ללא ניקוד. מתחילים=תמונה→מילה · ממשיכים=בחירת מילה למשפט · אתגר=הבנת הנקרא
+# ★ פריטי-אימוג'י (מזון): עברית על תפוח/בננה/גזר/לימון/תירס (בידול מ-milk/egg/... האנגלי).
+
+day_id: grades_2_3_language_day_11
+subject: language
+audience: grades_2_3
+niqqud: false
+day_label: "יום 11 – אוכל בריא: קריאה, משפט והבנה"
+title: "בוחרים נכון מה לאכול"
+core_skill: "קריאה שוטפת, בחירת מילה למשפט והבנת הנקרא"
+subskills:
+  - "קריאת שם מאכל והתאמתו לתמונה"
+  - "בחירת המילה הנכונה למשפט"
+  - "הבנת קטע קצר על בחירה נבונה באוכל"
+theme: "אוכל בריא"
+leading_value: "בחירה נבונה"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · תמונה → מילה (4 אפשרויות) ──────
+  beginner:
+    level: beginner
+    intro: "בשכבות ב-ג קוראים בלי ניקוד. הסתכלו על המאכל ובחרו את שמו הנכון מבין ארבע."
+    instruction: "הסתכלו על התמונה ובחרו את המילה המתאימה."
+    example:
+      type: pic_word
+      item: apple
+      distractors: [carrot, banana, lemon]
+      caption: "בוחרים את המילה המתאימה לתמונה."
+    tasks:
+      - { type: pic_word, item: banana, distractors: [apple, corn, lemon] }
+      - { type: pic_word, item: carrot, distractors: [lemon, apple, banana] }
+      - { type: pic_word, item: lemon,  distractors: [corn, banana, carrot] }
+      - { type: pic_word, item: corn,   distractors: [apple, lemon, carrot] }
+    encouraging_message: "כשמכירים את שמות המאכלים, קל יותר לבחור נכון מה לאכול."
+    quick_check:
+      type: pic_word
+      item: carrot
+      distractors: [apple, banana, lemon]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו שני מאכלים בריאים שאתם מכירים."
+    footer: "בניקה מתקדמים יחד — קוראים, מנסים ובוחרים נכון."
+
+  # ── עמוד 2 · ממשיכים · בחירת מילה למשפט ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עכשיו נשלים משפטים על אוכל בריא. בחרו את המילה שמתאימה לכל משפט."
+    instruction: "קראו את המשפט ובחרו מהמילים את המילה הנכונה."
+    example:
+      type: complete_sentence
+      sentence: "לחטיף בריא כדאי לבחור ___."
+      word_bank: [תפוח, עוגה, ממתק]
+      answer: תפוח
+      item: apple
+      caption: "המילה המתאימה: תפוח."
+    tasks:
+      - { type: complete_sentence, sentence: "ירק כתום שטוב לעיניים הוא ___.", word_bank: [גזר, בננה, לימון], answer: גזר,  item: carrot }
+      - { type: complete_sentence, sentence: "פרי צהוב וארוך הוא ___.",      word_bank: [בננה, גזר, תירס],  answer: בננה, item: banana }
+    encouraging_message: "כשאנחנו קוראים בזהירות ובוחרים בתבונה, לומדים ובוחרים בריא."
+    quick_check:
+      type: complete_sentence
+      sentence: "פרי צהוב וחמוץ הוא ___."
+      word_bank: [לימון, תפוח, גזר]
+      answer: לימון
+      item: lemon
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו משפט אחד על מאכל בריא שאתם אוהבים."
+    footer: "בניקה מתקדמים יחד — קוראים, בוחרים ומחליטים נכון."
+
+  # ── עמוד 3 · אתגר · הבנת הנקרא ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עכשיו נקרא קטעים קצרים על בחירות באוכל, ונענה על שאלה בכל קטע."
+    instruction: "קראו את הקטע וסמנו את התשובה הנכונה."
+    example:
+      type: reading_comprehension
+      passage: "דנה בחרה לאכול תפוח במקום ממתק. היא ידעה שפרי בריא יותר לגוף."
+      question: "מה בחרה דנה לאכול?"
+      options: [תפוח, ממתק, עוגה]
+      answer: תפוח
+    tasks:
+      - type: reading_comprehension
+        passage: "יוסי היה צמא. הוא בחר לשתות מים במקום מיץ מתוק, כי מים בריאים יותר."
+        question: "מה בחר יוסי לשתות?"
+        options: [מים, מיץ מתוק, קולה]
+        answer: מים
+      - type: reading_comprehension
+        passage: "מאיה אכלה גזר וסלט בארוחת הצהריים. אמא אמרה שזו בחירה נבונה."
+        question: "למה אמא אמרה שזו בחירה נבונה?"
+        options: [כי אכלה אוכל בריא, כי אכלה ממתקים, כי לא אכלה כלום]
+        answer: כי אכלה אוכל בריא
+    encouraging_message: "כשמבינים מה קראנו ובוחרים בתבונה, שומרים על גוף בריא וחזק."
+    quick_check:
+      type: reading_comprehension
+      passage: "רון רצה חטיף. הוא בחר בננה במקום שוקולד, כי רצה משהו בריא."
+      question: "מה בחר רון לאכול?"
+      options: [בננה, שוקולד, גלידה]
+      answer: בננה
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו משפט אחד: איזו בחירה בריאה עשיתם היום?"
+    footer: "בניקה אנחנו מתקדמים — כל יום צעד קטן קדימה, ביחד."
+
+  # ── דף מדריך/ה ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "קריאת שם מאכל בלי ניקוד ובחירתו לפי תמונה"
+      - "בחירת מילה נכונה למשפט"
+      - "הבנת קטע קצר ומענה על שאלה"
+      - "חיבור הקריאה לבחירה נבונה באוכל"
+    leading_value:
+      name: "בחירה נבונה"
+      text: "הקטעים עוסקים בבחירות אמיתיות באוכל — הילדים לומדים שבחירה נבונה שומרת על הבריאות."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא מילה בלי ניקוד", "לבחור מילה לפי תמונה", "בחירה בין 4 אפשרויות"]
+      - level: mid
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא משפט שלם", "לבחור מילה מתאימה מההקשר", "להבחין בין מילים"]
+      - level: challenge
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא קטע קצר", "להבין את הרעיון", "לענות על שאלת הבנה"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לבקש לקרוא בקול ואז בלב"
+      - "בהבנת הנקרא — לקרוא את השאלה לפני חיפוש התשובה בקטע"
+      - "לחבר לערך: 'איזו בחירה בריאה הייתם עושים?'"
+      - "אם צריך, להישאר רק בעמוד 'מתחילים'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "להדגיש מילים קשות לפני הקריאה"
+      - "לאפשר קריאה חוזרת של הקטע"
+      - "להקטין מספר אפשרויות אם צריך"
+      - "לאפשר תשובה בעל פה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לספר על הקטע במילים שלהם"
+      - "לבקש לכתוב משפט המשך לקטע"
+    coach_message:
+      lead: "הדגש הוא לא על 'קריאה מושלמת', אלא על:"
+      values: ["הבנה", "בחירה נבונה", "קריאה", "ביטחון"]
+    phrases:
+      - "כל הכבוד שקראת עד הסוף."
+      - "יפה שבחרת נכון."
+      - "הבנת את הקטע — מצוין."
+      - "בדקת שוב וזה נהדר."
+      - "התקדמת יפה."
+    footer_legend: ["בחירה נבונה", "הבנה", "קריאה", "בריאות", "תחושת הצלחה"]

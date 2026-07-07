@@ -3,7 +3,8 @@
 
 countable_items: [bottle, ball, flag, hoop, bag, shoes, cone, water, medal, whistle, cup, hat, net,
   cat, dog, bird, fish, rabbit, turtle, bee, butterfly, lion, frog,
-  hand, eye, nose, ear, mouth, leg, tooth, heart, finger, tongue]
+  hand, eye, nose, ear, mouth, leg, tooth, heart, finger, tongue,
+  apple, banana, carrot, lemon, corn, strawberry, egg, orange, milk, grapes, cheese]
 
 number_ranges:
   grade_1:    { min: 1, max: 10 }   # מנייה עד 10

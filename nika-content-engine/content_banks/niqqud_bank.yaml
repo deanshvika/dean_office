@@ -89,3 +89,16 @@ items:
   heart:  { plain: "לב",    niqqud: "לֵב",     plural_plain: "לבבות",   plural_niqqud: "לְבָבוֹת",  en: "heart",  emoji: "❤️" }
   finger: { plain: "אצבע",  niqqud: "אֶצְבַּע", plural_plain: "אצבעות",  plural_niqqud: "אֶצְבָּעוֹת", en: "finger", emoji: "👆" }
   tongue: { plain: "לשון",  niqqud: "לָשׁוֹן", plural_plain: "לשונות",  plural_niqqud: "לְשׁוֹנוֹת", en: "tongue", emoji: "👅" }
+
+  # --- מחזור 4: אוכל בריא (פריטי-אימוג'י) ---
+  apple:      { plain: "תפוח",   niqqud: "תַּפּוּחַ",  plural_plain: "תפוחים",  plural_niqqud: "תַּפּוּחִים",  en: "apple",      emoji: "🍎" }
+  banana:     { plain: "בננה",   niqqud: "בָּנָנָה",   plural_plain: "בננות",   plural_niqqud: "בָּנָנוֹת",   en: "banana",     emoji: "🍌" }
+  carrot:     { plain: "גזר",    niqqud: "גֶּזֶר",     plural_plain: "גזרים",   plural_niqqud: "גְּזָרִים",   en: "carrot",     emoji: "🥕" }
+  lemon:      { plain: "לימון",  niqqud: "לִימוֹן",    plural_plain: "לימונים", plural_niqqud: "לִימוֹנִים", en: "lemon",      emoji: "🍋" }
+  corn:       { plain: "תירס",   niqqud: "תִּירָס",    plural_plain: "תירסים",  plural_niqqud: "תִּירָסִים", en: "corn",       emoji: "🌽" }
+  strawberry: { plain: "תות",    niqqud: "תּוּת",      plural_plain: "תותים",   plural_niqqud: "תּוּתִים",   en: "strawberry", emoji: "🍓" }
+  egg:        { plain: "ביצה",   niqqud: "בֵּיצָה",    plural_plain: "ביצים",   plural_niqqud: "בֵּיצִים",   en: "egg",        emoji: "🥚" }
+  orange:     { plain: "תפוז",   niqqud: "תַּפּוּז",   plural_plain: "תפוזים",  plural_niqqud: "תַּפּוּזִים",  en: "orange",     emoji: "🍊" }
+  milk:       { plain: "חלב",    niqqud: "חָלָב",      plural_plain: "חלב",     plural_niqqud: "חָלָב",      en: "milk",       emoji: "🥛" }
+  grapes:     { plain: "ענבים",  niqqud: "עֲנָבִים",   plural_plain: "ענבים",   plural_niqqud: "עֲנָבִים",   en: "grapes",     emoji: "🍇" }
+  cheese:     { plain: "גבינה",  niqqud: "גְּבִינָה",  plural_plain: "גבינות",  plural_niqqud: "גְּבִינוֹת", en: "cheese",     emoji: "🧀" }
