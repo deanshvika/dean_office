@@ -1,0 +1,149 @@
+# ── מחזור 5 · יום 15 · אנגלית · שכבה א' ─────────────────────────────
+# עולם תוכן: בית הספר והחברים | ערך: עזרה הדדית
+# בידול מ"שפה" (#14): אנגלית על סט pencil/pen/clock/bell/letter
+#   (עברית עובדת על ספר/מחברת/סרגל/מספריים/ילקוט). כמעט בלי חפיפה → לא תרגום.
+# מדיניות: הוראות/פתיח עברית מנוקדות; אנגלית plain. פריטי-אימוג'י מהבנק.
+
+day_id: grade_1_english_day_15
+subject: english
+audience: grade_1
+niqqud: true
+day_label: "יוֹם 15 – School: Words and Pictures"
+title: "In the classroom"
+core_skill: "אוצר מילים באנגלית: זיהוי מילה↔תמונה (בית הספר)"
+subskills:
+  - "התאמת מילה באנגלית לתמונה של כלי כיתה"
+  - "בחירת המילה הנכונה לפי תמונה"
+  - "זיהוי מילה מבין ארבע אפשרויות"
+theme: "בית הספר והחברים"
+leading_value: "עזרה הדדית"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · word → picture ─────────────────────────────
+  beginner:
+    level: beginner
+    intro: "לִכְלֵי הַכִּתָּה יֵשׁ שֵׁמוֹת גַּם בְּאַנְגְּלִית. בּוֹאוּ נַכִּיר אוֹתָם וְנַעֲזֹר זֶה לָזֶה."
+    instruction: "Read or listen to the word. Circle the matching picture."
+    example:
+      type: word_picture
+      item: pencil
+      word: "pencil"
+      word_label: "Word:"
+      distractors: [clock, bell]
+      caption: "Circle: pencil"
+    tasks:
+      - { type: word_picture, item: pen,    word: "pen",    word_label: "Word:", distractors: [letter, clock] }
+      - { type: word_picture, item: clock,  word: "clock",  word_label: "Word:", distractors: [bell, pencil] }
+      - { type: word_picture, item: bell,   word: "bell",   word_label: "Word:", distractors: [pen, letter] }
+      - { type: word_picture, item: letter, word: "letter", word_label: "Word:", distractors: [clock, pen] }
+    encouraging_message: "In NIKA we help each other. We learn the words together."
+    quick_check:
+      type: word_picture
+      item: clock
+      word: "clock"
+      word_label: "Word:"
+      distractors: [pencil, bell]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Point to one classroom object and say its name in English."
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — לוֹמְדִים, מְנַסִּים וְעוֹזְרִים זֶה לָזֶה."
+
+  # ── עמוד 2 · ממשיכים · picture → word ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עַכְשָׁיו נִסְתַּכֵּל עַל הַכְּלִי וְנִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה בְּאַנְגְּלִית."
+    instruction: "Look at the object and choose the correct word."
+    example:
+      type: pic_word
+      item: pencil
+      distractors: [pen, clock]
+      caption: "Choose the word for the picture: pencil"
+    tasks:
+      - { type: pic_word, item: pen,    distractors: [bell, pencil] }
+      - { type: pic_word, item: clock,  distractors: [letter, pen] }
+      - { type: pic_word, item: bell,   distractors: [pencil, clock] }
+      - { type: pic_word, item: letter, distractors: [pen, bell] }
+    encouraging_message: "When we look closely and help a friend, we all learn."
+    quick_check:
+      type: pic_word
+      item: bell
+      distractors: [pencil, clock]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Point to an object. Can your friend say the word in English?"
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — מְנַסִּים, עוֹזְרִים וּמַצְלִיחִים."
+
+  # ── עמוד 3 · אתגר · picture → word עם 4 אפשרויות ──────────────────
+  challenge:
+    level: challenge
+    intro: "עַכְשָׁיו נִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה בְּאַנְגְּלִית מִבֵּין אַרְבַּע מִלִּים."
+    instruction: "Look at the object and choose the correct word (4 choices)."
+    example:
+      type: pic_word
+      item: pencil
+      distractors: [pen, clock, bell]
+      caption: "Choose the word: pencil"
+    tasks:
+      - { type: pic_word, item: clock,  distractors: [pencil, pen, letter] }
+      - { type: pic_word, item: letter, distractors: [bell, clock, pen] }
+    encouraging_message: "Great! Everyone can learn the classroom words."
+    quick_check:
+      type: pic_word
+      item: pen
+      distractors: [pencil, clock, bell]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Name one more classroom object in English you know."
+    footer: "בְּנִיקָה אֲנַחְנוּ מִתְקַדְּמִים — כָּל יוֹם צַעַד קָטָן קָדִימָה."
+
+  # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "זיהוי מילה באנגלית לפי תמונה של כלי כיתה"
+      - "בחירת המילה הנכונה לפי תמונה"
+      - "זיהוי מילה מבין ארבע אפשרויות"
+      - "חשיפה מוקדמת ובטוחה לאנגלית (שמיעה+זיהוי)"
+    leading_value:
+      name: "עזרה הדדית"
+      text: "בכיתה עוזרים זה לזה — לומדים את שמות הכלים באנגלית ומתרגלים לעזור לחבר שמתקשה."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לילדים שצריכים כניסה פשוטה:"
+        points: ["שמיעת מילה באנגלית", "זיהוי הכלי המתאים", "בחירה בין 3 אפשרויות"]
+      - level: mid
+        audience: "מיועד לילדים שיכולים:"
+        points: ["להסתכל על תמונה ולבחור מילה", "לזהות שם כלי באנגלית", "להבחין בין מילים דומות"]
+      - level: challenge
+        audience: "מיועד לילדים שיכולים:"
+        points: ["לזהות מילה מבין ארבע אפשרויות", "להבחין בין שמות כלים", "לשמוע/לומר מילה בביטחון"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את שם הכלי באנגלית בקול ולבקש לחזור"
+      - "באתגר — להצביע על הכלי ולומר את ארבע המילים לפני הבחירה"
+      - "לחבר לערך: 'איך היית עוזר לחבר עם הכלי הזה?'"
+      - "להקטין מספר אפשרויות אם צריך"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לחזור על המילה כמה פעמים"
+      - "לחבר בין המילה לכלי אמיתי (להראות/להצביע)"
+      - "לתת בחירה בין שתי תשובות במקום שלוש"
+      - "לאפשר לענות בהצבעה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לומר שם כלי נוסף באנגלית"
+      - "לבקש להצביע על כלי ולומר את שמו"
+    coach_message:
+      lead: "הדגש הוא לא על 'מבטא מושלם', אלא על:"
+      values: ["עזרה הדדית", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]
+    phrases:
+      - "Great try."
+      - "You help your friends."
+      - "You found the object."
+      - "You helped your friend."
+      - "You kept going."
+    footer_legend: ["עזרה הדדית", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]

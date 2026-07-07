@@ -102,3 +102,15 @@ items:
   milk:       { plain: "חלב",    niqqud: "חָלָב",      plural_plain: "חלב",     plural_niqqud: "חָלָב",      en: "milk",       emoji: "🥛" }
   grapes:     { plain: "ענבים",  niqqud: "עֲנָבִים",   plural_plain: "ענבים",   plural_niqqud: "עֲנָבִים",   en: "grapes",     emoji: "🍇" }
   cheese:     { plain: "גבינה",  niqqud: "גְּבִינָה",  plural_plain: "גבינות",  plural_niqqud: "גְּבִינוֹת", en: "cheese",     emoji: "🧀" }
+
+  # --- מחזור 5: בית הספר והחברים (פריטי-אימוג'י) ---
+  book:     { plain: "ספר",     niqqud: "סֵפֶר",      plural_plain: "ספרים",   plural_niqqud: "סְפָרִים",   en: "book",     emoji: "📚" }
+  notebook: { plain: "מחברת",   niqqud: "מַחְבֶּרֶת",  plural_plain: "מחברות",  plural_niqqud: "מַחְבָּרוֹת", en: "notebook", emoji: "📓" }
+  ruler:    { plain: "סרגל",    niqqud: "סַרְגֵּל",    plural_plain: "סרגלים",  plural_niqqud: "סַרְגְּלִים", en: "ruler",    emoji: "📏" }
+  scissors: { plain: "מספריים", niqqud: "מִסְפָּרַיִם", plural_plain: "מספריים", plural_niqqud: "מִסְפָּרַיִם", en: "scissors", emoji: "✂️" }
+  backpack: { plain: "ילקוט",   niqqud: "יַלְקוּט",    plural_plain: "ילקוטים", plural_niqqud: "יַלְקוּטִים", en: "backpack", emoji: "🎒" }
+  pencil:   { plain: "עיפרון",  niqqud: "עִפָּרוֹן",   plural_plain: "עפרונות", plural_niqqud: "עֶפְרוֹנוֹת", en: "pencil",   emoji: "✏️" }
+  pen:      { plain: "עט",      niqqud: "עֵט",        plural_plain: "עטים",    plural_niqqud: "עֵטִים",     en: "pen",      emoji: "🖊️" }
+  clock:    { plain: "שעון",    niqqud: "שָׁעוֹן",     plural_plain: "שעונים",  plural_niqqud: "שְׁעוֹנִים",  en: "clock",    emoji: "⏰" }
+  bell:     { plain: "פעמון",   niqqud: "פַּעֲמוֹן",   plural_plain: "פעמונים", plural_niqqud: "פַּעֲמוֹנִים", en: "bell",     emoji: "🔔" }
+  letter:   { plain: "מכתב",    niqqud: "מִכְתָּב",    plural_plain: "מכתבים",  plural_niqqud: "מִכְתָּבִים", en: "letter",   emoji: "✉️" }

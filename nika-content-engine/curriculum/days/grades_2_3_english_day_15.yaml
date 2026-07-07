@@ -1,0 +1,151 @@
+# ── מחזור 5 · יום 15 · אנגלית · שכבות ב-ג ─────────────────────────────
+# עולם תוכן: בית הספר והחברים | ערך: עזרה הדדית
+# ב-ג: מתחילים=picture→word(4) · ממשיכים=spell_choice · אתגר=complete sentence
+# בידול מ"שפה": אנגלית על סט pencil/pen/clock/bell/letter. איות שגוי = אי-מילה ברורה.
+# שכבות ב-ג = ללא ניקוד (הוראות עברית plain; אנגלית plain). פריטי-אימוג'י מהבנק.
+
+day_id: grades_2_3_english_day_15
+subject: english
+audience: grades_2_3
+niqqud: false
+day_label: "יום 15 – School: Words and Spelling"
+title: "Help in the classroom"
+core_skill: "אוצר בית ספר באנגלית, זיהוי מילה, איות נכון והשלמת משפט"
+subskills:
+  - "זיהוי שם כלי כיתה לפי תמונה (4 אפשרויות)"
+  - "בחירת האיות הנכון של שם כלי"
+  - "השלמת משפט מבנק מילים"
+theme: "בית הספר והחברים"
+leading_value: "עזרה הדדית"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · picture → word (4 אפשרויות) ─────────
+  beginner:
+    level: beginner
+    intro: "בשכבות ב-ג מרחיבים את אוצר בית הספר באנגלית. הסתכלו על הכלי ובחרו את המילה הנכונה מבין ארבע."
+    instruction: "Look at the object and choose the correct word (4 choices)."
+    example:
+      type: pic_word
+      item: pencil
+      distractors: [pen, clock, bell]
+      caption: "Choose the word: pencil"
+    tasks:
+      - { type: pic_word, item: pen,    distractors: [pencil, letter, clock] }
+      - { type: pic_word, item: clock,  distractors: [bell, pen, letter] }
+      - { type: pic_word, item: bell,   distractors: [clock, pencil, pen] }
+      - { type: pic_word, item: letter, distractors: [pen, bell, clock] }
+    encouraging_message: "In NIKA we help each other. Everyone can learn new words."
+    quick_check:
+      type: pic_word
+      item: clock
+      distractors: [pencil, pen, bell]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Write two English classroom words you know."
+    footer: "בניקה מתקדמים יחד — לומדים, מנסים ועוזרים זה לזה."
+
+  # ── עמוד 2 · ממשיכים · spell_choice ─────────────
+  mid:
+    level: mid
+    intro: "עכשיו נקרא בדיוק: לכל כלי נבחר את המילה שכתובה נכון באנגלית."
+    instruction: "Look at the object. Choose the word that is spelled correctly."
+    example:
+      type: spell_choice
+      item: pencil
+      options: [pencil, pensil, pencle]
+      answer: pencil
+      caption: "The correct spelling is: pencil"
+    tasks:
+      - { type: spell_choice, item: pen,    options: [pen, pehn, pne],        answer: pen }
+      - { type: spell_choice, item: clock,  options: [clock, clok, cloc],     answer: clock }
+      - { type: spell_choice, item: bell,   options: [bell, behl, belll],     answer: bell }
+      - { type: spell_choice, item: letter, options: [letter, leter, lettar], answer: letter }
+    encouraging_message: "When we practice together, everyone improves — step by step."
+    quick_check:
+      type: spell_choice
+      item: clock
+      options: [clock, klock, cloock]
+      answer: clock
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Point to an object and say the word in English to a friend."
+    footer: "בניקה מתקדמים יחד — מנסים, מתמידים ועוזרים."
+
+  # ── עמוד 3 · אתגר · complete sentence ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עכשיו נקרא משפט באנגלית על הכיתה ונשלים אותו מתוך בנק מילים."
+    instruction: "Read the sentence and choose the correct word from the word bank."
+    example:
+      type: complete_sentence
+      sentence: "I lend my ___ to a friend."
+      word_bank: [pen, clock, bell]
+      answer: pen
+      item: pen
+      caption: "The word that fits is: pen"
+    tasks:
+      - { type: complete_sentence, sentence: "I look at the ___ to see the time.", word_bank: [clock, pen, letter], answer: clock, item: clock }
+      - { type: complete_sentence, sentence: "The ___ rings at the end of class.",  word_bank: [bell, pen, clock],  answer: bell,  item: bell }
+    encouraging_message: "Great! When we help each other, we all find the right word."
+    quick_check:
+      type: complete_sentence
+      sentence: "I send a ___ to my friend."
+      word_bank: [letter, pen, clock]
+      answer: letter
+      item: letter
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Write your own short sentence in English about the classroom."
+    footer: "בניקה אנחנו מתקדמים — כל יום צעד קטן קדימה, ביחד."
+
+  # ── דף מדריך/ה ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "זיהוי שם כלי כיתה לפי תמונה (4 אפשרויות)"
+      - "בחירת האיות הנכון של מילה"
+      - "השלמת משפט קצר מבנק מילים"
+      - "קריאה ואיות מדויקים באנגלית"
+    leading_value:
+      name: "עזרה הדדית"
+      text: "בכיתה עוזרים זה לזה — לומדים את שמות הכלים באנגלית ומתרגלים לעזור לחבר שמתקשה."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לזהות כלי לפי תמונה", "לבחור מבין 4 אפשרויות", "אוצר בית ספר מורחב"]
+      - level: mid
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא מילה בדיוק", "לבחור את האיות הנכון", "להבחין בין איות נכון לשגוי"]
+      - level: challenge
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא משפט קצר באנגלית", "לבחור מילה מבנק מילים", "להשלים משפט לפי ההקשר"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את שם הכלי באנגלית בקול ולבקש לחזור"
+      - "באיות — להשוות אות-אות בין האפשרויות ולמצוא את השגיאה"
+      - "במשפט — לקרוא יחד ולבדוק איזה כלי הגיוני"
+      - "לחבר לערך: 'איך היית עוזר לחבר עם הכלי הזה?'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לחזור על המילה כמה פעמים"
+      - "לחבר בין המילה לכלי אמיתי (להראות/להצביע)"
+      - "לתת בחירה בין שתי תשובות במקום שלוש"
+      - "לאפשר תשובה בהצבעה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לומר משפט קצר באנגלית על הכיתה"
+      - "לבקש להצביע על כלי נוסף ולומר את שמו"
+    coach_message:
+      lead: "הדגש הוא לא על 'מבטא מושלם', אלא על:"
+      values: ["עזרה הדדית", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]
+    phrases:
+      - "Great try."
+      - "You help your friends."
+      - "You read it well."
+      - "You helped your friend."
+      - "You kept going."
+    footer_legend: ["עזרה הדדית", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]

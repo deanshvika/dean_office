@@ -1,0 +1,148 @@
+# ── מחזור 5 · יום 14 · שפה · שכבה א' ─────────────────────────────
+# עולם תוכן: בית הספר והחברים | ערך: חברות
+# דרגות קושי: מתחילים=מילה→תמונה · ממשיכים=תמונה→מילה · אתגר=אות חסרה
+# ★ בידול מ"אנגלית": עברית על סט ספר/מחברת/סרגל/מספריים/ילקוט (אנגלית על pencil/pen/clock/bell/letter).
+# שפה שכבה א' = ניקוד מלא; מילים ואותיות מהבנק המנוקד.
+
+day_id: grade_1_language_day_14
+subject: language
+audience: grade_1
+niqqud: true
+day_label: "יוֹם 14 – בֵּית הַסֵּפֶר: מִלָּה, תְּמוּנָה וְאוֹת"
+title: "כְּלֵי הַכִּתָּה שֶׁלָּנוּ"
+core_skill: "זיהוי מילה, קריאתה, וניתוח האות החסרה — בעולם בית הספר"
+subskills:
+  - "התאמת מילה לתמונה של כלי כיתה"
+  - "קריאת מילה ובחירתה"
+  - "זיהוי אות חסרה במילה"
+theme: "בית הספר והחברים"
+leading_value: "חברות"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · מילה → תמונה ─────────────────────────────
+  beginner:
+    level: beginner
+    intro: "בַּכִּתָּה יֵשׁ הַרְבֵּה כֵּלִים. בּוֹאוּ נַכִּיר אוֹתָם וְנִלְמַד לַחֲלֹק עִם חֲבֵרִים."
+    instruction: "קִרְאוּ אֶת הַמִּלָּה, וְהַקִּיפוּ אֶת הַתְּמוּנָה הַמַּתְאִימָה."
+    example:
+      type: word_picture
+      item: book
+      distractors: [ruler, notebook]
+      caption: "מַקִּיפִים אֶת הַתְּמוּנָה הַמַּתְאִימָה."
+    tasks:
+      - { type: word_picture, item: notebook, distractors: [book, backpack] }
+      - { type: word_picture, item: ruler,    distractors: [scissors, book] }
+      - { type: word_picture, item: scissors, distractors: [backpack, ruler] }
+      - { type: word_picture, item: backpack, distractors: [notebook, scissors] }
+    encouraging_message: "כְּשֶׁאֲנַחְנוּ מַכִּירִים אֶת הַכֵּלִים, קַל יוֹתֵר לַעֲזֹר וְלַחֲלֹק עִם חֲבֵרִים."
+    quick_check:
+      type: word_picture
+      item: book
+      distractors: [scissors, backpack]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "הַרְאוּ כְּלִי כִּתָּה אֶחָד וְאִמְרוּ אֶת הַשֵּׁם שֶׁלּוֹ."
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — קוֹרְאִים, מְנַסִּים וְחוֹלְקִים עִם חֲבֵרִים."
+
+  # ── עמוד 2 · ממשיכים · תמונה → מילה ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עַכְשָׁיו נִסְתַּכֵּל עַל הַתְּמוּנָה וְנִבְחַר אֶת הַמִּלָּה הַנְּכוֹנָה."
+    instruction: "הִסְתַּכְּלוּ עַל הַתְּמוּנָה וְסַמְּנוּ אֶת הַמִּלָּה הַמַּתְאִימָה."
+    example:
+      type: pic_word
+      item: book
+      distractors: [ruler, scissors]
+      caption: "בּוֹחֲרִים אֶת הַמִּלָּה הַמַּתְאִימָה לַתְּמוּנָה."
+    tasks:
+      - { type: pic_word, item: notebook, distractors: [book, backpack] }
+      - { type: pic_word, item: ruler,    distractors: [scissors, notebook] }
+      - { type: pic_word, item: scissors, distractors: [book, ruler] }
+      - { type: pic_word, item: backpack, distractors: [notebook, scissors] }
+    encouraging_message: "כְּשֶׁאֲנַחְנוּ מְנַסִּים שׁוּב וְעוֹזְרִים זֶה לָזֶה, אֲנַחְנוּ לוֹמְדִים וּמִתְקַדְּמִים."
+    quick_check:
+      type: pic_word
+      item: ruler
+      distractors: [book, backpack]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "אִמְרוּ מִלָּה שֶׁל כְּלִי כִּתָּה לְחָבֵר, וּבִדְקוּ אִם מָצָא אוֹתָהּ."
+    footer: "בְּנִיקָה מִתְקַדְּמִים יַחַד — מְנַסִּים, עוֹזְרִים וְלוֹמְדִים."
+
+  # ── עמוד 3 · אתגר · אות חסרה ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עַכְשָׁיו נִמְצָא אֵיזוֹ אוֹת חֲסֵרָה בְּשֵׁם הַכְּלִי, וְנַשְׁלִים אוֹתָהּ."
+    instruction: "הַשְׁלִימוּ אֶת הָאוֹת הַחֲסֵרָה בְּכָל מִלָּה."
+    example:
+      type: missing_letter
+      item: book
+      answer: "פ"
+      options: ["פ", "מ", "ל"]
+      caption: "מַשְׁלִימִים אֶת הָאוֹת הַחֲסֵרָה בַּמִּלָּה."
+    tasks:
+      - { type: missing_letter, item: notebook, answer: "ב", options: ["ב", "ס", "ל"] }
+      - { type: missing_letter, item: ruler,    answer: "ג", options: ["ג", "מ", "ת"] }
+      - { type: missing_letter, item: scissors, answer: "ס", options: ["ס", "ל", "ת"] }
+    encouraging_message: "מַאֲמָץ, קְרִיאָה וַחֲבֵרוּת עוֹזְרִים לָנוּ לְהִשְׁתַּפֵּר בְּכָל יוֹם."
+    quick_check:
+      type: missing_letter
+      item: backpack
+      answer: "ק"
+      options: ["ק", "מ", "ב"]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "הַמְצִיאוּ מִשְׁפָּט קָצָר עַל אֵיךְ עוֹזְרִים לְחָבֵר בַּכִּתָּה."
+    footer: "בְּנִיקָה אֲנַחְנוּ מִתְקַדְּמִים — כָּל יוֹם צַעַד קָטָן קָדִימָה."
+
+  # ── דף מדריך/ה (ללא ניקוד) ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "התאמת שם כלי כיתה לתמונה (זיהוי)"
+      - "בחירת המילה הנכונה לפי תמונה (קריאה)"
+      - "זיהוי והשלמת אות חסרה (ניתוח)"
+      - "חיזוק הקשר בין צליל, אות ומילה"
+    leading_value:
+      name: "חברות"
+      text: "כלי הכיתה הם הזדמנות לחברות — לומדים לחלוק עיפרון, לעזור לחבר ולעבוד יחד."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לילדים שצריכים כניסה פשוטה:"
+        points: ["שמיעת מילה", "זיהוי הכלי המתאים", "בחירה בין 3 אפשרויות"]
+      - level: mid
+        audience: "מיועד לילדים שיכולים:"
+        points: ["להסתכל על תמונה ולקרוא", "לבחור את המילה הנכונה", "להבחין בין מילים דומות"]
+      - level: challenge
+        audience: "מיועד לילדים שיכולים:"
+        points: ["לקרוא מילה בביטחון יחסי", "לזהות איזו אות חסרה", "להשלים את המילה"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את שם הכלי בקול ברור ולבקש מהילד לחזור"
+      - "בעמוד האות החסרה — לקרוא את המילה בלי האות ולשאול 'איזה צליל חסר?'"
+      - "לחבר לערך: 'איך היית עוזר לחבר עם הכלי הזה?'"
+      - "אם צריך, להישאר רק בעמוד 'מתחילים'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לומר את המילה בקול שוב ושוב"
+      - "להשתמש בכרטיסיות מילה/אות נפרדות"
+      - "להקטין מספר אפשרויות אם צריך"
+      - "לאפשר תשובה בהצבעה או בעל פה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לומר שם כלי כיתה נוסף"
+      - "לבקש לייצר משפט קצר מאוד"
+    coach_message:
+      lead: "הדגש הוא לא על 'קריאה מושלמת', אלא על:"
+      values: ["חברות", "קריאה", "חזרתיות", "ביטחון"]
+    phrases:
+      - "כל הכבוד שקראת."
+      - "יפה שעזרת לחבר."
+      - "מצאת את האות החסרה."
+      - "קראת שוב וזה מעולה."
+      - "התקדמת יפה."
+    footer_legend: ["חברות", "קריאה", "חזרתיות", "ביטחון", "תחושת הצלחה"]
