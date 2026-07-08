@@ -114,3 +114,15 @@ items:
   clock:    { plain: "שעון",    niqqud: "שָׁעוֹן",     plural_plain: "שעונים",  plural_niqqud: "שְׁעוֹנִים",  en: "clock",    emoji: "⏰" }
   bell:     { plain: "פעמון",   niqqud: "פַּעֲמוֹן",   plural_plain: "פעמונים", plural_niqqud: "פַּעֲמוֹנִים", en: "bell",     emoji: "🔔" }
   letter:   { plain: "מכתב",    niqqud: "מִכְתָּב",    plural_plain: "מכתבים",  plural_niqqud: "מִכְתָּבִים", en: "letter",   emoji: "✉️" }
+
+  # --- מחזור 6: טבע וסביבה (פריטי-אימוג'י) ---
+  flower:  { plain: "פרח",    niqqud: "פֶּרַח",     plural_plain: "פרחים",  plural_niqqud: "פְּרָחִים",  en: "flower",  emoji: "🌷" }
+  leaf:    { plain: "עלה",    niqqud: "עָלֶה",      plural_plain: "עלים",   plural_niqqud: "עָלִים",    en: "leaf",    emoji: "🍃" }
+  cloud:   { plain: "ענן",    niqqud: "עָנָן",      plural_plain: "עננים",  plural_niqqud: "עֲנָנִים",   en: "cloud",   emoji: "☁️" }
+  rainbow: { plain: "קשת",    niqqud: "קֶשֶׁת",     plural_plain: "קשתות",  plural_niqqud: "קְשָׁתוֹת",  en: "rainbow", emoji: "🌈" }
+  forest:  { plain: "יער",    niqqud: "יַעַר",      plural_plain: "יערות",  plural_niqqud: "יְעָרוֹת",   en: "forest",  emoji: "🌲" }
+  sun:     { plain: "שמש",    niqqud: "שֶׁמֶשׁ",    plural_plain: "שמשות",  plural_niqqud: "שְׁמָשׁוֹת", en: "sun",     emoji: "☀️" }
+  star:    { plain: "כוכב",   niqqud: "כּוֹכָב",    plural_plain: "כוכבים", plural_niqqud: "כּוֹכָבִים", en: "star",    emoji: "⭐" }
+  moon:    { plain: "ירח",    niqqud: "יָרֵחַ",     plural_plain: "ירחים",  plural_niqqud: "יְרֵחִים",   en: "moon",    emoji: "🌙" }
+  rain:    { plain: "גשם",    niqqud: "גֶּשֶׁם",    plural_plain: "גשמים",  plural_niqqud: "גְּשָׁמִים", en: "rain",    emoji: "🌧️" }
+  tree:    { plain: "עץ",     niqqud: "עֵץ",        plural_plain: "עצים",   plural_niqqud: "עֵצִים",    en: "tree",    emoji: "🌳" }

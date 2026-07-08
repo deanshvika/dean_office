@@ -1,0 +1,151 @@
+# ── מחזור 6 · יום 18 · אנגלית · שכבות ב-ג ─────────────────────────────
+# עולם תוכן: טבע וסביבה | ערך: הערכת הטבע
+# ב-ג: מתחילים=picture→word(4) · ממשיכים=spell_choice · אתגר=complete sentence
+# בידול מ"שפה": אנגלית על סט sun/star/moon/rain/tree. איות שגוי = אי-מילה ברורה.
+# שכבות ב-ג = ללא ניקוד (הוראות עברית plain; אנגלית plain). פריטי-אימוג'י מהבנק.
+
+day_id: grades_2_3_english_day_18
+subject: english
+audience: grades_2_3
+niqqud: false
+day_label: "יום 18 – Nature: Words and Spelling"
+title: "We love nature"
+core_skill: "אוצר טבע באנגלית, זיהוי מילה, איות נכון והשלמת משפט"
+subskills:
+  - "זיהוי שם פריט טבע לפי תמונה (4 אפשרויות)"
+  - "בחירת האיות הנכון של שם פריט טבע"
+  - "השלמת משפט מבנק מילים"
+theme: "טבע וסביבה"
+leading_value: "הערכת הטבע"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · picture → word (4 אפשרויות) ─────────
+  beginner:
+    level: beginner
+    intro: "בשכבות ב-ג מרחיבים את אוצר הטבע באנגלית. הסתכלו על התמונה ובחרו את המילה הנכונה מבין ארבע."
+    instruction: "Look at the picture and choose the correct word (4 choices)."
+    example:
+      type: pic_word
+      item: sun
+      distractors: [moon, star, tree]
+      caption: "Choose the word: sun"
+    tasks:
+      - { type: pic_word, item: star, distractors: [sun, rain, tree] }
+      - { type: pic_word, item: moon, distractors: [tree, sun, star] }
+      - { type: pic_word, item: rain, distractors: [moon, sun, tree] }
+      - { type: pic_word, item: tree, distractors: [star, rain, moon] }
+    encouraging_message: "In NIKA we love nature. Everyone can learn new words."
+    quick_check:
+      type: pic_word
+      item: moon
+      distractors: [sun, star, tree]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Write two English nature words you know."
+    footer: "בניקה מתקדמים יחד — לומדים, מנסים ואוהבים את הטבע."
+
+  # ── עמוד 2 · ממשיכים · spell_choice ─────────────
+  mid:
+    level: mid
+    intro: "עכשיו נקרא בדיוק: לכל תמונה נבחר את המילה שכתובה נכון באנגלית."
+    instruction: "Look at the picture. Choose the word that is spelled correctly."
+    example:
+      type: spell_choice
+      item: sun
+      options: [sun, suhn, snun]
+      answer: sun
+      caption: "The correct spelling is: sun"
+    tasks:
+      - { type: spell_choice, item: star, options: [star, staar, stur],  answer: star }
+      - { type: spell_choice, item: moon, options: [moon, moone, muun],  answer: moon }
+      - { type: spell_choice, item: rain, options: [rain, rane, rian],   answer: rain }
+      - { type: spell_choice, item: tree, options: [tree, tre, treee],   answer: tree }
+    encouraging_message: "When we practice together, everyone improves — step by step."
+    quick_check:
+      type: spell_choice
+      item: sun
+      options: [sun, suun, snu]
+      answer: sun
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Point to a picture and say the word in English to a friend."
+    footer: "בניקה מתקדמים יחד — מנסים, מתמידים ואוהבים."
+
+  # ── עמוד 3 · אתגר · complete sentence ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עכשיו נקרא משפט באנגלית על הטבע ונשלים אותו מתוך בנק מילים."
+    instruction: "Read the sentence and choose the correct word from the word bank."
+    example:
+      type: complete_sentence
+      sentence: "The ___ shines in the day."
+      word_bank: [sun, moon, tree]
+      answer: sun
+      item: sun
+      caption: "The word that fits is: sun"
+    tasks:
+      - { type: complete_sentence, sentence: "I climb a tall ___.",           word_bank: [tree, sun, rain],  answer: tree, item: tree }
+      - { type: complete_sentence, sentence: "I open my umbrella in the ___.", word_bank: [rain, moon, star],  answer: rain, item: rain }
+    encouraging_message: "Great! When we love nature, we all find the right word."
+    quick_check:
+      type: complete_sentence
+      sentence: "At night the ___ shines in the sky."
+      word_bank: [moon, sun, tree]
+      answer: moon
+      item: moon
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "Write your own short sentence in English about nature."
+    footer: "בניקה אנחנו מתקדמים — כל יום צעד קטן קדימה, ביחד."
+
+  # ── דף מדריך/ה ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "זיהוי שם פריט טבע לפי תמונה (4 אפשרויות)"
+      - "בחירת האיות הנכון של מילה"
+      - "השלמת משפט קצר מבנק מילים"
+      - "קריאה ואיות מדויקים באנגלית"
+    leading_value:
+      name: "הערכת הטבע"
+      text: "הכרת הטבע באנגלית מחזקת אהבה והערכה — לומדים להתפעל מהשמש, הירח והעצים סביבנו."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לזהות פריט טבע לפי תמונה", "לבחור מבין 4 אפשרויות", "אוצר טבע מורחב"]
+      - level: mid
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא מילה בדיוק", "לבחור את האיות הנכון", "להבחין בין איות נכון לשגוי"]
+      - level: challenge
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא משפט קצר באנגלית", "לבחור מילה מבנק מילים", "להשלים משפט לפי ההקשר"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לומר את שם פריט הטבע באנגלית בקול ולבקש לחזור"
+      - "באיות — להשוות אות-אות בין האפשרויות ולמצוא את השגיאה"
+      - "במשפט — לקרוא יחד ולבדוק איזה פריט טבע הגיוני"
+      - "לחבר לערך: 'מה יפה בפריט הזה בטבע?'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "לחזור על המילה כמה פעמים"
+      - "לחבר בין המילה לפריט אמיתי בטבע (להראות/להצביע)"
+      - "לתת בחירה בין שתי תשובות במקום שלוש"
+      - "לאפשר תשובה בהצבעה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לומר משפט קצר באנגלית על הטבע"
+      - "לבקש להצביע על פריט טבע נוסף ולומר את שמו"
+    coach_message:
+      lead: "הדגש הוא לא על 'מבטא מושלם', אלא על:"
+      values: ["הערכת הטבע", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]
+    phrases:
+      - "Great try."
+      - "You love nature."
+      - "You read it well."
+      - "You helped your friend."
+      - "You kept going."
+    footer_legend: ["הערכת הטבע", "ניסיון", "חזרתיות", "ביטחון", "תחושת הצלחה"]

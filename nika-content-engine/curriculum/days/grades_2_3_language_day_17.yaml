@@ -1,0 +1,157 @@
+# ── מחזור 6 · יום 17 · שפה · שכבות ב-ג ─────────────────────────────
+# עולם תוכן: טבע וסביבה | ערך: אחריות סביבתית
+# שכבות ב-ג = ללא ניקוד. מתחילים=תמונה→מילה · ממשיכים=בחירת מילה למשפט · אתגר=הבנת הנקרא
+# ★ פריטי-אימוג'י (טבע): עברית על פרח/עלה/ענן/קשת/יער (בידול מ-sun/star/... האנגלי).
+
+day_id: grades_2_3_language_day_17
+subject: language
+audience: grades_2_3
+niqqud: false
+day_label: "יום 17 – טבע: קריאה, משפט והבנה"
+title: "אחראים על הטבע"
+core_skill: "קריאה שוטפת, בחירת מילה למשפט והבנת הנקרא"
+subskills:
+  - "קריאת שם פריט טבע והתאמתו לתמונה"
+  - "בחירת המילה הנכונה למשפט"
+  - "הבנת קטע קצר על אחריות סביבתית"
+theme: "טבע וסביבה"
+leading_value: "אחריות סביבתית"
+
+pages:
+
+  # ── עמוד 1 · מתחילים · תמונה → מילה (4 אפשרויות) ──────
+  beginner:
+    level: beginner
+    intro: "בשכבות ב-ג קוראים בלי ניקוד. הסתכלו על התמונה מהטבע ובחרו את שמה הנכון מבין ארבע."
+    instruction: "הסתכלו על התמונה ובחרו את המילה המתאימה."
+    example:
+      type: pic_word
+      item: flower
+      distractors: [leaf, cloud, forest]
+      caption: "בוחרים את המילה המתאימה לתמונה."
+    tasks:
+      - { type: pic_word, item: leaf,    distractors: [flower, rainbow, forest] }
+      - { type: pic_word, item: cloud,   distractors: [rainbow, leaf, flower] }
+      - { type: pic_word, item: rainbow, distractors: [forest, cloud, leaf] }
+      - { type: pic_word, item: forest,  distractors: [flower, cloud, rainbow] }
+    encouraging_message: "כשמכירים את שמות הטבע, קל יותר להעריך אותו ולשמור עליו."
+    quick_check:
+      type: pic_word
+      item: cloud
+      distractors: [flower, leaf, forest]
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו שני דברים מהטבע שאתם מכירים."
+    footer: "בניקה מתקדמים יחד — קוראים, מנסים ושומרים על הטבע."
+
+  # ── עמוד 2 · ממשיכים · בחירת מילה למשפט ─────────────────────────────
+  mid:
+    level: mid
+    intro: "עכשיו נשלים משפטים על הטבע. בחרו את המילה שמתאימה לכל משפט."
+    instruction: "קראו את המשפט ובחרו מהמילים את המילה הנכונה."
+    example:
+      type: complete_sentence
+      sentence: "אחרי הגשם מופיעה בשמיים ___."
+      word_bank: [קשת, ענן, פרח]
+      answer: קשת
+      item: rainbow
+      caption: "המילה המתאימה: קשת."
+    tasks:
+      - { type: complete_sentence, sentence: "על הענף גדל ___ ירוק.", word_bank: [עלה, ענן, קשת], answer: עלה, item: leaf }
+      - { type: complete_sentence, sentence: "בגינה פורח ___ צבעוני.", word_bank: [פרח, יער, ענן], answer: פרח, item: flower }
+    encouraging_message: "כשאנחנו קוראים בזהירות ולוקחים אחריות, לומדים ושומרים על הטבע."
+    quick_check:
+      type: complete_sentence
+      sentence: "הרבה עצים יחד נקראים ___."
+      word_bank: [יער, קשת, עלה]
+      answer: יער
+      item: forest
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו משפט אחד על דבר יפה שראיתם בטבע."
+    footer: "בניקה מתקדמים יחד — קוראים, בוחרים ושומרים."
+
+  # ── עמוד 3 · אתגר · הבנת הנקרא ─────────────────────────────
+  challenge:
+    level: challenge
+    intro: "עכשיו נקרא קטעים קצרים על שמירה על הסביבה, ונענה על שאלה בכל קטע."
+    instruction: "קראו את הקטע וסמנו את התשובה הנכונה."
+    example:
+      type: reading_comprehension
+      passage: "דנה ראתה פסולת בגן. היא הרימה אותה וזרקה לפח."
+      question: "מה עשתה דנה?"
+      options: [הרימה את הפסולת, התעלמה, זרקה על הרצפה]
+      answer: הרימה את הפסולת
+    tasks:
+      - type: reading_comprehension
+        passage: "בכיתה למדו לכבות את האור כשיוצאים. כך חוסכים חשמל ושומרים על הסביבה."
+        question: "למה מכבים את האור?"
+        options: [כדי לחסוך חשמל, כדי שיהיה חושך, בשביל הכיף]
+        answer: כדי לחסוך חשמל
+      - type: reading_comprehension
+        passage: "רון השקה את העץ הקטן כל יום. אחרי חודש העץ גדל וצמח יפה."
+        question: "מה עשה רון כל יום?"
+        options: [השקה את העץ, שבר ענפים, לא עשה כלום]
+        answer: השקה את העץ
+    encouraging_message: "כשמבינים מה קראנו ולוקחים אחריות, הטבע נשאר נקי ובריא לכולם."
+    quick_check:
+      type: reading_comprehension
+      passage: "הילדים אספו בקבוקים ריקים למיחזור. כך הם עזרו לשמור על הסביבה."
+      question: "מה אספו הילדים?"
+      options: [בקבוקים למיחזור, ממתקים, צעצועים]
+      answer: בקבוקים למיחזור
+    success_reflection: [tried, improved, persevered]
+    bonus:
+      type: text
+      text: "כתבו משפט אחד: מה עשיתם היום כדי לשמור על הסביבה?"
+    footer: "בניקה אנחנו מתקדמים — כל יום צעד קטן קדימה, ביחד."
+
+  # ── דף מדריך/ה ─────────────────────────────
+  coach_guide:
+    daily_goal:
+      - "קריאת שם פריט טבע בלי ניקוד ובחירתו לפי תמונה"
+      - "בחירת מילה נכונה למשפט"
+      - "הבנת קטע קצר ומענה על שאלה"
+      - "חיבור הקריאה לאחריות סביבתית"
+    leading_value:
+      name: "אחריות סביבתית"
+      text: "הקטעים עוסקים במעשים אמיתיים לשמירה על הסביבה — הילדים לומדים שכל אחד אחראי לטבע שלו."
+    pages_overview:
+      - level: beginner
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא מילה בלי ניקוד", "לבחור מילה לפי תמונה", "בחירה בין 4 אפשרויות"]
+      - level: mid
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא משפט שלם", "לבחור מילה מתאימה מההקשר", "להבחין בין מילים"]
+      - level: challenge
+        audience: "מיועד לתלמידים שיכולים:"
+        points: ["לקרוא קטע קצר", "להבין את הרעיון", "לענות על שאלת הבנה"]
+    how_to_mediate:
+      - "לפתוח תמיד מהפתיח ומהדוגמה"
+      - "לבקש לקרוא בקול ואז בלב"
+      - "בהבנת הנקרא — לקרוא את השאלה לפני חיפוש התשובה בקטע"
+      - "לחבר לערך: 'מה אתם עושים כדי לשמור על הסביבה?'"
+      - "אם צריך, להישאר רק בעמוד 'מתחילים'"
+    adaptations:
+      - "להציג משימה אחת בכל פעם"
+      - "להדגיש מילים קשות לפני הקריאה"
+      - "לאפשר קריאה חוזרת של הקטע"
+      - "להקטין מספר אפשרויות אם צריך"
+      - "לאפשר תשובה בעל פה"
+    fast_finishers:
+      - "לעבור ל'אתגר'"
+      - "לתת את הבונוס"
+      - "לבקש לספר על הקטע במילים שלהם"
+      - "לבקש לכתוב משפט המשך לקטע"
+    coach_message:
+      lead: "הדגש הוא לא על 'קריאה מושלמת', אלא על:"
+      values: ["הבנה", "אחריות סביבתית", "קריאה", "ביטחון"]
+    phrases:
+      - "כל הכבוד שקראת עד הסוף."
+      - "יפה ששמרת על הסביבה."
+      - "הבנת את הקטע — מצוין."
+      - "בדקת שוב וזה נהדר."
+      - "התקדמת יפה."
+    footer_legend: ["אחריות סביבתית", "הבנה", "קריאה", "טבע", "תחושת הצלחה"]
