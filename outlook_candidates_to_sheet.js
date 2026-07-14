@@ -337,4 +337,4 @@ if (require.main === module) {
   main().catch(e => { console.error('❌ שגיאה:', e.message); process.exit(1); });
 }
 
-module.exports = { readOutlook, parseCandidate, field, normalizePhone, extractEmail, fmtDate };
+module.exports = { readOutlook, parseCandidate, field, normalizePhone, extractEmail, fmtDate, getGoogleToken, sheetsApi };
