@@ -57,6 +57,20 @@ git ls-files --cached | grep -iE "(\.env$|token\.json|password|credential|\.wweb
 **מה שלא עובד:** הדבקת HTML ישירות לתוך מסמך Docs פתוח (Ctrl+V) — גוגל דוקס לא קולט. אל תבזבז על זה זמן.
 **קריטי:** VS Code הוא Electron (אותה מחלקת חלון כמו Chrome) וחוטף פוקוס → כל רצף ההעלאה חייב לרוץ בסקריפט PowerShell אחד, עם הדבקה "עיוורת" (בלי FindWindow). תמיד לאמת עם צילום מסך.
 
+## יצירת Google Sheet = XLSX מקומי → העלאה ל-Drive
+
+**Sheets API חסום.** גוגל חסמה את ה-OAuth client של הפרויקט (`1072944905499-…`) — כל קריאה מחזירה *"האפליקציה הזו חסומה"*. זה משבית את `outlook_candidates_to_sheet.js`, `candidates_tracking_sheet.js` ו-`make_school_coach_sheet.js`. **אל תנסה את המסלול הזה.** (לתיקון עתידי: לאמת/לפרסם את האפליקציה ב-Google Cloud Console.)
+**Apps Script גם לא פתרון** — ההרצה הראשונה קופצת "דרושה הרשאה" שדורש קליק אנושי.
+
+**השיטה שעובדת** (אותו עיקרון כמו סקיל `text-to-gdocs`, רק לגיליונות):
+1. לבנות XLSX מקומית עם `exceljs` — נותן RTL, הקפאת כותרת, צבעים, dropdown (`dataValidation`), צביעה מותנית ונוסחאות. **הכל שורד את ההמרה של גוגל.** (`xlsx`/SheetJS community לא מספיק — סגנונות ו-validation הם פיצ'רי Pro.)
+2. `node upload_to_drive.js "<path>" --open`
+3. בגיליון: **קובץ → "שמירה בתור Google Sheets"** (זה שם הפריט המדויק) — ממיר ממצב תאימות XLSX לגיליון גוגל אמיתי.
+
+**מגבלות Excel שחוזרות ונשכחות:** שם לשונית לא יכול להכיל `/ ? * : [ ]`. נוסחאות חייבות לעבוד בשתי הסביבות — `COUNTIF`+`FILTER` כן, `IF` מעל טווח לא (דורש `ARRAYFORMULA` בגוגל שנשבר ב-Excel).
+
+**`upload_to_drive.js` מחליף את שלב ה-upload של הסקיל.** שלב ה-upload בסקיל משתמש בהדבקה עיוורת ו-SendKeys, ו**נכשל בפועל** כש-VS Code חוטף פוקוס (הוא Electron). `upload_to_drive.js` עושה הכל דרך CDP: `page.mouse` בתוך הדף + `waitForFileChooser` — הדפדפן מיירט את דיאלוג הקובץ, אפס תלות בפוקוס, אפס קליקים עיוורים.
+
 ## אוטומציית דפדפן (Sheets/Docs/Drive) = פרופיל Chrome ייעודי בפורט 9222
 
 כשצריך לעבוד מול Google Sheets / Docs / Drive או כל אתר שדורש התחברות — **התחבר לפרופיל האוטומציה הייעודי של דין**, לא לפתוח דפדפן חדש/ריק ולא Playwright עם פרופיל זמני.
