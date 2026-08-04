@@ -1,0 +1,47 @@
+{
+  "createdAt": "2026-08-04T16:23:31.591Z",
+  "sheets": [
+    {
+      "id": "1kB3Lsm2jViHGmbz47Qwlv0gTM8-lCcMqxA9Ekfqkmhc",
+      "label": "1kB3Lsm2jViHGmbz47Qwlv0gTM8-lCcMqxA9Ekfqkmhc",
+      "title": "מפת_כח_אדם_ומוקדים_26_27 - Google Sheets",
+      "tabs": [
+        {
+          "name": "מוקדים 26-27",
+          "file": "1kB3Lsm2__מוקדים 26-27.csv",
+          "rows": 27,
+          "cols": 14,
+          "nonEmptyCells": 220
+        },
+        {
+          "name": "פערים לסגירה",
+          "file": "1kB3Lsm2__פערים לסגירה.csv",
+          "rows": 13,
+          "cols": 7,
+          "nonEmptyCells": 75
+        },
+        {
+          "name": "עומס מאמנים",
+          "file": "1kB3Lsm2__עומס מאמנים.csv",
+          "rows": 23,
+          "cols": 3,
+          "nonEmptyCells": 69
+        },
+        {
+          "name": "מאמנים",
+          "file": "1kB3Lsm2__מאמנים.csv",
+          "rows": 23,
+          "cols": 1,
+          "nonEmptyCells": 23
+        },
+        {
+          "name": "מקור",
+          "file": "1kB3Lsm2__מקור.csv",
+          "rows": 5,
+          "cols": 2,
+          "nonEmptyCells": 10
+        }
+      ]
+    }
+  ]
+}

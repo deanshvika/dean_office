@@ -98,7 +98,9 @@ async function main() {
 
   console.log('ממתין לסיום ההעלאה...');
   const ok = await waitForUpload(page, nameNoExt);
-  await page.screenshot({ path: path.join(__dirname, '.tmp_shots', 'upload_done.png') });
+  const shots = path.join(__dirname, '.tmp_shots');
+  fs.mkdirSync(shots, { recursive: true });
+  await page.screenshot({ path: path.join(shots, 'upload_done.png') });
   if (!ok) {
     console.log('⚠️ לא זוהה סיום העלאה. ראה .tmp_shots/upload_done.png');
   } else {
@@ -119,7 +121,14 @@ async function main() {
     if (id) {
       const url = `https://docs.google.com/spreadsheets/d/${id}/edit`;
       console.log('\n🔗 ' + url);
-      fs.writeFileSync(path.join(__dirname, 'school_coach_sheet_url.txt'), url + '\n');
+      // קובץ הכתובת נגזר משם הקובץ שהועלה — אחרת כל העלאה הייתה דורסת
+      // את school_coach_sheet_url.txt גם כשמדובר בגיליון אחר לגמרי.
+      const i = process.argv.indexOf('--url-file');
+      const urlFile = i > -1 && process.argv[i + 1]
+        ? process.argv[i + 1]
+        : path.join(__dirname, `${nameNoExt}_url.txt`);
+      fs.writeFileSync(urlFile, url + '\n');
+      console.log('   נשמר ב: ' + urlFile);
     } else {
       console.log('⚠️ לא הצלחתי לחלץ את מזהה הקובץ — פתח ידנית מהדרייב.');
     }

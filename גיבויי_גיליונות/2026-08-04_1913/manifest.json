@@ -1,0 +1,82 @@
+{
+  "createdAt": "2026-08-04T16:13:03.526Z",
+  "sheets": [
+    {
+      "id": "1w4nZqahulIgcDXLlJUGkHuKzYcd5SGuo",
+      "label": "שיבוץ מאמנים — ראשי (מקור השיבוצים)",
+      "title": "שיבוץ מאמנים 26-27 — ראשי (השיבוצים של דין).xlsx - Google Sheets",
+      "tabs": [
+        {
+          "name": "שיבוץ 26-27",
+          "file": "1w4nZqah__שיבוץ 26-27.csv",
+          "rows": 20,
+          "cols": 9,
+          "nonEmptyCells": 149
+        },
+        {
+          "name": "זמינות מאמנים",
+          "file": "1w4nZqah__זמינות מאמנים.csv",
+          "rows": 3,
+          "cols": 2,
+          "nonEmptyCells": 5
+        },
+        {
+          "name": "עומס מאמנים",
+          "file": "1w4nZqah__עומס מאמנים.csv",
+          "rows": 23,
+          "cols": 5,
+          "nonEmptyCells": 49
+        },
+        {
+          "name": "מאמנים פעילים",
+          "file": "1w4nZqah__מאמנים פעילים.csv",
+          "rows": 23,
+          "cols": 1,
+          "nonEmptyCells": 23
+        }
+      ]
+    },
+    {
+      "id": "1kB3Lsm2jViHGmbz47Qwlv0gTM8-lCcMqxA9Ekfqkmhc",
+      "label": "מפת כח אדם ומוקדים (יעד)",
+      "title": "מפת_כח_אדם_ומוקדים_26_27 - Google Sheets",
+      "tabs": [
+        {
+          "name": "מוקדים 26-27",
+          "file": "1kB3Lsm2__מוקדים 26-27.csv",
+          "rows": 27,
+          "cols": 14,
+          "nonEmptyCells": 220
+        },
+        {
+          "name": "פערים לסגירה",
+          "file": "1kB3Lsm2__פערים לסגירה.csv",
+          "rows": 13,
+          "cols": 7,
+          "nonEmptyCells": 75
+        },
+        {
+          "name": "עומס מאמנים",
+          "file": "1kB3Lsm2__עומס מאמנים.csv",
+          "rows": 23,
+          "cols": 3,
+          "nonEmptyCells": 69
+        },
+        {
+          "name": "מאמנים",
+          "file": "1kB3Lsm2__מאמנים.csv",
+          "rows": 23,
+          "cols": 1,
+          "nonEmptyCells": 23
+        },
+        {
+          "name": "מקור",
+          "file": "1kB3Lsm2__מקור.csv",
+          "rows": 5,
+          "cols": 2,
+          "nonEmptyCells": 10
+        }
+      ]
+    }
+  ]
+}

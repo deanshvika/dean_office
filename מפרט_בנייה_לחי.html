@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head><meta charset="UTF-8"></head>
+<body dir="rtl" style="text-align:right; font-family:Arial, sans-serif; direction:rtl;">
+
+<h1 dir="rtl" style="text-align:right;">מפרט בנייה — דשבורד "מדרג מאמנים" בתוך nika-hub</h1>
+<p dir="rtl" style="text-align:right;">מסמך זה מכיל פרומפט מלא ומדויק לבניית דשבורד מדידת המאמנים בתוך מערכת nika-hub (Base44), דרך Claude. התוצאה: עותק זהה לדשבורד שכבר קיים (coach-score-peak), נייטיב בתוך nika-hub. עודכן: יולי 2026.</p>
+
+<h2 dir="rtl" style="text-align:right;">הפרומפט (להעתקה ולהדבקה ל-Claude)</h2>
+<p dir="rtl" style="text-align:right;">בנה בתוך האפליקציה הזו (Base44) דשבורד למדידת והערכת מאמנים, בעברית מימין-לשמאל (RTL), עיצוב נקי ומודרני.</p>
+
+<h3 dir="rtl" style="text-align:right;">1. ישות נתונים "Coach" (מאמן) — טבלה לעריכה</h3>
+<table border="1" dir="rtl" style="text-align:right; border-collapse:collapse; width:100%;">
+<tr><th>שדה (מפתח)</th><th>תווית</th><th>סוג</th></tr>
+<tr><td>name</td><td>מאמן</td><td>טקסט</td></tr>
+<tr><td>status</td><td>סטטוס</td><td>פעיל / לא פעיל</td></tr>
+<tr><td>professionalism</td><td>מקצועיות</td><td>מספר 1–5</td></tr>
+<tr><td>attendance</td><td>נוכחות</td><td>מספר 1–5</td></tr>
+<tr><td>clients</td><td>לקוחות</td><td>מספר 1–5</td></tr>
+<tr><td>management</td><td>הנהלה</td><td>מספר 1–5</td></tr>
+<tr><td>growth</td><td>צמיחה</td><td>מספר 1–5</td></tr>
+<tr><td>final_score</td><td>ציון סופי</td><td>מספר מחושב 0–100 (ראה נוסחה)</td></tr>
+<tr><td>reasoning</td><td>נימוק</td><td>טקסט ארוך (ציטוט/הסבר)</td></tr>
+<tr><td>docs_count</td><td>מספר תיעודים</td><td>מספר</td></tr>
+</table>
+<p dir="rtl" style="text-align:right;">המשתמש יכול להוסיף / לערוך / למחוק מאמנים.</p>
+
+<h3 dir="rtl" style="text-align:right;">2. נוסחת הציון הסופי</h3>
+<p dir="rtl" style="text-align:right;"><b>final_score = professionalism×6 + attendance×5 + clients×4 + management×3 + growth×2</b> (טווח 0–100). המשקלים: מקצועיות 30% · נוכחות 25% · לקוחות 20% · הנהלה 15% · צמיחה 10%.</p>
+
+<h3 dir="rtl" style="text-align:right;">3. דף דשבורד</h3>
+<p dir="rtl" style="text-align:right;">כל מאמן מוצג ככרטיס עם: שם, ציון סופי גדול, ותג דרגה בצבע לפי הציון:</p>
+<table border="1" dir="rtl" style="text-align:right; border-collapse:collapse; width:100%;">
+<tr><th>ציון</th><th>דרגה</th><th>צבע</th></tr>
+<tr><td>90–100</td><td>מצטיין</td><td>ירוק</td></tr>
+<tr><td>75–89</td><td>טוב מאוד</td><td>ירוק בהיר</td></tr>
+<tr><td>60–74</td><td>תקין</td><td>צהוב</td></tr>
+<tr><td>45–59</td><td>דורש שיפור</td><td>כתום</td></tr>
+<tr><td>מתחת ל-45</td><td>בעייתי</td><td>אדום</td></tr>
+</table>
+<p dir="rtl" style="text-align:right;">בנוסף בכל כרטיס: פסי התקדמות קטנים ל-5 תת-הציונים. למעלה — סטטיסטיקות: ממוצע ציון סופי, מספר מאמנים פעילים. מיון לפי ציון סופי, סינון לפי סטטוס.</p>
+
+<h3 dir="rtl" style="text-align:right;">4. טעינה מראש — 21 מאמנים (סטטוס=פעיל, ציונים ריקים)</h3>
+<p dir="rtl" style="text-align:right;">קרן דבוש, טל וזגיאל, דוד אשורי, נועם כהן, תום בריאולובסקי, ליאור מרגוליס, שלו אהרוני, סיון טפירו, אריק מונטבילסקי, אופק סגל, אסף זוהר, ליז אפרגן, פיקאדו ינאו, תמיר חלף, דובי מילר, וליד אבו חמוד, סהר ליכטנפלד, גילי ששון, אייל רותם, יובל גורפיין, עידן אדלר.</p>
+
+<h2 dir="rtl" style="text-align:right;">הקשר עסקי</h2>
+<p dir="rtl" style="text-align:right;">המערכת מודדת מאמני ספורט ב-5 תחומים משוקללים. הציונים מגיעים משני מקורות: תצפיות שטח (טופס צפייה) ותיעוד מילולי על כל מאמן. כל תחום מקבל ציון 1–5, ומהם מחושב ציון סופי 0–100.</p>
+
+<h2 dir="rtl" style="text-align:right;">בונוס — חיבור לתיעוד קיים</h2>
+<p dir="rtl" style="text-align:right;">מכיוון שהבנייה מתבצעת בתוך nika-hub — שכבר מכילה "תיעוד אישי" לכל מאמן — ניתן לחבר את שדה ה-reasoning ואת הציונים ישירות לתיעוד האישי הקיים, כך שהמדידה והתיעוד יושבים באותו מקום.</p>
+
+</body>
+</html>
