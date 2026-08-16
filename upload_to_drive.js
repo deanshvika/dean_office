@@ -112,14 +112,23 @@ async function main() {
     await page.goto('https://drive.google.com/drive/search?q=' + encodeURIComponent(nameNoExt),
       { waitUntil: 'domcontentloaded', timeout: 60000 });
     await sleep(7000);
-    const id = await page.evaluate(n => {
-      for (const el of document.querySelectorAll('[data-id]')) {
-        if ((el.innerText || '').includes(n)) return el.getAttribute('data-id');
-      }
-      return null;
-    }, nameNoExt);
+    // מעדיפים התאמה לשם המלא *עם הסיומת* — זה הקובץ שהרגע הועלה.
+    // בלי זה, עותק גוגל-דוקס ישן באותו שם (בלי סיומת) חוטף את ההתאמה
+    // ומוחזרת כתובת של גרסה קודמת.
+    const id = await page.evaluate((full, noExt) => {
+      const rows = [...document.querySelectorAll('[data-id]')]
+        .map(el => ({ id: el.getAttribute('data-id'), t: (el.innerText || '') }))
+        .filter(r => /^1[\w-]{20,}$/.test(r.id));
+      const exact = rows.find(r => r.t.includes(full));
+      if (exact) return exact.id;
+      const loose = rows.find(r => r.t.includes(noExt));
+      return loose ? loose.id : null;
+    }, name, nameNoExt);
     if (id) {
-      const url = `https://docs.google.com/spreadsheets/d/${id}/edit`;
+      // סוג המסמך נגזר מהסיומת — DOCX פותח כ-document, XLSX כ-spreadsheets.
+      // בעבר זה היה מקובע ל-spreadsheets ולכן החזיר כתובת שגויה לכל מסמך Word.
+      const kind = /\.(docx?|rtf|odt|txt|html?)$/i.test(name) ? 'document' : 'spreadsheets';
+      const url = `https://docs.google.com/${kind}/d/${id}/edit`;
       console.log('\n🔗 ' + url);
       // קובץ הכתובת נגזר משם הקובץ שהועלה — אחרת כל העלאה הייתה דורסת
       // את school_coach_sheet_url.txt גם כשמדובר בגיליון אחר לגמרי.

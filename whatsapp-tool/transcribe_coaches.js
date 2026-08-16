@@ -9,6 +9,11 @@
  *
  * הרצה:  cd whatsapp-tool && node transcribe_coaches.js            (כל הקבצים)
  *        node transcribe_coaches.js "אייל רותם.m4a"                (קובץ בודד)
+ *        node transcribe_coaches.js --audio "<dir>" --out "<dir>"  (תיקיות אחרות)
+ *
+ * ברירות המחדל הן תיקיות שיחות החתך — הרצה בלי פרמטרים מתנהגת בדיוק כמו קודם.
+ * הדגלים נוספו כדי שצינור החפיפה של מונטי ישתמש חוזר באותה לוגיקה
+ * (Groq whisper-large-v3-turbo, עברית, דגימה מחדש ב-ffmpeg) במקום לשכפל אותה.
  */
 require('dotenv').config({ path: __dirname + '/.env' });
 const fs = require('fs');
@@ -16,8 +21,16 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 const Groq = require('groq-sdk');
 
-const AUDIO_DIR = 'C:\\Users\\דין\\Desktop\\שיחות חתך מאמנים\\audio';
-const OUT_DIR   = 'C:\\Users\\דין\\Desktop\\שיחות חתך מאמנים\\transcripts';
+const argv = process.argv.slice(2);
+const positional = [];
+const opts = {};
+for (let i = 0; i < argv.length; i++) {
+  if (argv[i].startsWith('--')) opts[argv[i].slice(2)] = argv[++i];
+  else positional.push(argv[i]);
+}
+
+const AUDIO_DIR = opts.audio || 'C:\\Users\\דין\\Desktop\\שיחות חתך מאמנים\\audio';
+const OUT_DIR   = opts.out   || 'C:\\Users\\דין\\Desktop\\שיחות חתך מאמנים\\transcripts';
 const MAX_MB = 24; // מעל זה Groq עלול לדחות (מגבלת 25MB) — דוגמים מחדש עם ffmpeg
 const FFMPEG = 'C:\\Users\\דין\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.2-full_build\\bin\\ffmpeg.exe';
 
@@ -51,7 +64,8 @@ async function transcribeFile(fullPath) {
 }
 
 (async () => {
-  const only = process.argv[2]; // שם קובץ בודד (אופציונלי)
+  const only = positional[0]; // שם קובץ בודד (אופציונלי)
+  if (!fs.existsSync(AUDIO_DIR)) { console.log('תיקיית האודיו לא קיימת:', AUDIO_DIR); return; }
   let files = fs.readdirSync(AUDIO_DIR).filter(f => /\.(m4a|mp3|ogg|wav|mp4|aac)$/i.test(f));
   if (only) files = files.filter(f => f === only);
   if (!files.length) { console.log('אין קבצי אודיו ב-', AUDIO_DIR); return; }

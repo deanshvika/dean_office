@@ -35,13 +35,21 @@ function TakeShot([string]$p){ $b=New-Object System.Drawing.Bitmap 1382,744; $g=
 
 if ($Step -eq 'convert') {
   if (-not $Html -or -not $Docx) { "ERROR: need -Html and -Docx"; exit 1 }
+  if (-not (Test-Path $Html)) { "CONVERT_FAIL: html not found"; return }
+  # Delete any previous .docx first. Two reasons: Word can stall on an
+  # overwrite prompt, and a stale file would otherwise pass the check below
+  # and get uploaded as if it were freshly converted.
+  Remove-Item $Docx -Force -ErrorAction SilentlyContinue
   $word = New-Object -ComObject Word.Application
   $word.Visible = $false
   $doc = $word.Documents.Open($Html)
   $doc.SaveAs2($Docx, 16)   # 16 = wdFormatXMLDocument (.docx)
   $doc.Close(); $word.Quit()
   [System.Runtime.Interopservices.Marshal]::ReleaseComObject($word) | Out-Null
-  if (Test-Path $Docx) { "CONVERT_OK: $Docx size=$((Get-Item $Docx).Length)" } else { "CONVERT_FAIL" }
+  # Existence alone is not proof of conversion -- require a non-empty file.
+  if ((Test-Path $Docx) -and ((Get-Item $Docx).Length -gt 0)) {
+    "CONVERT_OK: $Docx size=$((Get-Item $Docx).Length)"
+  } else { "CONVERT_FAIL" }
   return
 }
 
