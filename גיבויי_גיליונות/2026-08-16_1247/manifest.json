@@ -1,0 +1,96 @@
+{
+  "createdAt": "2026-08-16T09:47:56.503Z",
+  "sheets": [
+    {
+      "id": "1kX6y_Xgde3B0PbAwWxcOiJa4NXn0Md2euIS11DLC5qU",
+      "label": "שיבוץ מאמנים — ראשי (מקור השיבוצים)",
+      "title": "שיבוץ מאמנים 26-27 — ראשי - Google Sheets",
+      "tabs": [
+        {
+          "name": "שיבוץ 26-27",
+          "file": "1kX6y_Xg__שיבוץ 26-27.csv",
+          "rows": 20,
+          "cols": 9,
+          "nonEmptyCells": 149
+        },
+        {
+          "name": "זמינות מאמנים",
+          "file": "1kX6y_Xg__זמינות מאמנים.csv",
+          "rows": 3,
+          "cols": 2,
+          "nonEmptyCells": 5
+        },
+        {
+          "name": "עומס מאמנים",
+          "file": "1kX6y_Xg__עומס מאמנים.csv",
+          "rows": 23,
+          "cols": 5,
+          "nonEmptyCells": 49
+        },
+        {
+          "name": "מאמנים פעילים",
+          "file": "1kX6y_Xg__מאמנים פעילים.csv",
+          "rows": 23,
+          "cols": 1,
+          "nonEmptyCells": 23
+        }
+      ]
+    },
+    {
+      "id": "1kB3Lsm2jViHGmbz47Qwlv0gTM8-lCcMqxA9Ekfqkmhc",
+      "label": "מפת כח אדם ומוקדים (יעד)",
+      "title": "מפת_כח_אדם_ומוקדים_26_27 - Google Sheets",
+      "tabs": [
+        {
+          "name": "מוקדים 26-27",
+          "file": "1kB3Lsm2__מוקדים 26-27.csv",
+          "rows": 27,
+          "cols": 14,
+          "nonEmptyCells": 248
+        },
+        {
+          "name": "Sheet2",
+          "file": "1kB3Lsm2__Sheet2.csv",
+          "rows": 0,
+          "cols": 0,
+          "nonEmptyCells": 0
+        },
+        {
+          "name": "אריק",
+          "file": "1kB3Lsm2__אריק.csv",
+          "rows": 0,
+          "cols": 0,
+          "nonEmptyCells": 0
+        },
+        {
+          "name": "פערים לסגירה",
+          "file": "1kB3Lsm2__פערים לסגירה.csv",
+          "rows": 13,
+          "cols": 7,
+          "nonEmptyCells": 75
+        },
+        {
+          "name": "עומס מאמנים",
+          "file": "1kB3Lsm2__עומס מאמנים.csv",
+          "rows": 23,
+          "cols": 3,
+          "nonEmptyCells": 69
+        },
+        {
+          "name": "מאמנים",
+          "file": "1kB3Lsm2__מאמנים.csv",
+          "rows": 23,
+          "cols": 1,
+          "nonEmptyCells": 23
+        },
+        {
+          "name": "מקור",
+          "file": "1kB3Lsm2__מקור.csv",
+          "rows": 5,
+          "cols": 2,
+          "nonEmptyCells": 10
+        }
+      ]
+    }
+  ]
+}

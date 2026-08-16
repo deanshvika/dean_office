@@ -16,9 +16,28 @@ const https = require('https');
 const { itmToWgs84, normalizeName, ktivChaser, nameSimilarity, distanceMeters } = require('./geo_util.js');
 
 const ROOT = path.join(__dirname, '..');
-const CSV_SITES = path.join(ROOT, 'גיבויי_גיליונות', '2026-08-04_1923', '1kB3Lsm2__מוקדים 26-27.csv');
-const CSV_ASSIGN = path.join(ROOT, 'גיבויי_גיליונות', '2026-08-04_1913', '1w4nZqah__שיבוץ 26-27.csv');
+const BACKUP_ROOT = path.join(ROOT, 'גיבויי_גיליונות');
 const OUT = path.join(__dirname, 'sites_geo.json');
+
+/**
+ * מאתר את הגיבוי העדכני ביותר של לשונית לפי שמה.
+ *
+ * לא נועלים תיקיית גיבוי אחת: קידומת שם הקובץ היא מזהה הגיליון, והוא משתנה
+ * (גיליון השיבוץ הומר מ-XLSX לגיליון גוגל וקיבל מזהה חדש). חוץ מזה לא כל
+ * ריצת גיבוי מכסה את שני הגיליונות, אז מחפשים כל לשונית בנפרד.
+ */
+function newestBackup(tabName) {
+  if (!fs.existsSync(BACKUP_ROOT)) throw new Error(`אין תיקיית גיבויים: ${BACKUP_ROOT}`);
+  const dirs = fs.readdirSync(BACKUP_ROOT)
+    .filter(d => fs.statSync(path.join(BACKUP_ROOT, d)).isDirectory())
+    .sort().reverse(); // חותמת הזמן בשם התיקייה ממיינת לקסיקוגרפית
+  for (const d of dirs) {
+    const hit = fs.readdirSync(path.join(BACKUP_ROOT, d))
+      .find(f => f.endsWith(`__${tabName}.csv`));
+    if (hit) return { file: path.join(BACKUP_ROOT, d, hit), stamp: d };
+  }
+  throw new Error(`לא נמצא גיבוי ללשונית "${tabName}" באף תיקייה תחת ${BACKUP_ROOT}`);
+}
 
 const GIS_LAYER = 769; // בתי ספר תשפ"ז
 const MOE_RESOURCE = '5c5d6bb0-755d-470d-84b6-d7dd3135ba9c';
@@ -288,8 +307,12 @@ function clusterFromNeighborhood(nbhd) {
 // ---------------------------------------------------------------- ראשי
 
 async function main() {
-  const sitesRows = parseCsv(fs.readFileSync(CSV_SITES, 'utf8'));
-  const assignRows = parseCsv(fs.readFileSync(CSV_ASSIGN, 'utf8'));
+  const srcSites = newestBackup('מוקדים 26-27');
+  const srcAssign = newestBackup('שיבוץ 26-27');
+  console.error(`מוקדים   ← ${srcSites.stamp}`);
+  console.error(`שיבוץ    ← ${srcAssign.stamp}\n`);
+  const sitesRows = parseCsv(fs.readFileSync(srcSites.file, 'utf8'));
+  const assignRows = parseCsv(fs.readFileSync(srcAssign.file, 'utf8'));
 
   const byName = (rows, key) => new Map(rows.map(r => [r[key], r]));
   const sitesByName = byName(sitesRows, 'מוקד');
@@ -328,14 +351,21 @@ async function main() {
       isTa,
     };
 
-    // סתירה בין הגיליונות: המוקדים אומר "חסר" אבל השיבוץ מציין מאמן
+    // ── אי-התאמות בין הגיליונות ──
     const assignCoach = (a && a['מאמן משובץ 26/27']) || '';
     const sitesCoach = s['מאמן 26/27'] || '';
+
     if (assignCoach && sitesCoach && assignCoach !== sitesCoach) {
-      site.conflicts.push(`מאמן 26/27 — שיבוץ: "${assignCoach}" · מוקדים: "${sitesCoach}"`);
+      site.conflicts.push(`שני הגיליונות נוקבים במאמן שונה — שיבוץ: "${assignCoach}" · מוקדים: "${sitesCoach}"`);
     }
-    if (assignCoach && !sitesCoach && s['ודאות'] === 'חסר') {
-      site.conflicts.push(`גיליון השיבוץ מציין "${assignCoach}", אך גיליון המוקדים מסמן ודאות "חסר"`);
+
+    // הסנכרון מילא שמות מאמנים בגיליון המוקדים אך לא נגע בעמודת הוודאות,
+    // ולכן יש שורות שמציגות מאמן וצבועות "חסר". זו עבודה שנשארה פתוחה בגיליון.
+    // רק במוקדים פעילים: במוקד עוזב שם מאמן מאשתקד עם ודאות "חסר" הוא מצב תקין, לא משימה
+    const anyCoach = sitesCoach || assignCoach;
+    if (anyCoach && s['ודאות'] === 'חסר' && s['סטטוס 26/27'] !== 'עוזב') {
+      site.staleCertainty = true;
+      site.conflicts.push(`רשום מאמן "${anyCoach}", אך עמודת הוודאות עדיין "חסר" — כנראה לא עודכנה אחרי הסנכרון`);
     }
 
     // ── גאוגרפיה ──
@@ -471,9 +501,11 @@ async function main() {
   }
 
   fs.writeFileSync(OUT, JSON.stringify({
+    generatedAt: new Date().toISOString(),
+    dataAsOf: srcSites.stamp > srcAssign.stamp ? srcAssign.stamp : srcSites.stamp,
     generatedFrom: {
-      sitesSheet: path.relative(ROOT, CSV_SITES),
-      assignSheet: path.relative(ROOT, CSV_ASSIGN),
+      sitesSheet: path.relative(ROOT, srcSites.file),
+      assignSheet: path.relative(ROOT, srcAssign.file),
       taGisLayer: `${GIS_LAYER} — בתי ספר תשפ"ז, gisn.tel-aviv.gov.il`,
       moeResource: `data.gov.il/${MOE_RESOURCE} — קואורדינטות מוסדות חינוך`,
     },

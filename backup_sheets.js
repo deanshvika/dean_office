@@ -15,9 +15,11 @@ const L = require('./sheets_lib');
 
 const BACKUP_ROOT = path.join(__dirname, 'גיבויי_גיליונות');
 
-// הגיליונות שהתוכנית נוגעת בהם
+// הגיליונות שהתוכנית נוגעת בהם.
+// שיבוץ המאמנים הומר מ-XLSX לגיליון גוגל אמיתי וקיבל מזהה חדש (המזהה הישן
+// 1w4nZqah… הוא קובץ התאימות הישן ואינו מתעדכן) — זהו המזהה ש-sync_assignments_to_map.js קורא ממנו.
 const DEFAULT_SHEETS = [
-  { id: '1w4nZqahulIgcDXLlJUGkHuKzYcd5SGuo', label: 'שיבוץ מאמנים — ראשי (מקור השיבוצים)' },
+  { id: '1kX6y_Xgde3B0PbAwWxcOiJa4NXn0Md2euIS11DLC5qU', label: 'שיבוץ מאמנים — ראשי (מקור השיבוצים)' },
   { id: '1kB3Lsm2jViHGmbz47Qwlv0gTM8-lCcMqxA9Ekfqkmhc', label: 'מפת כח אדם ומוקדים (יעד)' }
 ];
 

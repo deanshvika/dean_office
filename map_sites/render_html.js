@@ -77,11 +77,12 @@ function siteRow(s) {
   const st = statusOf(s);
   const coach = s.coach2627 || (s.coachHint ? s.coachHint.replace(/\?$/, '') : '');
   const meta = [s.days, coach || 'ללא מאמן'].filter(Boolean).join(' · ');
+  const flag = s.staleCertainty ? '<span class="row-flag" title="רשום מאמן אך הוודאות עדיין ״חסר״">⚠</span>' : '';
   return `<li class="row s-${st.key}" data-id="${esc(s.id)}" data-status="${st.key}">
 <button class="row-btn" type="button">
   <span class="row-dot" aria-hidden="true"></span>
   <span class="row-main">
-    <span class="row-top"><span class="row-name">${esc(s.shortName)}</span><span class="chip c-${st.key}">${esc(st.label)}</span></span>
+    <span class="row-top"><span class="row-name">${esc(s.shortName)}${flag}</span><span class="chip c-${st.key}">${esc(st.label)}</span></span>
     <span class="row-addr">${esc(s.address || '—')}${s.neighborhood ? ` · ${esc(s.neighborhood)}` : ''}</span>
     <span class="row-meta">${esc(meta)}</span>
   </span>
@@ -107,10 +108,19 @@ function renderHtml(d) {
     days: s.days || '', hours: s.hours || '', prog: s.program || '', scope: s.scope || '',
     cLast: s.coachLastYear || '', c2627: s.coach2627 || '', hint: s.coachHint || '',
     cert: statusOf(s).label, ck: statusOf(s).key, next: s.nextStep || '', note: s.note || '',
-    st: s.status || '', conf: s.conflicts || [], lat: s.lat, lon: s.lon,
+    st: s.status || '', conf: s.conflicts || [], stale: !!s.staleCertainty, lat: s.lat, lon: s.lon,
     waze: wazeUrl(s), gm: gmapsUrl(s), src: s.source || '', ver: s.verifiedBy || '',
     phone: phoneFmt(s.phone), grades: gradeRange(s.gradeFrom, s.gradeTo),
   }]));
+
+  // שורות שהסנכרון מילא בהן מאמן אך עמודת הוודאות נשארה "חסר" — עבודה פתוחה בגיליון
+  const stale = all.filter(s => s.staleCertainty);
+  const staleBanner = stale.length ? `<div class="notice">
+<span class="notice-mark" aria-hidden="true">⚠</span>
+<div><b>${stale.length} מוקדים מציגים מאמן ובכל זאת מסומנים ״חסר״.</b>
+בגיליון המוקדים מולא שם מאמן, אבל עמודת הוודאות לא עודכנה אחריו. המפה צובעת לפי עמודת הוודאות, ולכן הם נשארים אדומים.
+צריך לעבור עליהם בגיליון ולקבוע ודאי או משוער: ${stale.map(s => esc(s.shortName)).join(' · ')}</div>
+</div>` : '';
 
   const clusterBlocks = taByCluster.map(g => `<section class="cluster">
 <h3 class="cluster-h">${esc(g.cluster)}<span class="cluster-n">${g.list.length}</span></h3>
@@ -203,6 +213,17 @@ h1{
 .lg-n{font-family:${FAMILY.PlexMono},monospace; font-size:.72rem; color:var(--ink-3); font-variant-numeric:tabular-nums}
 .c-sure{--c:var(--sure)} .c-maybe{--c:var(--maybe)} .c-asked{--c:var(--asked)}
 .c-gap{--c:var(--gap)} .c-leaving{--c:var(--leaving)}
+
+/* ── הודעת אי-התאמה ── */
+.notice{
+  display:flex; gap:10px; align-items:flex-start; font-size:.85rem; line-height:1.5;
+  padding:11px 14px; border-radius:var(--r);
+  background:color-mix(in srgb, var(--maybe) 11%, var(--surface));
+  border:1px solid color-mix(in srgb, var(--maybe) 42%, transparent);
+}
+.notice-mark{color:var(--maybe); font-size:1rem; line-height:1.35; flex:none}
+.notice b{font-weight:600}
+.row-flag{color:var(--maybe); margin-inline-start:5px; font-size:.8em}
 
 /* ── במה ── */
 .stage{display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:18px; align-items:start}
@@ -353,6 +374,7 @@ h1{
   <span class="legend-lead">סינון לפי ודאות השיבוץ</span>
   ${legendItems}
 </div>
+${staleBanner}
 
 <div class="stage">
   <div class="card">

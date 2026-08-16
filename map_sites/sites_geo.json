@@ -1,7 +1,9 @@
 {
+  "generatedAt": "2026-08-16T10:01:19.263Z",
+  "dataAsOf": "2026-08-16_1247",
   "generatedFrom": {
-    "sitesSheet": "גיבויי_גיליונות\\2026-08-04_1923\\1kB3Lsm2__מוקדים 26-27.csv",
-    "assignSheet": "גיבויי_גיליונות\\2026-08-04_1913\\1w4nZqah__שיבוץ 26-27.csv",
+    "sitesSheet": "גיבויי_גיליונות\\2026-08-16_1247\\1kB3Lsm2__מוקדים 26-27.csv",
+    "assignSheet": "גיבויי_גיליונות\\2026-08-16_1247\\1kX6y_Xg__שיבוץ 26-27.csv",
     "taGisLayer": "769 — בתי ספר תשפ\"ז, gisn.tel-aviv.gov.il",
     "moeResource": "data.gov.il/5c5d6bb0-755d-470d-84b6-d7dd3135ba9c — קואורדינטות מוסדות חינוך"
   },
@@ -19,7 +21,7 @@
       "hours": "11:00-13:30 (3 קבוצות)",
       "coachLastYear": "גילי ששון",
       "coach2627": "",
-      "coachHint": "ליז?",
+      "coachHint": "גילי ?",
       "certainty": "משוער",
       "assignStatus": "",
       "nextStep": "",
@@ -57,7 +59,7 @@
       "hours": "08:00-10:55 (3 קבוצות)",
       "coachLastYear": "דובי מילר",
       "coach2627": "",
-      "coachHint": "",
+      "coachHint": "דובי ? (עדיף מישהו זול יותר)",
       "certainty": "חסר",
       "assignStatus": "",
       "nextStep": "",
@@ -97,7 +99,7 @@
       "coach2627": "ליז אפרגן",
       "coachHint": "ליז?",
       "certainty": "משוער",
-      "assignStatus": "",
+      "assignStatus": "מועמד",
       "nextStep": "פולואפ",
       "note": "",
       "conflicts": [],
@@ -133,15 +135,16 @@
       "hours": "10:15-12:45 (3 קבוצות)",
       "coachLastYear": "ליאור מרגוליס",
       "coach2627": "אופק (?)",
-      "coachHint": "",
+      "coachHint": "אחרי החגים (להכין מאמן)",
       "certainty": "חסר",
-      "assignStatus": "",
+      "assignStatus": "מועמד",
       "nextStep": "",
       "note": "שים לב: לא בי\"ס שמיר, חולון — שם דומה, עיר אחרת",
       "conflicts": [
-        "גיליון השיבוץ מציין \"אופק (?)\", אך גיליון המוקדים מסמן ודאות \"חסר\""
+        "רשום מאמן \"אופק (?)\", אך עמודת הוודאות עדיין \"חסר\" — כנראה לא עודכנה אחרי הסנכרון"
       ],
       "isTa": true,
+      "staleCertainty": true,
       "address": "צוויג סטפן 7",
       "itm": {
         "x": 182956.86,
@@ -173,15 +176,16 @@
       "hours": "08:00-13:30 (7 קבוצות)",
       "coachLastYear": "וליד אבו חמוד",
       "coach2627": "וליד אבו חמוד",
-      "coachHint": "",
+      "coachHint": "וואליד",
       "certainty": "חסר",
       "assignStatus": "",
       "nextStep": "נקבעה פגישה",
       "note": "",
       "conflicts": [
-        "גיליון השיבוץ מציין \"וליד אבו חמוד\", אך גיליון המוקדים מסמן ודאות \"חסר\""
+        "רשום מאמן \"וליד אבו חמוד\", אך עמודת הוודאות עדיין \"חסר\" — כנראה לא עודכנה אחרי הסנכרון"
       ],
       "isTa": true,
+      "staleCertainty": true,
       "address": "זינגר בשביס יצחק 3",
       "itm": {
         "x": 179904.15000000002,
@@ -215,7 +219,7 @@
       "coach2627": "פיקאדו ינאו",
       "coachHint": "פיקאדו?",
       "certainty": "משוער",
-      "assignStatus": "",
+      "assignStatus": "סוכם",
       "nextStep": "",
       "note": "",
       "conflicts": [],
@@ -251,15 +255,16 @@
       "hours": "10:15-13:30 (4 קבוצות)",
       "coachLastYear": "פיקאדו ינאו",
       "coach2627": "פיקאדו ינאו",
-      "coachHint": "",
+      "coachHint": "פיקאדו ?",
       "certainty": "חסר",
-      "assignStatus": "",
+      "assignStatus": "מועמד",
       "nextStep": "מנהל מתחלף",
       "note": "",
       "conflicts": [
-        "גיליון השיבוץ מציין \"פיקאדו ינאו\", אך גיליון המוקדים מסמן ודאות \"חסר\""
+        "רשום מאמן \"פיקאדו ינאו\", אך עמודת הוודאות עדיין \"חסר\" — כנראה לא עודכנה אחרי הסנכרון"
       ],
       "isTa": true,
+      "staleCertainty": true,
       "address": "אנטיגונוס 6",
       "itm": {
         "x": 179833.44,
@@ -291,15 +296,16 @@
       "hours": "12:00-13:30 (2 קבוצות)",
       "coachLastYear": "אופק סגל",
       "coach2627": "אופק סגל",
-      "coachHint": "",
+      "coachHint": "?",
       "certainty": "חסר",
-      "assignStatus": "",
+      "assignStatus": "סוכם",
       "nextStep": "",
       "note": "",
       "conflicts": [
-        "גיליון השיבוץ מציין \"אופק סגל\", אך גיליון המוקדים מסמן ודאות \"חסר\""
+        "רשום מאמן \"אופק סגל\", אך עמודת הוודאות עדיין \"חסר\" — כנראה לא עודכנה אחרי הסנכרון"
       ],
       "isTa": true,
+      "staleCertainty": true,
       "address": "רדינג 35",
       "itm": {
         "x": 180663.43,
@@ -331,15 +337,16 @@
       "hours": "08:00-09:35 (2 קבוצות)",
       "coachLastYear": "ליז אפרגן",
       "coach2627": "ליז אפרגן",
-      "coachHint": "",
+      "coachHint": "?",
       "certainty": "חסר",
-      "assignStatus": "",
+      "assignStatus": "מועמד",
       "nextStep": "",
       "note": "",
       "conflicts": [
-        "גיליון השיבוץ מציין \"ליז אפרגן\", אך גיליון המוקדים מסמן ודאות \"חסר\""
+        "רשום מאמן \"ליז אפרגן\", אך עמודת הוודאות עדיין \"חסר\" — כנראה לא עודכנה אחרי הסנכרון"
       ],
       "isTa": true,
+      "staleCertainty": true,
       "address": "אנקאווא רפאל הרב 13",
       "itm": {
         "x": 181336.28000000003,
@@ -370,14 +377,17 @@
       "days": "שלישי",
       "hours": "08:00-11:45 (4 קבוצות)",
       "coachLastYear": "פיקאדו ינאו",
-      "coach2627": "",
+      "coach2627": "פיקאדו ינאו",
       "coachHint": "",
       "certainty": "חסר",
       "assignStatus": "",
       "nextStep": "דין ינסה",
       "note": "",
-      "conflicts": [],
+      "conflicts": [
+        "רשום מאמן \"פיקאדו ינאו\", אך עמודת הוודאות עדיין \"חסר\" — כנראה לא עודכנה אחרי הסנכרון"
+      ],
       "isTa": true,
+      "staleCertainty": true,
       "address": "יגור 2",
       "itm": {
         "x": 180964.89,
@@ -411,7 +421,7 @@
       "coach2627": "אריק מונטבילסקי (?) ביקשו שישי",
       "coachHint": "רוצים את מונטי, שאלו על שישי",
       "certainty": "בקשת ביה״ס",
-      "assignStatus": "",
+      "assignStatus": "מועמד",
       "nextStep": "הסגנית תחזור אחרי בירורים",
       "note": "",
       "conflicts": [],
@@ -452,9 +462,7 @@
       "assignStatus": "",
       "nextStep": "יחזרו אלינו במידה וירצו",
       "note": "",
-      "conflicts": [
-        "גיליון השיבוץ מציין \"בסימן שאלה\", אך גיליון המוקדים מסמן ודאות \"חסר\""
-      ],
+      "conflicts": [],
       "isTa": true,
       "address": "החשמונאים 92",
       "itm": {
@@ -489,7 +497,7 @@
       "coach2627": "וליד אבו חמוד",
       "coachHint": "ביקשו את וואליד",
       "certainty": "בקשת ביה״ס",
-      "assignStatus": "מועמד",
+      "assignStatus": "סוכם",
       "nextStep": "הצעת מחיר",
       "note": "",
       "conflicts": [],
@@ -527,7 +535,7 @@
       "coach2627": "סיון טפירו",
       "coachHint": "סיון?",
       "certainty": "משוער",
-      "assignStatus": "",
+      "assignStatus": "מועמד",
       "nextStep": "פולואו אפ 5.8",
       "note": "",
       "conflicts": [],
@@ -561,7 +569,7 @@
       "coach2627": "גילי ששון",
       "coachHint": "גילי",
       "certainty": "ודאי",
-      "assignStatus": "",
+      "assignStatus": "מועמד",
       "nextStep": "ראשון 19.7",
       "note": "מנהלת עזבה. כיתות א-ב · פער שם לאימות: דין מסר \"זאב זבולון אוריאל\", ב-Base44 קיים \"אור זבולון, אריאל\"",
       "conflicts": [],
@@ -595,7 +603,7 @@
       "coach2627": "אסף זוהר",
       "coachHint": "אסף",
       "certainty": "ודאי",
-      "assignStatus": "",
+      "assignStatus": "סוכם",
       "nextStep": "הזמנת עבודה",
       "note": "לבדוק אם אסף בעניין של עוד יום",
       "conflicts": [],
@@ -627,9 +635,9 @@
       "hours": "08:00-11:45 (4 קבוצות)",
       "coachLastYear": "וליד אבו חמוד",
       "coach2627": "וליד אבו חמוד",
-      "coachHint": "ביקשו את וואליד",
+      "coachHint": "",
       "certainty": "בקשת ביה״ס",
-      "assignStatus": "מועמד",
+      "assignStatus": "סוכם",
       "nextStep": "",
       "note": "",
       "conflicts": [],
@@ -830,12 +838,10 @@
       "coach2627": "אופק (?)",
       "coachHint": "",
       "certainty": "חסר",
-      "assignStatus": "",
+      "assignStatus": "מועמד",
       "nextStep": "נשלח מייל עם פירוט+המלצות",
       "note": "",
-      "conflicts": [
-        "גיליון השיבוץ מציין \"אופק (?)\", אך גיליון המוקדים מסמן ודאות \"חסר\""
-      ],
+      "conflicts": [],
       "isTa": false,
       "lat": 32.1509081881324,
       "lon": 34.892158104424,
