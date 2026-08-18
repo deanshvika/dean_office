@@ -122,6 +122,19 @@ function renderHtml(d) {
 צריך לעבור עליהם בגיליון ולקבוע ודאי או משוער: ${stale.map(s => esc(s.shortName)).join(' · ')}</div>
 </div>` : '';
 
+  // שינויי רוסטר שנעשו במפה וטרם עברו לגיליון המוקדים
+  const pending = data.pendingSheetSync || [];
+  const byId = Object.fromEntries(all.map(s => [s.id, s]));
+  const pendingBanner = pending.length ? `<div class="notice notice-info">
+<span class="notice-mark" aria-hidden="true">↻</span>
+<div><b>${pending.length} שינויים קיימים במפה אך עוד לא בגיליון המוקדים.</b>
+${pending.map(p => {
+    const site = byId[p.id];
+    const where = p.kind === 'add' && site && site.address ? ` (${esc(site.address)})` : '';
+    return `<span class="pend"><b>${p.kind === 'add' ? 'נוסף' : 'הוסר'}:</b> ${esc(p.name)}${where} — ${esc(p.reason)}</span>`;
+  }).join('')}</div>
+</div>` : '';
+
   const clusterBlocks = taByCluster.map(g => `<section class="cluster">
 <h3 class="cluster-h">${esc(g.cluster)}<span class="cluster-n">${g.list.length}</span></h3>
 <ul class="rows">${g.list.map(siteRow).join('')}</ul>
@@ -223,6 +236,12 @@ h1{
 }
 .notice-mark{color:var(--maybe); font-size:1rem; line-height:1.35; flex:none}
 .notice b{font-weight:600}
+.notice-info{
+  background:color-mix(in srgb, var(--accent) 9%, var(--surface));
+  border-color:color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.notice-info .notice-mark{color:var(--accent)}
+.pend{display:block; margin-top:3px}
 .row-flag{color:var(--maybe); margin-inline-start:5px; font-size:.8em}
 
 /* ── במה ── */
@@ -374,6 +393,7 @@ h1{
   <span class="legend-lead">סינון לפי ודאות השיבוץ</span>
   ${legendItems}
 </div>
+${pendingBanner}
 ${staleBanner}
 
 <div class="stage">

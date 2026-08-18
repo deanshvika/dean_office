@@ -112,7 +112,25 @@ const ROSTER = [
   { id: 'alumot',      sites: 'בית ספר אלומות',             assign: 'אלומות',     gis: 'אלומות' },
   { id: 'kfir',        sites: 'בית ספר כפיר',               assign: 'כפיר',       gis: 'כפיר' },
   { id: 'rokach',      sites: 'בית ספר רוקח',               assign: 'רוקח',       gis: 'רוקח' },
-  { id: 'gavrieli',    sites: 'בית ספר גבריאלי',            assign: 'גבריאלי',    gis: 'גבריאלי' },
+
+  // שים לב: הכתובת של גבריאלי היא "שפירא צבי הרמן 21" — שם רחוב, לא בית ספר.
+  // אין לו שום קשר לבית ספר "צבי שפירא" שברשומה הבאה.
+  { id: 'gavrieli',    sites: 'בית ספר גבריאלי',            assign: 'גבריאלי',    gis: 'גבריאלי',
+    pendingDrop: '2026-08-16', dropLabel: 'גבריאלי',
+    dropReason: 'ירד מהרשימה. בגיליון המוקדים הוא עדיין רשום כממשיך' },
+
+  { id: 'zvi_shapira', sites: 'בית ספר צבי שפירא',          assign: null,         gis: 'צבי שפירא',
+    pendingAdd: '2026-08-16',
+    verifiedBy: 'שכבת GIS 769 של עיריית ת"א מחזירה התאמה יחידה ל-"צבי שפירא" (סמל 31641). '
+      + 'שני בתי הספר האחרים בעיר עם "שפירא" — השכונתי שפירא ואורט יד-שפירא — אינם מכילים את הצירוף',
+    // אין לו עדיין שורה בגיליון המוקדים, ולכן הערכים מגיעים מכאן.
+    // המפתחות זהים לכותרות הגיליון כדי שהלולאה תתייחס אליו כמו לכל שורה אחרת.
+    synthetic: {
+      'מוקד': 'בית ספר צבי שפירא', 'עיר': 'ת"א', 'סוג': 'בי"ס חדש',
+      'סטטוס 26/27': 'חדש', 'תוכנית': '', 'היקף': '', 'ימים': '', 'שעות': '',
+      'רמז מאמן (חן)': '', 'ודאות': 'חסר', 'מאמן 26/27': '',
+      'סטטוס שיבוץ': '', 'השלב הבא': '', 'הערה': '',
+    } },
   { id: 'givon',       sites: 'בית ספר גבעון',              assign: 'גבעון',      gis: 'גבעון' },
   { id: 'kulana',      sites: 'בית ספר כלנא',               assign: 'כלנא יחד',   gis: 'כולנא יחד' },
 
@@ -320,10 +338,28 @@ async function main() {
 
   const results = [];
   const review = [];
+  // שינויי רוסטר שנעשו במפה אך טרם עברו לגיליון המוקדים.
+  // חיים בקוד ולא בגיליון, ולכן שורדים כל רענון — והעמוד מציג אותם כדי שלא יישכחו.
+  const pendingSheetSync = [];
 
   for (const entry of ROSTER) {
-    const s = sitesByName.get(entry.sites);
+    if (entry.pendingDrop) {
+      pendingSheetSync.push({
+        kind: 'drop', id: entry.id, name: entry.dropLabel || entry.sites,
+        reason: entry.dropReason || 'הוסר מהמפה', since: entry.pendingDrop,
+      });
+      continue;
+    }
+
+    // מוקד חדש שאין לו עדיין שורה בגיליון — הערכים מגיעים מהרשומה עצמה
+    const s = sitesByName.get(entry.sites) || entry.synthetic;
     if (!s) { review.push({ id: entry.id, issue: `לא נמצא בגיליון המוקדים: "${entry.sites}"` }); continue; }
+    if (entry.pendingAdd && !sitesByName.has(entry.sites)) {
+      pendingSheetSync.push({
+        kind: 'add', id: entry.id, name: entry.sites.replace(/^בית ה?ספר\s+/, ''),
+        reason: 'מוקד חדש. טרם נוסף לגיליון המוקדים', since: entry.pendingAdd,
+      });
+    }
     const a = entry.assign ? assignByName.get(entry.assign) : null;
     if (entry.assign && !a) review.push({ id: entry.id, issue: `לא נמצא בגיליון השיבוץ: "${entry.assign}"` });
 
@@ -510,11 +546,18 @@ async function main() {
       moeResource: `data.gov.il/${MOE_RESOURCE} — קואורדינטות מוסדות חינוך`,
     },
     sites: results,
+    pendingSheetSync,
     review,
   }, null, 2), 'utf8');
 
   // ── דוח שער בקרה ──
   console.log(`\nנכתבו ${results.length} מוקדים → ${path.relative(ROOT, OUT)}`);
+  if (pendingSheetSync.length) {
+    console.log(`\nשינויים שקיימים במפה אך לא בגיליון (${pendingSheetSync.length}):`);
+    for (const p of pendingSheetSync) {
+      console.log(`  ${p.kind === 'add' ? '+' : '−'} ${p.name} — ${p.reason} (${p.since})`);
+    }
+  }
   const counts = results.reduce((m, s) => ((m[s.confidence] = (m[s.confidence] || 0) + 1), m), {});
   console.log(`ודאות מיקום: high=${counts.high || 0} · medium=${counts.medium || 0} · none=${counts.none || 0}`);
   if (review.length) {
